@@ -1,0 +1,2 @@
+event_id,date_time_ist,location_name,lat,lon,hazard_type,description,source_name,source_url,confidence,notes
+EXAMPLE-PATAN-2026,2026-07-06 14:00,Patan Village Cut Slope,18.7291,73.4024,landslide,EXAMPLE RECORD ONLY: Colluvial soil slump blocking rural access road,IMD-Local-Disaster-Bulletin-Example,https://example.gov.in/disaster-bulletin/2026-07-06,Medium,EXAMPLE ROW ONLY: Do not use for empirical model calibration or backtesting

@@ -72,3 +72,4 @@ Field rain gauges and geotechnical sensors report to `POST /api/sensors/ingest`:
 2. Revoked via CLI: `python -m app.cli revoke-device-key --node-id <node_id>`.
 3. Stored in `sensor_nodes.api_key_hash` using SHA-256. Plaintext is displayed only once.
 4. Missing or invalid keys return **HTTP 401 Unauthorized** using constant-time comparison (`secrets.compare_digest`).
+

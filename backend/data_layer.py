@@ -814,3 +814,10 @@ REPLAY_TIMELINE_DATA: List[Dict[str, Any]] = [
         "active_incidents": ["Road clearance crews active at Bhor Ghat.", "Relief center at Bhangarwadi operational."]
     }
 ]
+
+
+# Additive Phase 4B provenance tagging for seed records
+for _coll in (LOCATIONS_DATA, HISTORICAL_INCIDENTS, SHELTERS_DATA, CORRIDORS_DATA, SENSOR_NODES, ALERTS_DATA):
+    for _item in _coll:
+        if "data_origin" not in _item:
+            _item["data_origin"] = "demo_seed"

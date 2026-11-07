@@ -103,6 +103,7 @@ class Incident(SQLModel, table=True):
     casualties_reported: Optional[str] = None
     image_url: Optional[str] = None
     is_historical: bool = Field(default=False, index=True)
+    data_origin: str = Field(default="demo_seed", index=True)  # "demo_seed", "live", "user_submitted"
     created_at: str = Field(default_factory=lambda: datetime.datetime.now(datetime.timezone.utc).isoformat())
     reviewed_by: Optional[str] = None
     reviewed_at: Optional[str] = None
@@ -125,7 +126,8 @@ class Incident(SQLModel, table=True):
             "impact_summary": self.impact_summary,
             "casualties_reported": self.casualties_reported,
             "image_url": self.image_url,
-            "is_historical": self.is_historical
+            "is_historical": self.is_historical,
+            "data_origin": self.data_origin
         }
 
 
@@ -154,6 +156,7 @@ class Alert(SQLModel, table=True):
     created_by: Optional[str] = None
     created_by_id: Optional[int] = Field(default=None, index=True)
     cap_format: Optional[str] = None
+    data_origin: str = Field(default="demo_seed", index=True)  # "demo_seed", "live", "user_submitted"
     created_at: str = Field(default_factory=lambda: datetime.datetime.now(datetime.timezone.utc).isoformat())
 
     def to_schema_dict(self) -> Dict[str, Any]:
@@ -183,7 +186,8 @@ class Alert(SQLModel, table=True):
             "expiry_time": self.expiry_time,
             "approval_status": self.approval_status,
             "approved_by": self.approved_by,
-            "cap_format": self.cap_format
+            "cap_format": self.cap_format,
+            "data_origin": self.data_origin
         }
 
 
@@ -265,6 +269,7 @@ class SensorNodeDB(SQLModel, table=True):
     health_status: str  # "HEALTHY", "WARNING", "FAULTY"
     quality_flag: str   # "NOMINAL", "SUSPICIOUS_STABLE", "OUT_OF_RANGE", "PACKET_LOSS"
     is_simulated: bool = Field(default=True)
+    data_origin: str = Field(default="demo_seed", index=True)  # "demo_seed", "live", "user_submitted"
     api_key_hash: Optional[str] = None  # For Phase 3 device auth
 
     def to_schema_dict(self) -> Dict[str, Any]:
@@ -281,7 +286,8 @@ class SensorNodeDB(SQLModel, table=True):
             "signal_rssi": self.signal_rssi,
             "health_status": self.health_status,
             "quality_flag": self.quality_flag,
-            "is_simulated": self.is_simulated
+            "is_simulated": self.is_simulated,
+            "data_origin": self.data_origin
         }
 
 

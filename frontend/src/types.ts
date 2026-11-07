@@ -69,6 +69,7 @@ export interface IncidentRecord {
   casualties_reported?: string;
   image_url?: string;
   is_historical: boolean;
+  data_origin?: 'demo_seed' | 'live' | 'user_submitted';
 }
 
 export interface AlertItem {
@@ -91,6 +92,7 @@ export interface AlertItem {
   approval_status: 'draft' | 'approved' | 'rejected';
   approved_by?: string;
   cap_format?: string;
+  data_origin?: 'demo_seed' | 'live' | 'user_submitted';
 }
 
 export interface ShelterItem {
@@ -105,6 +107,7 @@ export interface ShelterItem {
   official_contact: string;
   managed_by: string;
   status: 'STANDBY' | 'ACTIVE_OPEN' | 'FULL';
+  data_origin?: 'demo_seed' | 'live' | 'user_submitted';
 }
 
 export interface CorridorItem {
@@ -123,6 +126,7 @@ export interface CorridorItem {
   source: string;
   official_channel: string;
   traffic_notes?: string;
+  data_origin?: 'demo_seed' | 'live' | 'user_submitted';
 }
 
 export interface SensorNode {
@@ -138,6 +142,7 @@ export interface SensorNode {
   health_status: 'HEALTHY' | 'WARNING' | 'FAULTY';
   quality_flag: 'NOMINAL' | 'SUSPICIOUS_STABLE' | 'OUT_OF_RANGE' | 'PACKET_LOSS';
   is_simulated: boolean;
+  data_origin?: 'demo_seed' | 'live' | 'user_submitted';
 }
 
 export interface ReplayFrame {

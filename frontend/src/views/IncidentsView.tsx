@@ -248,6 +248,20 @@ export const IncidentsView: React.FC<IncidentsViewProps> = ({
                       }}>
                         {inc.verification_status}
                       </span>
+                      {inc.data_origin === 'demo_seed' && (
+                        <span style={{
+                          fontSize: '0.66rem',
+                          fontWeight: 600,
+                          background: '#f1f5f9',
+                          color: '#64748b',
+                          border: '1px solid #cbd5e1',
+                          padding: '1px 6px',
+                          borderRadius: '4px',
+                          marginLeft: '6px'
+                        }}>
+                          Demo data
+                        </span>
+                      )}
                       <span style={{ fontSize: '0.7rem', color: '#64748b' }}>
                         {inc.date_time.slice(0, 10)}
                       </span>

@@ -148,6 +148,20 @@ export const AlertsView: React.FC<AlertsViewProps> = ({ alerts, lang }) => {
                   }}>
                     Severity: {alert.severity}
                   </span>
+
+                  {alert.data_origin === 'demo_seed' && (
+                    <span style={{
+                      background: '#f1f5f9',
+                      color: '#64748b',
+                      border: '1px solid #cbd5e1',
+                      padding: '2px 8px',
+                      borderRadius: '4px',
+                      fontSize: '0.70rem',
+                      fontWeight: 600
+                    }}>
+                      Demo data
+                    </span>
+                  )}
                 </div>
 
                 <span style={{ fontSize: '0.72rem', color: '#64748b' }}>

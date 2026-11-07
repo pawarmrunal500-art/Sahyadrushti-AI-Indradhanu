@@ -160,6 +160,20 @@ export const SafetyView: React.FC<SafetyViewProps> = ({ shelters, lang }) => {
                     }}>
                       {s.status}
                     </span>
+                    {s.data_origin === 'demo_seed' && (
+                      <span style={{
+                        background: '#f1f5f9',
+                        color: '#64748b',
+                        border: '1px solid #cbd5e1',
+                        padding: '2px 6px',
+                        borderRadius: '4px',
+                        fontSize: '0.68rem',
+                        fontWeight: 600,
+                        marginLeft: '4px'
+                      }}>
+                        Demo data
+                      </span>
+                    )}
                     <span style={{ fontSize: '0.72rem', color: '#64748b' }}>
                       Cap: <strong>{s.capacity_persons}</strong> persons
                     </span>

@@ -136,6 +136,7 @@ def create_incident(session: Session, payload: IncidentSubmission, user_id: Opti
         casualties_reported=None,
         image_url=None,
         is_historical=False,
+        data_origin="user_submitted",
         created_at=now_iso
     )
     session.add(incident)
@@ -183,6 +184,7 @@ def seed_incidents_if_empty(session: Session) -> int:
             casualties_reported=item.get("casualties_reported"),
             image_url=item.get("image_url"),
             is_historical=item.get("is_historical", True),
+            data_origin=item.get("data_origin", "demo_seed"),
             created_at=item["date_time"]
         )
         session.add(inc)
@@ -234,6 +236,7 @@ def create_alert_draft(
         created_by=user_id,
         created_by_id=user_pk,
         cap_format=None,
+        data_origin="live",
         created_at=now_iso
     )
     session.add(alert)
@@ -318,6 +321,7 @@ def seed_alerts_if_empty(session: Session) -> int:
             approval_status=item["approval_status"],
             approved_by=item.get("approved_by"),
             cap_format=item.get("cap_format"),
+            data_origin=item.get("data_origin", "demo_seed"),
             created_at=item["issue_time"]
         )
         session.add(alert)
@@ -370,6 +374,7 @@ def ingest_sensor_reading(
         existing.health_status = node.health_status
         existing.quality_flag = node.quality_flag
         existing.is_simulated = node.is_simulated
+        existing.data_origin = "live"
         session.add(existing)
         status_str = "UPDATED"
     else:
@@ -386,7 +391,8 @@ def ingest_sensor_reading(
             signal_rssi=node.signal_rssi,
             health_status=node.health_status,
             quality_flag=node.quality_flag,
-            is_simulated=node.is_simulated
+            is_simulated=node.is_simulated,
+            data_origin="live"
         )
         session.add(new_node)
 
@@ -433,7 +439,8 @@ def seed_sensors_if_empty(session: Session) -> int:
             signal_rssi=item["signal_rssi"],
             health_status=item["health_status"],
             quality_flag=item["quality_flag"],
-            is_simulated=item.get("is_simulated", True)
+            is_simulated=item.get("is_simulated", True),
+            data_origin=item.get("data_origin", "demo_seed")
         )
         session.add(node)
         count += 1

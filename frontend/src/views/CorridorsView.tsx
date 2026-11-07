@@ -87,6 +87,23 @@ export const CorridorsView: React.FC<CorridorsViewProps> = ({
                 }}>
                   {c.current_status}
                 </span>
+                {c.data_origin === 'demo_seed' && (
+                  <span style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '10px',
+                    background: '#f1f5f9',
+                    color: '#64748b',
+                    border: '1px solid #cbd5e1',
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    fontSize: '0.70rem',
+                    fontWeight: 600,
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                  }}>
+                    Demo data
+                  </span>
+                )}
               </div>
 
               <div style={{ padding: '1.25rem' }}>

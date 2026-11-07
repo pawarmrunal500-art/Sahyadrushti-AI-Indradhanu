@@ -20,7 +20,7 @@ class Settings:
     def __init__(self):
         self.APP_NAME: str = os.getenv("APP_NAME", "SAHYADRUSHTI AI")
         self.APP_VERSION: str = os.getenv("APP_VERSION", "2.1.0")
-        self.DEBUG: bool = os.getenv("DEBUG", "true").lower() in ("true", "1", "yes")
+        self.DEBUG: bool = os.getenv("DEBUG", "false").lower() in ("true", "1", "yes")
 
         # Database
         self.DATABASE_URL: str = os.getenv(

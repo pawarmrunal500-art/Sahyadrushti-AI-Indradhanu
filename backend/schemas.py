@@ -107,6 +107,7 @@ class IncidentRecord(BaseModel):
     casualties_reported: Optional[str] = None
     image_url: Optional[str] = None
     is_historical: bool = True
+    data_origin: Optional[str] = "demo_seed"  # "demo_seed", "live", "user_submitted"
 
 class IncidentSubmission(BaseModel):
     hazard_type: str
@@ -139,6 +140,7 @@ class AlertItem(BaseModel):
     approval_status: str  # "approved", "draft", "rejected"
     approved_by: Optional[str] = None
     cap_format: Optional[str] = None
+    data_origin: Optional[str] = "demo_seed"  # "demo_seed", "live", "user_submitted"
 
 class SensorNode(BaseModel):
     sensor_id: str
@@ -153,6 +155,7 @@ class SensorNode(BaseModel):
     health_status: str  # "HEALTHY", "WARNING", "FAULTY"
     quality_flag: str   # "NOMINAL", "SUSPICIOUS_STABLE", "OUT_OF_RANGE", "PACKET_LOSS"
     is_simulated: bool = True
+    data_origin: Optional[str] = "demo_seed"  # "demo_seed", "live", "user_submitted"
 
 class ShelterItem(BaseModel):
     id: str
@@ -166,6 +169,7 @@ class ShelterItem(BaseModel):
     official_contact: str
     managed_by: str
     status: str  # "STANDBY", "ACTIVE_OPEN", "FULL"
+    data_origin: Optional[str] = "demo_seed"  # "demo_seed", "live", "user_submitted"
 
 class CorridorItem(BaseModel):
     id: str
@@ -183,6 +187,7 @@ class CorridorItem(BaseModel):
     source: str
     official_channel: str
     traffic_notes: Optional[str] = None
+    data_origin: Optional[str] = "demo_seed"  # "demo_seed", "live", "user_submitted"
 
 class SimulationScenarioRequest(BaseModel):
     scenario_name: str = "Custom Stress Test"

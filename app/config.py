@@ -5,6 +5,7 @@ Uses pydantic-settings / environment variable loader.
 All secrets (JWT_SECRET, DB URL, API keys) come from here.
 """
 import os
+import sys
 from typing import List, Optional
 
 
@@ -35,7 +36,7 @@ class Settings:
             self.CORS_ORIGINS = [o.strip() for o in cors_origins.split(",")]
 
         # JWT / Auth (Phase 3)
-        self.JWT_SECRET: Optional[str] = os.getenv("JWT_SECRET", None)
+        self.JWT_SECRET: str = os.getenv("JWT_SECRET", "sahyadrushti_dev_jwt_secret_key_minimum_32_bytes_long_12345")
         self.JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
         self.JWT_ACCESS_TOKEN_MINUTES: int = int(
             os.getenv("JWT_ACCESS_TOKEN_MINUTES", "30")
@@ -43,6 +44,13 @@ class Settings:
         self.JWT_REFRESH_TOKEN_DAYS: int = int(
             os.getenv("JWT_REFRESH_TOKEN_DAYS", "7")
         )
+
+        # Validate JWT_SECRET in production mode
+        if not self.DEBUG:
+            if not self.JWT_SECRET or len(self.JWT_SECRET) < 32 or "CHANGE_THIS" in self.JWT_SECRET or "dev" in self.JWT_SECRET.lower():
+                raise RuntimeError(
+                    "FATAL: In production mode (DEBUG=False), JWT_SECRET must be set to a secure string with at least 32 characters."
+                )
 
         # Weather / Open-Meteo
         self.WEATHER_MODE: str = os.getenv("WEATHER_MODE", "live").lower()  # "live" or "demo"
@@ -79,13 +87,11 @@ class Settings:
         self.PILOT_LON: float = float(os.getenv("PILOT_LON", "73.395"))
 
         # Rate limiting
+        self.RATELIMIT_ENABLED: bool = os.getenv("RATELIMIT_ENABLED", "true").lower() in ("true", "1", "yes")
         self.RATE_LIMIT_LOGIN: str = os.getenv("RATE_LIMIT_LOGIN", "5/minute")
-        self.RATE_LIMIT_PUBLIC_POST: str = os.getenv(
-            "RATE_LIMIT_PUBLIC_POST", "10/minute"
-        )
-        self.RATE_LIMIT_PREDICT: str = os.getenv(
-            "RATE_LIMIT_PREDICT", "30/minute"
-        )
+        self.RATE_LIMIT_PUBLIC_POST: str = os.getenv("RATE_LIMIT_PUBLIC_POST", "10/minute")
+        self.RATE_LIMIT_PREDICT: str = os.getenv("RATE_LIMIT_PREDICT", "30/minute")
+        self.RATE_LIMIT_SIMULATE: str = os.getenv("RATE_LIMIT_SIMULATE", "20/minute")
 
 
 # Global singleton - import this everywhere

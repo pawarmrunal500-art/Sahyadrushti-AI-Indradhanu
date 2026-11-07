@@ -7,9 +7,12 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 
 from app.config import settings
 from app.db import init_db, engine
+from app.limiter import limiter
 from app.repositories import seed_all_if_empty
 from app.scheduler import start_scheduler, shutdown_scheduler
 from app.routers import (
@@ -20,6 +23,7 @@ from app.routers import (
     alerts,
     ml,
     sensors,
+    auth,
 )
 
 @asynccontextmanager
@@ -43,7 +47,11 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS Middleware
+# SlowAPI Rate Limiter
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+# CORS Middleware (Restricted to settings.CORS_ORIGINS)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.CORS_ORIGINS,
@@ -60,3 +68,4 @@ app.include_router(incidents.router)
 app.include_router(alerts.router)
 app.include_router(ml.router)
 app.include_router(sensors.router)
+app.include_router(auth.router)

@@ -283,6 +283,23 @@ const FALLBACK_LOCATIONS: LocationItem[] = [
   }
 ];
 
+// In-memory Authentication Token and Identity (never persisted to localStorage for security)
+let inMemoryToken: string | null = null;
+let inMemoryUser: { id: number; username: string; role: string } | null = null;
+
+export const authState = {
+  getToken: () => inMemoryToken,
+  getUser: () => inMemoryUser,
+  setAuth: (token: string, user: { id: number; username: string; role: string }) => {
+    inMemoryToken = token;
+    inMemoryUser = user;
+  },
+  clear: () => {
+    inMemoryToken = null;
+    inMemoryUser = null;
+  }
+};
+
 export const apiClient = {
   isBackendConnected: false,
 
@@ -430,6 +447,65 @@ export const apiClient = {
     };
   },
 
+  getAuthToken: () => inMemoryToken,
+  getCurrentUser: () => inMemoryUser,
+
+  async login(username: string, password: string): Promise<{ ok: boolean; error?: string; user?: any }> {
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return { ok: false, error: data.detail || 'Login failed.' };
+      }
+      authState.setAuth(data.access_token, data.user || { id: 0, username, role: data.role });
+      return { ok: true, user: data.user };
+    } catch (e: any) {
+      return { ok: false, error: e.message || 'Network error during login.' };
+    }
+  },
+
+  async logout(): Promise<void> {
+    try {
+      if (inMemoryToken) {
+        await fetch('/api/auth/logout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${inMemoryToken}`
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('Logout network notice:', e);
+    } finally {
+      authState.clear();
+    }
+  },
+
+  async getAuthorityQueue(): Promise<{ ok: boolean; queue: any[]; count: number; error?: string }> {
+    if (!inMemoryToken) return { ok: false, queue: [], count: 0, error: 'Not authenticated' };
+    try {
+      const res = await fetch('/api/authority/queue', {
+        headers: { 'Authorization': `Bearer ${inMemoryToken}` }
+      });
+      if (res.status === 401) {
+        authState.clear();
+        return { ok: false, queue: [], count: 0, error: 'Session expired' };
+      }
+      if (res.ok) {
+        const data = await res.json();
+        return { ok: true, queue: data.queue || data.pending_queue || [], count: data.queue_count || data.count || 0 };
+      }
+    } catch (e: any) {
+      return { ok: false, queue: [], count: 0, error: e.message };
+    }
+    return { ok: false, queue: [], count: 0, error: 'Failed to fetch queue' };
+  },
+
   async draftAlert(payload: {
     title: string;
     title_mr: string;
@@ -438,29 +514,57 @@ export const apiClient = {
     severity: string;
     geographic_coverage: string;
     target_locations: string[];
-  }) {
+  }): Promise<{ ok: boolean; alert_id?: string; error?: string; status?: number }> {
     try {
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (inMemoryToken) {
+        headers['Authorization'] = `Bearer ${inMemoryToken}`;
+      }
       const res = await fetch('/api/authority/alerts/draft', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify(payload)
       });
-      if (res.ok) return await res.json();
-    } catch (e) {
+      const data = await res.json();
+      if (res.status === 401) {
+        authState.clear();
+        return { ok: false, error: 'Session expired. Please log in again.', status: 401 };
+      }
+      if (!res.ok) {
+        return { ok: false, error: data.detail || 'Failed to draft advisory', status: res.status };
+      }
+      return { ok: true, alert_id: data.alert_id || data.draft?.id, status: 200 };
+    } catch (e: any) {
       console.warn('Alert draft failed via backend:', e);
+      return { ok: false, error: e.message };
     }
-    return null;
   },
 
-  async approveAlert(alertId: string) {
+  async approveAlert(alertId: string): Promise<{ ok: boolean; message?: string; error?: string; status?: number }> {
     try {
+      const headers: Record<string, string> = {};
+      if (inMemoryToken) {
+        headers['Authorization'] = `Bearer ${inMemoryToken}`;
+      }
       const res = await fetch(`/api/authority/alerts/${alertId}/approve`, {
-        method: 'POST'
+        method: 'POST',
+        headers
       });
-      if (res.ok) return await res.json();
-    } catch (e) {
+      const data = await res.json();
+      if (res.status === 401) {
+        authState.clear();
+        return { ok: false, error: 'Session expired. Please log in again.', status: 401 };
+      }
+      if (res.status === 409) {
+        return { ok: false, error: data.detail || 'Four-eyes violation: creator cannot approve', status: 409 };
+      }
+      if (!res.ok) {
+        return { ok: false, error: data.detail || 'Approval failed', status: res.status };
+      }
+      return { ok: true, message: data.message, status: 200 };
+    } catch (e: any) {
       console.warn('Alert approve failed via backend:', e);
+      return { ok: false, error: e.message };
     }
-    return null;
   }
 };

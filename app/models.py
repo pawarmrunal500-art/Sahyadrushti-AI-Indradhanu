@@ -232,6 +232,19 @@ class User(SQLModel, table=True):
     password_hash: str
     role: str = Field(default="operator", index=True)  # "operator", "approver", "admin"
     is_active: bool = Field(default=True)
+    failed_login_attempts: int = Field(default=0)
+    locked_until: Optional[str] = None
+    created_at: str = Field(default_factory=lambda: datetime.datetime.now(datetime.timezone.utc).isoformat())
+
+
+class RefreshToken(SQLModel, table=True):
+    __tablename__ = "refresh_tokens"
+
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: int = Field(index=True)
+    token_hash: str = Field(unique=True, index=True)
+    expires_at: str = Field(index=True)
+    revoked: bool = Field(default=False, index=True)
     created_at: str = Field(default_factory=lambda: datetime.datetime.now(datetime.timezone.utc).isoformat())
 
 

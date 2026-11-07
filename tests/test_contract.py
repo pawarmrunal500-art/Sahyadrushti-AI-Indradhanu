@@ -28,6 +28,12 @@ from sqlmodel import Session, create_engine, SQLModel
 from backend.main import app
 from app.db import get_session
 from app.repositories import seed_all_if_empty
+from app.models import User
+from app.auth import get_current_user, verify_sensor_device_key
+from app.config import settings
+
+# Disable rate limiting for contract suite
+settings.RATELIMIT_ENABLED = False
 
 # Isolated temporary test database
 temp_db_fd, temp_db_path = tempfile.mkstemp(suffix=".db")
@@ -42,7 +48,25 @@ def get_test_session():
     with Session(test_engine) as session:
         yield session
 
+mock_operator = User(
+    id=1,
+    username="contract_operator",
+    role="operator",
+    is_active=True,
+    password_hash="mock_hash"
+)
+
+@pytest.fixture(autouse=True)
+def setup_contract_env():
+    settings.RATELIMIT_ENABLED = False
+    app.dependency_overrides[get_session] = get_test_session
+    app.dependency_overrides[get_current_user] = lambda: mock_operator
+    app.dependency_overrides[verify_sensor_device_key] = lambda: True
+    yield
+
 app.dependency_overrides[get_session] = get_test_session
+app.dependency_overrides[get_current_user] = lambda: mock_operator
+app.dependency_overrides[verify_sensor_device_key] = lambda: True
 
 GOLDEN_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "golden")
 client = TestClient(app)

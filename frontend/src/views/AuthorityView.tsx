@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LocationItem, AlertItem, IncidentRecord, SensorNode } from '../types';
 import {
   ShieldAlert, Activity, CheckCircle2, XCircle, Send,
-  FileSpreadsheet, Printer, Clock, Bell, UserCheck, AlertTriangle
+  FileSpreadsheet, Printer, Clock, Bell, UserCheck, AlertTriangle,
+  Lock, LogIn, LogOut, ShieldCheck
 } from 'lucide-react';
 import { apiClient } from '../api';
 
@@ -23,6 +24,18 @@ export const AuthorityView: React.FC<AuthorityViewProps> = ({
   onRefreshData,
   lang
 }) => {
+  // Auth state
+  const [currentUser, setCurrentUser] = useState(apiClient.getCurrentUser());
+  const [usernameInput, setUsernameInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [loginError, setLoginError] = useState<string | null>(null);
+  const [loggingIn, setLoggingIn] = useState(false);
+
+  // Authority Queue state
+  const [actionQueue, setActionQueue] = useState<any[]>([]);
+  const [queueCount, setQueueCount] = useState<number>(0);
+
+  // Composer state
   const [draftTitle, setDraftTitle] = useState('');
   const [draftTitleMr, setDraftTitleMr] = useState('');
   const [draftMessage, setDraftMessage] = useState('');
@@ -30,16 +43,61 @@ export const AuthorityView: React.FC<AuthorityViewProps> = ({
   const [coverageArea, setCoverageArea] = useState('Lonavala Ghat Region');
   const [drafting, setDrafting] = useState(false);
   const [composerSuccess, setComposerSuccess] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
 
   const pendingIncidents = incidents.filter(i => i.verification_status === 'Unverified report');
   const escalatingHotspots = locations.filter(l => l.status === 'high' || l.status === 'very_high');
+
+  const fetchQueue = async () => {
+    if (!currentUser) return;
+    const res = await apiClient.getAuthorityQueue();
+    if (res.ok) {
+      setActionQueue(res.queue);
+      setQueueCount(res.count);
+    } else if (res.error === 'Session expired') {
+      setCurrentUser(null);
+      setLoginError('Your session has expired. Please log in again.');
+    }
+  };
+
+  useEffect(() => {
+    if (currentUser) {
+      fetchQueue();
+    }
+  }, [currentUser]);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!usernameInput || !passwordInput) return;
+    setLoggingIn(true);
+    setLoginError(null);
+
+    const res = await apiClient.login(usernameInput, passwordInput);
+    setLoggingIn(false);
+    if (res.ok) {
+      setCurrentUser(apiClient.getCurrentUser());
+      setUsernameInput('');
+      setPasswordInput('');
+    } else {
+      setLoginError(res.error || 'Authentication failed.');
+    }
+  };
+
+  const handleLogout = async () => {
+    await apiClient.logout();
+    setCurrentUser(null);
+    setActionQueue([]);
+  };
 
   const handleDraftAlert = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!draftTitle || !draftMessage) return;
 
     setDrafting(true);
-    await apiClient.draftAlert({
+    setActionError(null);
+    setComposerSuccess(null);
+
+    const res = await apiClient.draftAlert({
       title: draftTitle,
       title_mr: draftTitleMr || draftTitle,
       message: draftMessage,
@@ -50,16 +108,143 @@ export const AuthorityView: React.FC<AuthorityViewProps> = ({
     });
 
     setDrafting(false);
-    setComposerSuccess('Draft advisory created and placed into approval queue.');
-    setDraftTitle('');
-    setDraftTitleMr('');
-    setDraftMessage('');
-    onRefreshData();
+    if (res.ok) {
+      setComposerSuccess(`Draft advisory ${res.alert_id || ''} created and placed into approval queue.`);
+      setDraftTitle('');
+      setDraftTitleMr('');
+      setDraftMessage('');
+      onRefreshData();
+      fetchQueue();
+    } else {
+      if (res.status === 401) {
+        setCurrentUser(null);
+        setLoginError('Session expired. Please log in again.');
+      } else {
+        setActionError(res.error || 'Failed to create draft advisory.');
+      }
+    }
+  };
+
+  const handleApproveAlert = async (alertId: string) => {
+    setActionError(null);
+    setComposerSuccess(null);
+    const res = await apiClient.approveAlert(alertId);
+    if (res.ok) {
+      setComposerSuccess(`Alert ${alertId} approved and broadcast to public feeds.`);
+      onRefreshData();
+      fetchQueue();
+    } else {
+      if (res.status === 409) {
+        setActionError(`Four-Eyes Principle: You drafted this alert and cannot approve your own advisory.`);
+      } else if (res.status === 401) {
+        setCurrentUser(null);
+        setLoginError('Session expired. Please log in again.');
+      } else {
+        setActionError(res.error || 'Approval failed.');
+      }
+    }
   };
 
   const handlePrintSitRep = () => {
     window.print();
   };
+
+  // If not logged in, render authenticated gate
+  if (!currentUser) {
+    return (
+      <div style={{ maxWidth: '480px', margin: '3rem auto', padding: '0 1rem' }}>
+        <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>
+          <div style={{
+            background: 'rgba(9, 36, 21, 0.08)',
+            width: '56px',
+            height: '56px',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 1rem auto',
+            color: 'var(--accent-green-dark)'
+          }}>
+            <Lock size={28} />
+          </div>
+
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.25rem' }}>
+            {lang === 'mr' ? 'अधिकारी नियंत्रण कक्ष प्रवेश' : 'Authority Console Authentication'}
+          </h2>
+          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
+            {lang === 'mr'
+              ? 'आपत्ती व्यवस्थापन अधिकारी, ऑपरेटर व अनुमोदक यांच्यासाठी आरक्षित.'
+              : 'Restricted to verified Maval Taluka Emergency Operators & Approvers.'}
+          </p>
+
+          {loginError && (
+            <div style={{
+              background: '#fef2f2',
+              border: '1px solid #fecaca',
+              color: '#b91c1c',
+              fontSize: '0.8rem',
+              padding: '10px 12px',
+              borderRadius: '6px',
+              marginBottom: '1rem',
+              textAlign: 'left',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}>
+              <AlertTriangle size={16} />
+              <span>{loginError}</span>
+            </div>
+          )}
+
+          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', textAlign: 'left' }}>
+            <div>
+              <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#334155', marginBottom: '4px' }}>
+                Username / युझरनेम
+              </label>
+              <input
+                type="text"
+                className="input-field"
+                placeholder="e.g. test_operator"
+                value={usernameInput}
+                onChange={(e) => setUsernameInput(e.target.value)}
+                required
+                style={{ width: '100%', padding: '8px 12px', fontSize: '0.85rem' }}
+              />
+            </div>
+
+            <div>
+              <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, color: '#334155', marginBottom: '4px' }}>
+                Password / पासवर्ड
+              </label>
+              <input
+                type="password"
+                className="input-field"
+                placeholder="Enter password"
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
+                required
+                style={{ width: '100%', padding: '8px 12px', fontSize: '0.85rem' }}
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loggingIn}
+              className="btn-primary"
+              style={{ width: '100%', padding: '10px', marginTop: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+            >
+              <LogIn size={16} />
+              {loggingIn ? 'Authenticating...' : 'Sign In to Operations Console'}
+            </button>
+          </form>
+
+          <div style={{ marginTop: '1.25rem', fontSize: '0.72rem', color: '#64748b', borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
+            Account provisioning CLI: <code>python -m app.cli create-user --username &lt;name&gt; --role &lt;operator|approver|admin&gt;</code>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -81,12 +266,24 @@ export const AuthorityView: React.FC<AuthorityViewProps> = ({
           <h2 className="view-header-title" style={{ marginTop: '4px' }}>
             {lang === 'mr' ? 'मावळ आपत्ती नियंत्रण व पूर्वसूचना कक्ष' : 'Maval Taluka Disaster Operations Center'}
           </h2>
-          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-            Role: <strong>Sub-Divisional Emergency Coordinator</strong> • Pilot: Lonavala–Khandala
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span>Officer: <strong>{currentUser.username}</strong></span>
+            <span style={{
+              textTransform: 'uppercase',
+              fontSize: '0.68rem',
+              fontWeight: 800,
+              background: currentUser.role === 'admin' ? '#fef3c7' : currentUser.role === 'approver' ? '#e0f2fe' : '#dcfce7',
+              color: currentUser.role === 'admin' ? '#b45309' : currentUser.role === 'approver' ? '#0369a1' : '#15803d',
+              padding: '2px 6px',
+              borderRadius: '4px'
+            }}>
+              {currentUser.role}
+            </span>
+            <span>• Pilot: Lonavala–Khandala</span>
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <button
             onClick={handlePrintSitRep}
             className="btn-secondary"
@@ -94,8 +291,97 @@ export const AuthorityView: React.FC<AuthorityViewProps> = ({
           >
             <Printer size={14} /> Export / Print SitRep
           </button>
+          <button
+            onClick={handleLogout}
+            className="btn-secondary"
+            style={{ fontSize: '0.78rem', background: 'rgba(239, 68, 68, 0.2)', color: '#ffffff', border: '1px solid rgba(239, 68, 68, 0.4)' }}
+            title="Sign out"
+          >
+            <LogOut size={14} /> Logout
+          </button>
         </div>
       </div>
+
+      {actionError && (
+        <div style={{
+          background: '#fef2f2',
+          border: '1px solid #fecaca',
+          color: '#b91c1c',
+          fontSize: '0.85rem',
+          padding: '12px 16px',
+          borderRadius: '8px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px'
+        }}>
+          <AlertTriangle size={18} />
+          <span>{actionError}</span>
+        </div>
+      )}
+
+      {composerSuccess && (
+        <div style={{
+          background: '#f0fdf4',
+          border: '1px solid #bbf7d0',
+          color: '#15803d',
+          fontSize: '0.85rem',
+          padding: '12px 16px',
+          borderRadius: '8px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px'
+        }}>
+          <CheckCircle2 size={18} />
+          <span>{composerSuccess}</span>
+        </div>
+      )}
+
+      {/* High-Risk Action Queue (Additive Endpoint) */}
+      {actionQueue.length > 0 && (
+        <div className="card" style={{ borderLeft: '4px solid #ea580c' }}>
+          <div className="card-header">
+            <h3 className="card-title">
+              <ShieldAlert size={18} style={{ color: '#ea580c' }} />
+              {lang === 'mr' ? 'तातडीने कारवाई आवश्यक ठिकाणे (Action Queue)' : 'Active High-Risk Action Queue'}
+            </h3>
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#ea580c', background: '#ffedd5', padding: '2px 8px', borderRadius: '4px' }}>
+              {actionQueue.filter(q => q.requires_action).length} Unaddressed Hotspots (Risk ≥ 70)
+            </span>
+          </div>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem' }}>
+              <thead>
+                <tr style={{ background: '#f8fafc', borderBottom: '2px solid #e2e8f0', textAlign: 'left', color: '#475569' }}>
+                  <th style={{ padding: '8px 12px' }}>Location</th>
+                  <th style={{ padding: '8px 12px' }}>Hazard</th>
+                  <th style={{ padding: '8px 12px' }}>Current Risk</th>
+                  <th style={{ padding: '8px 12px' }}>Slope</th>
+                  <th style={{ padding: '8px 12px' }}>Recommended Protocol</th>
+                </tr>
+              </thead>
+              <tbody>
+                {actionQueue.map((item) => (
+                  <tr key={item.location_id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '8px 12px', fontWeight: 700, color: '#092415' }}>
+                      {lang === 'mr' ? item.name_mr : item.name}
+                    </td>
+                    <td style={{ padding: '8px 12px', textTransform: 'capitalize' }}>
+                      {item.hazard_type?.replace('_', ' ')}
+                    </td>
+                    <td style={{ padding: '8px 12px' }}>
+                      <span className="hazard-badge high">{item.risk_score} / 100</span>
+                    </td>
+                    <td style={{ padding: '8px 12px' }}>{item.slope_deg}°</td>
+                    <td style={{ padding: '8px 12px', color: item.requires_action ? '#c2410c' : '#15803d', fontWeight: 600 }}>
+                      {item.recommended_action}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       {/* Escalating Hotspots Panel */}
       <div className="card">

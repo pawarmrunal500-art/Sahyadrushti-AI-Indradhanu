@@ -1,16 +1,19 @@
 """
 app/routers/ml.py - AI/ML inference, parametric simulation, and research transparency.
 """
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 import datetime
 from backend.schemas import PredictionRequest, PredictionResponse, SimulationScenarioRequest
 from backend.data_layer import LOCATIONS_DATA, REPLAY_TIMELINE_DATA, DEMO_SCENARIO_DATA
 from app.services.risk import risk_service
+from app.limiter import limiter
+from app.config import settings
 
 router = APIRouter(tags=["AI / ML Inference & Transparency"])
 
 @router.post("/api/predict", response_model=PredictionResponse)
-def predict_hazard_risk(payload: PredictionRequest):
+@limiter.limit(settings.RATE_LIMIT_PREDICT)
+def predict_hazard_risk(request: Request, payload: PredictionRequest):
     """
     Executes physics-informed model inference on given terrain and rainfall payload.
     Returns calibrated probability, relative risk score (0-100), trigger index, and SHAP-proxy factors.
@@ -22,7 +25,8 @@ def predict_hazard_risk(payload: PredictionRequest):
         raise HTTPException(status_code=500, detail=f"Inference failure: {str(e)}")
 
 @router.post("/api/simulate")
-def run_scenario_simulation(payload: SimulationScenarioRequest):
+@limiter.limit(settings.RATE_LIMIT_SIMULATE)
+def run_scenario_simulation(request: Request, payload: SimulationScenarioRequest):
     """
     Interactive 'What-If Storm Intensifies?' simulation tool.
     Runs the model across baseline locations with user-adjusted rainfall/saturation.

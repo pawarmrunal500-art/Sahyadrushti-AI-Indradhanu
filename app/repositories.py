@@ -249,6 +249,7 @@ def create_alert_draft(
 
     return {
         "message": "Alert drafted successfully. Awaiting approval.",
+        "alert_id": alert_id,
         "draft": alert.to_schema_dict()
     }
 
@@ -282,6 +283,8 @@ def approve_alert(
 
     return {
         "message": f"Alert {alert_id} approved and published.",
+        "approval_status": "approved",
+        "approved_by": user_id or approver_role,
         "alert": alert.to_schema_dict()
     }
 

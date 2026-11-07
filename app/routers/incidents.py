@@ -1,12 +1,14 @@
 """
 app/routers/incidents.py - Incident reporting and retrieval with database persistence.
 """
-from fastapi import APIRouter, status, Depends
+from fastapi import APIRouter, status, Depends, Request
 from typing import List
 from sqlmodel import Session
 
 from backend.schemas import IncidentRecord, IncidentSubmission
 from app.db import get_session
+from app.limiter import limiter
+from app.config import settings
 from app.repositories import get_incidents as repo_get_incidents, create_incident as repo_create_incident
 
 router = APIRouter(prefix="/api/incidents", tags=["Incidents"])
@@ -23,7 +25,9 @@ def get_incidents(
     return repo_get_incidents(session, include_historical=include_historical)
 
 @router.post("", status_code=status.HTTP_201_CREATED)
+@limiter.limit(settings.RATE_LIMIT_PUBLIC_POST)
 def submit_incident_report(
+    request: Request,
     payload: IncidentSubmission,
     session: Session = Depends(get_session)
 ):

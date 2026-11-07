@@ -4,7 +4,9 @@
 
 > **UN Sustainable Development Goal Alignment:**  
 > **SDG 13.1:** Strengthen resilience and adaptive capacity to climate-related hazards and natural disasters.  
-> **SDG 11.5:** Reduce the adverse impacts of natural disasters on human lives, transport lifelines, and settlements.
+> **SDG 11.5:** Reduce the adverse impacts of natural disasters on human lives, transport lifelines, and settlements.  
+>  
+> **Platform Maturity Status:** Demo-ready, pilot-stage, synthetic-calibrated model. Geotechnical factor of safety and rational runoff calculations use uncalibrated physical assumptions grounded on Deccan Trap basalt literature; not yet calibrated against physical IMD rain gauge networks.
 
 ---
 
@@ -112,6 +114,11 @@ WEATHER_FETCH_INTERVAL_MINUTES=30
 WEATHER_CACHE_TTL_MINUTES=15
 BIAS_MULTIPLIER=1.0
 
+# Reverse Proxy Security
+# WARNING: Do NOT set to '*' in production! Setting '*' allows any remote client to forge 'X-Forwarded-For'
+# and bypass slowapi rate limits or account lockouts. Set to the trusted upstream proxy IP (default: 127.0.0.1).
+FORWARDED_ALLOW_IPS=127.0.0.1
+
 # Background Job Runner
 SCHEDULER_ENABLED=True
 ```
@@ -147,6 +154,9 @@ python -m app.cli create-device-key --node-id SAHYA-RAIN-01
 ### 1. Start the FastAPI Backend Server
 > [!IMPORTANT]
 > The background weather and risk evaluation scheduler (`APScheduler`) must run in a **single worker process** (`--workers 1`). If running multiple uvicorn workers behind a reverse proxy in production, set `SCHEDULER_ENABLED=False` on worker nodes and run a dedicated standalone cron worker process.
+> 
+> **Reverse Proxy & IP Spoofing Protection:**
+> Uvicorn runs with `--proxy-headers` and restricts forwarded client IPs via `FORWARDED_ALLOW_IPS` (default: `127.0.0.1`). Setting `FORWARDED_ALLOW_IPS=*` is dangerous because untrusted clients could forge `X-Forwarded-For` request headers and circumvent `slowapi` rate limits, brute-force defenses, and IP-based audit trails. Only configure `FORWARDED_ALLOW_IPS` to point to your verified upstream reverse proxy (e.g. Nginx, Traefik, or AWS ALB).
 
 ```bash
 python run_backend.py

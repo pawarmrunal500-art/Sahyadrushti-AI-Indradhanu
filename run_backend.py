@@ -5,6 +5,7 @@ Configures proxy headers and forwarded IPs for production reverse-proxy support.
 import sys
 import os
 import uvicorn
+from app.config import settings
 
 if __name__ == "__main__":
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -15,5 +16,5 @@ if __name__ == "__main__":
         port=8000,
         reload=False,
         proxy_headers=True,
-        forwarded_allow_ips="*"
+        forwarded_allow_ips=settings.FORWARDED_ALLOW_IPS
     )

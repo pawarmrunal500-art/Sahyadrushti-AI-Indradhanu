@@ -22,6 +22,9 @@ class Settings:
         self.APP_VERSION: str = os.getenv("APP_VERSION", "2.1.0")
         self.DEBUG: bool = os.getenv("DEBUG", "false").lower() in ("true", "1", "yes")
 
+        # Reverse Proxy / Forwarded IPs (default to 127.0.0.1 to prevent IP spoofing attacks)
+        self.FORWARDED_ALLOW_IPS: str = os.getenv("FORWARDED_ALLOW_IPS", "127.0.0.1")
+
         # Database
         self.DATABASE_URL: str = os.getenv(
             "DATABASE_URL",

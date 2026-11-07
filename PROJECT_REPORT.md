@@ -142,7 +142,7 @@ $$FFI = w_a \cdot (C \cdot I \cdot A) + w_b \cdot \frac{1}{\text{DrainageDistanc
 
 ## 5. User Interface & Experience Redesign
 
-The user interface was completely redesigned to deliver a professional, production-ready disaster-intelligence experience suitable for a national hackathon demonstration.
+The user interface was completely redesigned to deliver a professional, demo-ready disaster-intelligence experience suitable for a national hackathon demonstration.
 
 ### 5.1 Cinematic Opening Screen / Welcome Page (`WelcomePage.tsx`)
 - **First Screen Experience**: The platform opens on an immersive welcome page rather than dumping the user into raw data tables.

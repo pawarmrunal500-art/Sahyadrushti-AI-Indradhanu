@@ -326,7 +326,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
               {lang === 'mr'
                 ? 'अतिवृष्टीत सर्वाधिक धोका असणाऱ्या कड्यांचे व ओढ्यांचे थेट एआय वर्गीकरण.'
-                : 'Locations with elevated geotechnical shear failure or upstream surge probability.'}
+                : 'Locations with elevated geotechnical shear failure or upstream surge risk index (0-100).'}
             </p>
           </div>
           <button
@@ -390,7 +390,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
                     }}
                   >
-                    Risk: {loc.risk_score}/100
+                    Risk: {loc.risk_score}/100{(loc.score_capped || loc.risk_score === 96) ? ' (Capped)' : ''}
                   </span>
                 </div>
 

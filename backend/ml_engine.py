@@ -175,28 +175,20 @@ class SahyadriHazardEngine:
         
         rain_1h = payload.get("rain_1h_mm")
         if rain_1h is None:
-            rain_1h = payload.get("rain_1h")
-        if rain_1h is None:
             rain_1h = 0.0
             missing_flags.append("rain_1h_mm (assumed 0 mm)")
 
         rain_24h = payload.get("rain_24h_mm")
-        if rain_24h is None:
-            rain_24h = payload.get("rain_24h")
         if rain_24h is None:
             rain_24h = rain_1h * 5.0
             missing_flags.append("rain_24h_mm (interpolated from 1h)")
 
         rain_48h = payload.get("rain_48h_mm")
         if rain_48h is None:
-            rain_48h = payload.get("rain_48h")
-        if rain_48h is None:
             rain_48h = rain_24h * 1.5
             missing_flags.append("rain_48h_mm (estimated from 24h)")
 
         rain_72h = payload.get("rain_72h_mm")
-        if rain_72h is None:
-            rain_72h = payload.get("rain_72h")
         api_mm = payload.get("api_mm")
         tau_drain = float(payload.get("drainage_recession_hours", 60.0))
 
@@ -403,12 +395,14 @@ class SahyadriHazardEngine:
             ]
 
         uncertainty_level = "high" if len(missing_flags) >= 2 else ("medium" if len(missing_flags) == 1 else "low")
+        is_capped = bool((hazard_type in ["flash_flood", "waterlogging"] and risk_score >= 96) or (hazard_type == "landslide" and risk_score >= 98))
 
         return {
             "location_id": payload.get("location_id"),
             "hazard_type": hazard_type,
             "risk_level": risk_level,
             "risk_score": risk_score,
+            "score_capped": is_capped,
             "trigger_index": trigger_index,
             "calibrated_probability": round(float(risk_score / 100.0), 3),
             "factor_of_safety": fs_value,

@@ -146,7 +146,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
         <div style="font-family: inherit; font-size: 0.82rem; line-height: 1.3">
           <strong>${lang === 'mr' ? loc.name_mr : (lang === 'hi' ? loc.name_hi : loc.name)}</strong><br/>
           <span style="color: ${getRiskColor(loc.status)}; font-weight: 700">${loc.status_label}</span><br/>
-          <small>Score: ${loc.risk_score}/100 • Slope: ${loc.slope_deg}°</small>
+          <small>Risk Index: ${loc.risk_score}/100${(loc.score_capped || loc.risk_score === 96) ? ' (Capped)' : ''} • Slope: ${loc.slope_deg}°</small>
         </div>
       `, { direction: 'top', offset: [0, -14] });
 

@@ -301,3 +301,25 @@ The replay model is backfilled from Open-Meteo reanalysis across 9 hourly observ
 - **Grid Resolution Notice:** Open-Meteo reanalysis operates at ~9–11 km spatial resolution. Several pilot monitoring locations (e.g. Lonavala Town, Kune Falls, Bhushi Dam) share the same underlying numerical model grid cell and receive identical raw rainfall inputs.
 - **Micro-Terrain Differentiation:** Risk score variations between these spots (e.g. 0/100 at Lonavala Town vs 94/100 at Bhushi Dam) are driven by local slope, upstream catchment concentration, drainage proximity, and jointing — not rainfall alone.
 - **Calibration Notice:** Global reanalysis models are suspected to underestimate peak extreme rainfall pulses in the narrow Sahyadri crest. The system stores raw observations (`rain_mm_raw`) and corrected observations (`rain_mm_corrected`) separately with `bias_multiplier = 1.0` by default. The pipeline is designed so non-linear quantile mapping or physical station calibrations can be applied modularly without modifying ingested raw datasets. No IMD calibration has been applied yet.
+
+---
+
+## 11. Geotechnical Parameter Inventory & Survey Status
+
+> [!WARNING]
+> **Survey Status Disclaimer:** All Factor of Safety ($FS$) calculations derive from generic assumed parameters based on regional Deccan Trap basalt literature and are **NOT surveyed, drilled, or site-investigated**. They provide relative geotechnical sensitivity, not legal engineering stability certitudes.
+
+| Location ID | Hazard Class | Slope (deg) | Overburden $z$ (m) | Friction $\phi'$ | Cohesion $c'$ (kPa) | Unit Wt $\gamma$ (kN/m³) | Disturbed Prox (m) | Parameter Source |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **bhushi_dam** | Flash Flood | 24.5° | *N/A (Hydro)* | *N/A* | *N/A* | *N/A* | 15.0 m | Hand-entered seed |
+| **kune_falls** | Landslide | 38.0° | 2.2 m | 32.0° | 2.5–16.0 | 19.5 | 80.0 m | Generic assumption |
+| **tiger_point** | Landslide | 46.0° | 2.2 m | 32.0° | 2.5–16.0 | 19.5 | 80.0 m | Generic assumption |
+| **lions_point** | Landslide | 41.0° | 2.2 m | 32.0° | 2.5–16.0 | 19.5 | 80.0 m | Generic assumption |
+| **rajmachi_route** | Landslide | 32.0° | 2.2 m | 32.0° | 2.5–16.0 | 19.5 | 80.0 m | Generic assumption |
+| **khandala_expressway** | Landslide | 36.5° | 2.2 m | 32.0° | 2.5–16.0 | 19.5 | 80.0 m | Generic assumption |
+| **adoshi_tunnel** | Corridor | 31.0° | 2.2 m | 32.0° | 2.5–16.0 | 19.5 | 80.0 m | Generic assumption |
+| **monkey_hill** | Landslide | 44.0° | 2.2 m | 32.0° | 2.5–16.0 | 19.5 | 80.0 m | Generic assumption |
+| **thakurwadi** | Waterlogging | 35.0° | *N/A (Hydro)* | *N/A* | *N/A* | *N/A* | 80.0 m | Generic assumption |
+| **patan_village** | Landslide | 29.0° | 2.2 m | 32.0° | 2.5–16.0 | 19.5 | 80.0 m | Generic assumption |
+| **valvan_dam** | Waterlogging | 14.0° | *N/A (Hydro)* | *N/A* | *N/A* | *N/A* | 80.0 m | Generic assumption |
+| **lonavala_town** | Waterlogging | 6.5° | *N/A (Hydro)* | *N/A* | *N/A* | *N/A* | 80.0 m | Generic assumption |

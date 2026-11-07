@@ -26,6 +26,7 @@ export interface LocationItem {
   telemetry_status: 'live' | 'modelled' | 'telemetry_unavailable' | 'simulated';
   current_hazard: HazardType;
   risk_score: number;
+  score_capped?: boolean;
   guidance: string;
   guidance_mr: string;
   guidance_hi: string;
@@ -185,6 +186,7 @@ export interface PredictionResponse {
   hazard_type: string;
   risk_level: RiskLevel;
   risk_score: number;
+  score_capped?: boolean;
   trigger_index: number;
   calibrated_probability?: number;
   contributing_factors: HazardFactor[];

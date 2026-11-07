@@ -84,8 +84,15 @@ export const LocationDetailPanel: React.FC<LocationDetailPanelProps> = ({
       <div className="metric-box" style={{ background: '#f8fafc', borderLeft: `4px solid ${getBorderColor(location.status)}` }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <div className="metric-label">{lang === 'mr' ? 'एआय धोका गुणांक' : 'AI Hazard Index'}</div>
-            <div className="metric-value">{location.risk_score} <span style={{ fontSize: '0.85rem', fontWeight: 500, color: '#64748b' }}>/ 100</span></div>
+            <div className="metric-label">{lang === 'mr' ? 'एआय धोका निर्देशांक' : 'Risk Index (0-100)'}</div>
+            <div className="metric-value">
+              {location.risk_score} <span style={{ fontSize: '0.85rem', fontWeight: 500, color: '#64748b' }}>/ 100</span>
+              {(location.score_capped || location.risk_score === 96) && (
+                <span title="Score capped at hydrological model ceiling (96) to reflect uncalibrated overflow limits" style={{ marginLeft: '6px', fontSize: '0.65rem', background: '#fef3c7', color: '#b45309', border: '1px solid #fde68a', padding: '1px 5px', borderRadius: '4px', fontWeight: 600 }}>
+                  Capped at 96
+                </span>
+              )}
+            </div>
           </div>
           <div style={{ textAlign: 'right' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: getBorderColor(location.status) }}>

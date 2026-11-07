@@ -95,7 +95,7 @@ def test_data_origin_user_submitted_incident(test_db):
     client = test_db["client"]
     payload = {
         "hazard_type": "landslide",
-        "location_name": "Patan Village Access Road",
+        "location_name": "Patan Village Settlements",
         "lat": 18.730,
         "lon": 73.385,
         "description": "Small rock detachment observed on outer bend after morning showers.",
@@ -233,6 +233,47 @@ def test_model_monotonicity_rainfall():
                     f"rain={rain_24h}mm gave score={score} < prev={prev_score}"
                 )
                 prev_score = score
+
+
+@pytest.mark.xfail(
+    reason="Item 2: Landslide risk engine switches to pure geotechnical FS (geo_score) above 40mm 48h rain, omitting direct rainfall rate sensitivity until Item 2 proposal is adopted.",
+    strict=True
+)
+def test_landslide_score_strictly_increases_with_rainfall_below_cap():
+    """
+    For landslide sites below the model cap (<96), score must strictly increase
+    between 100mm and 300mm of 24h rainfall under moderate antecedent conditions.
+    Marked xfail until Item 2 rainfall saturation proposal is resolved.
+    """
+    landslide_locs = [l for l in LOCATIONS_DATA if l.get("current_hazard") == "landslide"]
+    assert len(landslide_locs) > 0
+
+    for loc in landslide_locs:
+        def get_score_for_rain(r24):
+            payload = {
+                "location_id": loc["id"],
+                "hazard_type": "landslide",
+                "slope_deg": loc["slope_deg"],
+                "elevation_m": loc["elevation_m"],
+                "catchment_area_km2": loc.get("upstream_catchment_km2", 2.0),
+                "drainage_proximity_m": loc["drainage_proximity_m"],
+                "rain_1h": r24 * 0.15,
+                "rain_24h": r24,
+                "rain_48h": r24 * 1.4,
+                "api_mm": 120.0,
+                "antecedent_store_mm": 120.0,
+                "soil_moisture_0_to_1cm": 0.35,
+                "soil_moisture_3_to_9cm": 0.35,
+                "soil_moisture_9_to_27cm": 0.35
+            }
+            return risk_service.engine.predict_hazard(payload)["risk_score"]
+
+        score_100 = get_score_for_rain(100.0)
+        score_300 = get_score_for_rain(300.0)
+        if score_100 < 96:
+            assert score_300 > score_100, (
+                f"Rainfall plateau at {loc['id']}: score_100={score_100} equals score_300={score_300} at 300mm rain"
+            )
 
 
 # ==================== 3. Score Stability / Non-Collapse ====================

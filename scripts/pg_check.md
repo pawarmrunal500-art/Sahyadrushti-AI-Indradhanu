@@ -69,3 +69,4 @@ docker stop sahyadrushti-pg && docker rm sahyadrushti-pg
 ## 4. Key Configuration Notes
 - **Driver:** Requires `psycopg[binary]>=3.1.0` (listed in `requirements.txt`).
 - **Connection Pooling:** SQLAlchemy manages connection pooling automatically for PostgreSQL. For serverless Postgres (like Neon or Supabase Transaction Pooler on port 6543), set pool recycling or disable persistent pooling if connection limits are strict.
+

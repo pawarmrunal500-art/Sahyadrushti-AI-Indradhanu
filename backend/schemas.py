@@ -79,7 +79,8 @@ class PredictionResponse(BaseModel):
     location_id: Optional[str] = None
     hazard_type: str
     risk_level: str  # "low", "moderate", "high", "very_high"
-    risk_score: int  # 0-100
+    risk_score: int  # Hyperlocal risk index (0-100)
+    score_capped: Optional[bool] = False  # True when score hits model cap (e.g. 96 for hydrological runoff)
     trigger_index: float  # 0.0 - 1.0
     calibrated_probability: Optional[float] = None
     contributing_factors: List[HazardFactor]

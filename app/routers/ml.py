@@ -83,12 +83,28 @@ def get_model_metrics():
     """
     return risk_service.get_metrics()
 
+import os
+import json
+
+BACKFILLED_REPLAY_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    "backend",
+    "backfilled_replay.json"
+)
+
 @router.get("/api/replay", tags=["Signature Feature"])
 def get_storm_replay():
     """
-    Returns time-step progression for the July 2026 Severe Ghat Storm Event.
-    Demonstrates dynamic evolution of rainfall, soil saturation, and location hazard levels.
+    Returns time-step progression for the Severe Ghat Storm Event.
+    Serves the backfilled archive sequence if available, or falls back to calibrated timeline.
     """
+    if os.path.exists(BACKFILLED_REPLAY_PATH):
+        try:
+            with open(BACKFILLED_REPLAY_PATH, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+
     return {
         "event_title": "July 2026 Severe Monsoon Squall Event Replay",
         "event_date": "2026-07-24 to 2026-07-25",

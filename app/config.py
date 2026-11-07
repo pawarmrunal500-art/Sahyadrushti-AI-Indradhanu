@@ -1,7 +1,7 @@
 """
 app/config.py - Application configuration via environment variables.
 
-Uses pydantic-settings to load from .env file and environment.
+Uses pydantic-settings / environment variable loader.
 All secrets (JWT_SECRET, DB URL, API keys) come from here.
 """
 import os
@@ -45,6 +45,7 @@ class Settings:
         )
 
         # Weather / Open-Meteo
+        self.WEATHER_MODE: str = os.getenv("WEATHER_MODE", "live").lower()  # "live" or "demo"
         self.OPENMETEO_FORECAST_URL: str = os.getenv(
             "OPENMETEO_FORECAST_URL",
             "https://api.open-meteo.com/v1/forecast"
@@ -63,6 +64,15 @@ class Settings:
         self.API_DECAY_FACTOR: float = float(
             os.getenv("API_DECAY_FACTOR", "0.88")
         )
+        # Bias-correction multiplier for raw precipitation (default 1.0; suspected underestimate in steep ghats)
+        self.BIAS_MULTIPLIER: float = float(
+            os.getenv("BIAS_MULTIPLIER", "1.0")
+        )
+        # Timezone
+        self.TIMEZONE: str = os.getenv("TIMEZONE", "Asia/Kolkata")
+
+        # Scheduler
+        self.SCHEDULER_ENABLED: bool = os.getenv("SCHEDULER_ENABLED", "true").lower() in ("true", "1", "yes")
 
         # Pilot region default coordinates
         self.PILOT_LAT: float = float(os.getenv("PILOT_LAT", "18.755"))
@@ -80,4 +90,3 @@ class Settings:
 
 # Global singleton - import this everywhere
 settings = Settings()
-

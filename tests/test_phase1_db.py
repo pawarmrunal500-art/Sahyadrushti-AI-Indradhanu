@@ -199,3 +199,4 @@ def test_persistence_across_session_restart():
         os.remove(temp_path)
     except OSError:
         pass
+

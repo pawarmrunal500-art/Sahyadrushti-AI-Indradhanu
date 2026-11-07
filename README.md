@@ -71,6 +71,11 @@ Conventional weather forecasts and emergency bulletins issue broad, district-wid
 
 ## 4. Getting Started & Running Locally
 
+### External Data Attribution & Terms of Service
+- **Weather Data:** Powered by [Open-Meteo](https://open-meteo.com/). Used under the Creative Commons Attribution 4.0 International (CC BY 4.0) license for non-commercial educational, scientific, and research purposes.
+- **Topographic Data:** Copernicus DEM 30m / NASA SRTM 1-Arc-Second via OpenTopoMap and OpenStreetMap contributors.
+- **Grid Resolution Notice:** Open-Meteo model data operates at ~9–11 km spatial resolution. Localized micro-orographic precipitation variations within the Sahyadri crest are suspected to be smoothed/underestimated, and baseline reanalysis is designed to be refined with IMD Doppler Radar and physical AWS station telemetry.
+
 ### Prerequisites
 - **Node.js**: v18+ (verified on v24.20.0)
 - **Python**: v3.10+ (verified on v3.14.3)

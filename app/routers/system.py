@@ -6,6 +6,8 @@ from sqlmodel import Session
 import datetime
 
 from app.services.risk import risk_service
+from app.services.weather import weather_service
+from app.scheduler import scheduler
 from app.db import get_session
 from app.repositories import get_locations
 
@@ -20,6 +22,8 @@ def get_health(session: Session = Depends(get_session)):
         session.connection()
     except Exception:
         db_status = "disconnected"
+
+    scheduler_status = "running" if scheduler.running else "standby"
 
     return {
         "status": "HEALTHY",
@@ -39,8 +43,8 @@ def get_health(session: Session = Depends(get_session)):
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         # Additive health fields (Amendment 6)
         "db_status": db_status,
-        "last_weather_fetch": None,
-        "scheduler_status": "standby"
+        "last_weather_fetch": weather_service.last_successful_fetch,
+        "scheduler_status": scheduler_status
     }
 
 @router.get("/api/region", tags=["Geospatial"])

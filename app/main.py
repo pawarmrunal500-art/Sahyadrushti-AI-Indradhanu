@@ -11,6 +11,7 @@ from sqlmodel import Session
 from app.config import settings
 from app.db import init_db, engine
 from app.repositories import seed_all_if_empty
+from app.scheduler import start_scheduler, shutdown_scheduler
 from app.routers import (
     system,
     locations,
@@ -23,14 +24,17 @@ from app.routers import (
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Application lifespan: database initialization and seeding on startup."""
+    """Application lifespan: database initialization, seeding, and scheduler."""
     # 1. Initialize tables
     init_db()
     # 2. Seed tables idempotently if empty
     with Session(engine) as session:
         seed_all_if_empty(session)
+    # 3. Start background weather & risk scheduler
+    start_scheduler()
     yield
-    # Cleanup on shutdown (if any)
+    # 4. Graceful shutdown of scheduler
+    shutdown_scheduler()
 
 app = FastAPI(
     title="सह्यादृष्टी | SAHYADRUSHTI AI",

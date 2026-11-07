@@ -39,7 +39,7 @@ class RiskService:
                 {"name": "rain_1h_mm", "description": "1-hour precipitation intensity (mm/h)", "source": "Radar/Rain Gauge"},
                 {"name": "rain_24h_mm", "description": "24-hour rainfall accumulation (mm)", "source": "AWS Network"},
                 {"name": "rain_48h_mm", "description": "48-hour antecedent rainfall (mm)", "source": "AWS Network"},
-                {"name": "forecast_24h_mm", "description": "24-hour predictive accumulation (mm)", "source": "IMD WRF 3km"},
+                {"name": "forecast_24h_mm", "description": "24-hour predictive accumulation (mm)", "source": "Open-Meteo Numerical Forecast"},
                 {"name": "soil_moisture_pct", "description": "Volumetric water content saturation (%)", "source": "FDR Sensor / Antecedent Index"},
                 {"name": "slope_deg", "description": "Terrain slope angle (degrees)", "source": "Copernicus DEM 30m"},
                 {"name": "elevation_m", "description": "Orthometric elevation (meters MSL)", "source": "DEM"},

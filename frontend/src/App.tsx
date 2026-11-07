@@ -234,7 +234,7 @@ export const App: React.FC = () => {
 
           <div style={{ textAlign: 'right', fontSize: '0.74rem', color: 'var(--text-muted)' }}>
             <div>Basemap: © OpenStreetMap contributors, OpenTopoMap, NASA SRTM 30m DEM</div>
-            <div>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Open-Meteo.com</a> • IMD Pilot Calibration</div>
+            <div>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Open-Meteo.com</a></div>
           </div>
         </div>
       </footer>

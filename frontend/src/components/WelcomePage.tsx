@@ -45,7 +45,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
 
             <span className="welcome-status-pill">
               <span className="welcome-live-dot" />
-              <span>{lang === 'mr' ? 'थेट सेन्सर व आयएमडी डेटा सक्रिय' : 'IMD Telemetry Synced'}</span>
+              <span>{lang === 'mr' ? 'हवामान माहिती जोडलेली' : 'Live Weather Synced'}</span>
             </span>
           </div>
 

@@ -10,16 +10,25 @@ from sqlalchemy import event, Engine
 from sqlmodel import SQLModel, create_engine, Session
 from app.config import settings
 
+# Normalize postgres:// to postgresql:// if passed by hosting providers
+db_url = settings.DATABASE_URL
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+
 # Determine connect_args based on DB dialect
 connect_args = {}
-if settings.DATABASE_URL.startswith("sqlite"):
+engine_kwargs = {"echo": False}
+if db_url.startswith("sqlite"):
     connect_args["check_same_thread"] = False
+else:
+    engine_kwargs["pool_pre_ping"] = True
+    engine_kwargs["pool_recycle"] = 300
 
 # Create engine
 engine = create_engine(
-    settings.DATABASE_URL,
-    echo=False,
-    connect_args=connect_args
+    db_url,
+    connect_args=connect_args,
+    **engine_kwargs
 )
 
 # SQLite pragmas: enforce WAL mode and foreign key constraints on every connection

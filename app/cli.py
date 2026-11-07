@@ -32,7 +32,10 @@ def cmd_create_user(args):
         sys.exit(1)
 
     password = args.password
-    if not password:
+    if password:
+        print("[WARNING] Passing password via '--password' flag exposes it to shell history and process tables.")
+        print("          Prefer interactive prompt or 'SAHYADRUSHTI_USER_PASSWORD' environment variable.")
+    else:
         password = os.getenv("SAHYADRUSHTI_USER_PASSWORD")
     if not password:
         password = getpass.getpass(f"Enter password for user '{username}' (min 8 chars): ")
@@ -82,12 +85,12 @@ def cmd_create_admin(args):
     cmd_create_user(args)
 
 
-def cmd_create_device_key(args):
+def cmd_create_device_key(args, target_engine=None):
     """Generate high-entropy per-device API key for sensor edge ingestion."""
-    init_db()
+    init_db(target_engine)
     node_id = args.node_id.strip()
 
-    with Session(engine) as session:
+    with Session(target_engine or engine) as session:
         seed_all_if_empty(session)
         node = session.exec(select(SensorNodeDB).where(SensorNodeDB.sensor_id == node_id)).first()
         if not node:
@@ -119,6 +122,32 @@ def cmd_create_device_key(args):
         print("=" * 65)
 
 
+def cmd_revoke_device_key(args, target_engine=None):
+    """Revoke an existing device API key for an edge sensor node."""
+    init_db(target_engine)
+    node_id = args.node_id.strip()
+
+    with Session(target_engine or engine) as session:
+        node = session.exec(select(SensorNodeDB).where(SensorNodeDB.sensor_id == node_id)).first()
+        if not node:
+            print(f"Error: Sensor node '{node_id}' not found in database.")
+            sys.exit(1)
+
+        node.api_key_hash = None
+        session.add(node)
+        session.commit()
+
+        log_audit(
+            session=session,
+            action="REVOKE_DEVICE_KEY",
+            entity="sensor",
+            entity_id=node_id,
+            details={"node_id": node_id, "status": "revoked"}
+        )
+
+        print(f"[SUCCESS] Device API key for sensor node '{node_id}' has been REVOKED.")
+
+
 def main():
     parser = argparse.ArgumentParser(description="SAHYADRUSHTI AI Command-Line Interface")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -138,8 +167,13 @@ def main():
 
     # create-device-key
     parser_key = subparsers.add_parser("create-device-key", help="Generate a secure device API key for IoT edge ingestion")
-    parser_key.add_argument("--node-id", required=True, help="Sensor Node ID (e.g. SENS-LNV-01)")
+    parser_key.add_argument("--node-id", required=True, help="Sensor Node ID (e.g. SAHYA-RAIN-01)")
     parser_key.set_defaults(func=cmd_create_device_key)
+
+    # revoke-device-key
+    parser_revoke = subparsers.add_parser("revoke-device-key", help="Revoke device API key for an IoT sensor node")
+    parser_revoke.add_argument("--node-id", required=True, help="Sensor Node ID (e.g. SAHYA-RAIN-01)")
+    parser_revoke.set_defaults(func=cmd_revoke_device_key)
 
     args = parser.parse_args()
     args.func(args)
@@ -147,3 +181,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

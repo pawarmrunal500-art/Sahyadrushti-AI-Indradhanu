@@ -77,7 +77,7 @@ export const ResearchView: React.FC<ResearchViewProps> = ({ lang }) => {
           lineHeight: 1.6,
           overflowX: 'auto'
         }}>
-          <div><strong>1. Data Ingestion:</strong> IMD Meso-scale Radar & AWS (Rainfall) + FDR Soil Moisture + SRTM 30m DEM + OSM Road Cuts</div>
+          <div><strong>1. Data Ingestion:</strong> Open-Meteo & Regional Rain Gauges (Rainfall) + FDR Soil Moisture + SRTM 30m DEM + OSM Road Cuts</div>
           <div style={{ color: '#0369a1' }}>&nbsp;&nbsp;&nbsp;&nbsp;↓ (Missing Data Imputation: Antecedent Precipitation Index fallback when telemetry offline)</div>
           <div><strong>2. Geospatial Feature Engineering:</strong> 1h/24h/48h Acc + Topographic Wetness Index + Slope Angle + Drainage Flow Accumulation</div>
           <div style={{ color: '#0369a1' }}>&nbsp;&nbsp;&nbsp;&nbsp;↓ (Decoupled Task Separation: Landslides ≠ Flash Floods)</div>
@@ -114,14 +114,14 @@ export const ResearchView: React.FC<ResearchViewProps> = ({ lang }) => {
                 <td style={{ padding: '8px 12px', fontWeight: 700 }}>rain_1h_mm</td>
                 <td style={{ padding: '8px 12px' }}>mm/h</td>
                 <td style={{ padding: '8px 12px' }}>Triggers flash floods & rapid stream surge</td>
-                <td style={{ padding: '8px 12px' }}>IMD AWS / Local Rain Gauges</td>
+                <td style={{ padding: '8px 12px' }}>Open-Meteo API / Local Rain Gauges</td>
                 <td style={{ padding: '8px 12px' }}>Satellite GPM IMERG 0.1°</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                 <td style={{ padding: '8px 12px', fontWeight: 700 }}>rain_48h_mm</td>
                 <td style={{ padding: '8px 12px' }}>mm</td>
                 <td style={{ padding: '8px 12px' }}>Saturates overburden; reduces shear cohesion</td>
-                <td style={{ padding: '8px 12px' }}>IMD Regional Weather Network</td>
+                <td style={{ padding: '8px 12px' }}>Open-Meteo Hourly Accumulation</td>
                 <td style={{ padding: '8px 12px' }}>Cumulative 24h Extrapolation</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #f1f5f9' }}>

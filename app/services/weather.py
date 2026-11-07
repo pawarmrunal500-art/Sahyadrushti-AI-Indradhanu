@@ -282,7 +282,7 @@ class LiveWeatherService:
             "temperature_c": 21.8,
             "humidity_pct": 96.0,
             "wind_speed_kmh": 28.5,
-            "data_source": "IMD Regional Radar & AWS Network (Static Fallback)",
+            "data_source": "Regional Weather & AWS Proxy (Static Fallback)",
             "data_status": "verified_observation" if loc["telemetry_status"] == "live" else "satellite_modelled",
             "staleness_threshold_minutes": 60,
             "is_stale": False,
@@ -302,7 +302,7 @@ class LiveWeatherService:
         now_ist = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=5, minutes=30))).isoformat()
         return {
             "forecast_time": now_ist,
-            "provider": "IMD Meso-Scale WRF 3km & GPM IMERG Ensemble (Open-Meteo Coupled)",
+            "provider": "Open-Meteo Forecast & Numerical Weather Ensemble",
             "provider_notes": "Orographic rain adjustment applied for Western Ghats western crest",
             "forecast_3h_mm": 35.0,
             "forecast_6h_mm": 62.0,

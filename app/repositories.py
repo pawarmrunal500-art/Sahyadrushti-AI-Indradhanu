@@ -204,7 +204,8 @@ def get_alerts(session: Session) -> List[Dict[str, Any]]:
 def create_alert_draft(
     session: Session,
     payload_dict: Dict[str, Any],
-    user_id: Optional[str] = None
+    user_id: Optional[str] = None,
+    user_pk: Optional[int] = None
 ) -> Dict[str, Any]:
     """Create a draft alert awaiting authority approval."""
     alert_id = f"ALERT-DRAFT-{uuid.uuid4().hex[:6].upper()}"
@@ -231,6 +232,7 @@ def create_alert_draft(
         approval_status="draft",
         approved_by=None,
         created_by=user_id,
+        created_by_id=user_pk,
         cap_format=None,
         created_at=now_iso
     )

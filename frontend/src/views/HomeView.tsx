@@ -80,7 +80,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 <span className="situation-pill" style={{ color: '#b45309', borderColor: '#fde68a' }}>
                   <CloudRain size={13} />
-                  <span>Live IMD Radar Sync</span>
+                  <span>Live Weather Sync</span>
                 </span>
               </div>
 

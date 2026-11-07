@@ -51,7 +51,12 @@ def draft_authority_alert(
     Stores creator identity for Four-Eyes enforcement.
     """
     payload_dict = payload.model_dump() if hasattr(payload, "model_dump") else payload.dict()
-    return repo_create_alert_draft(session, payload_dict, user_id=current_user.username)
+    return repo_create_alert_draft(
+        session,
+        payload_dict,
+        user_id=current_user.username,
+        user_pk=current_user.id
+    )
 
 @router.post("/api/authority/alerts/{alert_id}/approve")
 def approve_authority_alert(
@@ -78,8 +83,15 @@ def approve_authority_alert(
     if not alert:
         raise HTTPException(status_code=404, detail="Draft alert not found.")
 
-    # 2. Four-Eyes Rule Enforcement (Applies to all roles, including admins)
-    if alert.created_by and alert.created_by == current_user.username:
+    # 2. Four-Eyes Rule Enforcement (Using user ID as primary comparator)
+    is_self_approval = False
+    if alert.created_by_id is not None and current_user.id is not None:
+        if alert.created_by_id == current_user.id:
+            is_self_approval = True
+    elif alert.created_by and alert.created_by == current_user.username:
+        is_self_approval = True
+
+    if is_self_approval:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail=f"Four-Eyes Principle violation: user '{current_user.username}' cannot approve an advisory they drafted."

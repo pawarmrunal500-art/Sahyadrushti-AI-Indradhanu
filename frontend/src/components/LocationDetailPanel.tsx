@@ -188,7 +188,7 @@ export const LocationDetailPanel: React.FC<LocationDetailPanelProps> = ({
         <strong>{lang === 'mr' ? 'डेटा स्रोत:' : 'Data Integrity:'}</strong>{' '}
         {location.telemetry_status === 'telemetry_unavailable'
           ? 'Direct stream water-depth telemetry is currently unavailable for this cascade; hazard estimation utilizes regional radar & upstream precipitation indices.'
-          : 'Integrated via IMD meso-scale grid & regional geotechnical sensors. Model calibrated against Western Ghats basalt failure criteria.'}
+          : 'Integrated via Open-Meteo meso-scale grid & geotechnical terrain inputs. Geotechnical model based on Western Ghats basalt failure criteria.'}
       </div>
     </div>
   );

@@ -29,11 +29,11 @@ class Settings:
         )
 
         # CORS
-        cors_origins = os.getenv("CORS_ORIGINS", "*")
-        if cors_origins == "*":
-            self.CORS_ORIGINS: List[str] = ["*"]
+        cors_origins = os.getenv("CORS_ORIGINS", "")
+        if cors_origins:
+            self.CORS_ORIGINS: List[str] = [o.strip() for o in cors_origins.split(",") if o.strip()]
         else:
-            self.CORS_ORIGINS = [o.strip() for o in cors_origins.split(",")]
+            self.CORS_ORIGINS = ["*"] if self.DEBUG else ["http://localhost:5173", "http://127.0.0.1:5173"]
 
         # JWT / Auth (Phase 3)
         self.JWT_SECRET: str = os.getenv("JWT_SECRET", "sahyadrushti_dev_jwt_secret_key_minimum_32_bytes_long_12345")
@@ -86,12 +86,20 @@ class Settings:
         self.PILOT_LAT: float = float(os.getenv("PILOT_LAT", "18.755"))
         self.PILOT_LON: float = float(os.getenv("PILOT_LON", "73.395"))
 
-        # Rate limiting
+        # Demo Mode (higher limits for hackathon / evaluation presentations)
+        self.DEMO_MODE: bool = os.getenv("DEMO_MODE", "false").lower() in ("true", "1", "yes")
+
+        # Rate limiting (configurable with defaults; shared NAT/venue WiFi counts as single IP)
         self.RATELIMIT_ENABLED: bool = os.getenv("RATELIMIT_ENABLED", "true").lower() in ("true", "1", "yes")
         self.RATE_LIMIT_LOGIN: str = os.getenv("RATE_LIMIT_LOGIN", "5/minute")
+        self.RATE_LIMIT_REFRESH: str = os.getenv("RATE_LIMIT_REFRESH", "10/minute")
         self.RATE_LIMIT_PUBLIC_POST: str = os.getenv("RATE_LIMIT_PUBLIC_POST", "10/minute")
-        self.RATE_LIMIT_PREDICT: str = os.getenv("RATE_LIMIT_PREDICT", "30/minute")
-        self.RATE_LIMIT_SIMULATE: str = os.getenv("RATE_LIMIT_SIMULATE", "20/minute")
+        if self.DEMO_MODE:
+            self.RATE_LIMIT_PREDICT: str = os.getenv("RATE_LIMIT_PREDICT_DEMO", "120/minute")
+            self.RATE_LIMIT_SIMULATE: str = os.getenv("RATE_LIMIT_SIMULATE_DEMO", "100/minute")
+        else:
+            self.RATE_LIMIT_PREDICT: str = os.getenv("RATE_LIMIT_PREDICT", "30/minute")
+            self.RATE_LIMIT_SIMULATE: str = os.getenv("RATE_LIMIT_SIMULATE", "20/minute")
 
 
 # Global singleton - import this everywhere

@@ -90,7 +90,7 @@ def get_risk_map_layers(session: Session = Depends(get_session)):
         "corridors": corridors_geojson,
         "layer_metadata": {
             "terrain_source": "Copernicus DEM 30m / SRTM 1-Arc-Second",
-            "rainfall_source": "IMD Regional Weather Network",
+            "rainfall_source": "Open-Meteo & Regional Precipitation Data",
             "soil_source": "Derived Soil Moisture Index (Antecedent Model)",
             "updated_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
         }

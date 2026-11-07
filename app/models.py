@@ -152,6 +152,7 @@ class Alert(SQLModel, table=True):
     approved_by: Optional[str] = None
     approved_at: Optional[str] = None
     created_by: Optional[str] = None
+    created_by_id: Optional[int] = Field(default=None, index=True)
     cap_format: Optional[str] = None
     created_at: str = Field(default_factory=lambda: datetime.datetime.now(datetime.timezone.utc).isoformat())
 

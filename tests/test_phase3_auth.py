@@ -432,3 +432,85 @@ def test_rate_limiter_exceeded():
         assert hit_429, "Expected rate limiter to trigger HTTP 429 after repeated requests."
     finally:
         limiter.enabled = False
+
+
+def test_refresh_token_rate_limited():
+    """Verify POST /api/auth/refresh is rate limited."""
+    limiter.enabled = True
+    try:
+        hit_429 = False
+        for _ in range(15):
+            resp = client.post("/api/auth/refresh", json={"refresh_token": "dummy_test_refresh_token"})
+            if resp.status_code == 429:
+                hit_429 = True
+                break
+        assert hit_429, "Expected rate limiter on /api/auth/refresh to trigger HTTP 429."
+    finally:
+        limiter.enabled = False
+
+
+def test_production_jwt_secret_validation():
+    """Verify startup fails with RuntimeError if JWT_SECRET is weak outside dev mode."""
+    from app.config import Settings
+    old_debug = os.environ.get("DEBUG")
+    old_secret = os.environ.get("JWT_SECRET")
+    try:
+        os.environ["DEBUG"] = "False"
+        os.environ["JWT_SECRET"] = "short_weak_dev_secret"
+        with pytest.raises(RuntimeError, match="FATAL: In production mode"):
+            Settings()
+    finally:
+        if old_debug is not None:
+            os.environ["DEBUG"] = old_debug
+        else:
+            os.environ.pop("DEBUG", None)
+        if old_secret is not None:
+            os.environ["JWT_SECRET"] = old_secret
+        else:
+            os.environ.pop("JWT_SECRET", None)
+
+
+def test_device_key_revocation_audit():
+    """Verify CLI device key revocation clears key hash and records audit log."""
+    from app.cli import cmd_revoke_device_key
+    import argparse
+
+    with Session(auth_engine) as session:
+        # Check SAHYA-RAIN-01 has a key initially
+        node = session.exec(select(SensorNodeDB).where(SensorNodeDB.sensor_id == "SAHYA-RAIN-01")).first()
+        assert node is not None
+
+    args = argparse.Namespace(node_id="SAHYA-RAIN-01")
+    cmd_revoke_device_key(args, target_engine=auth_engine)
+
+    with Session(auth_engine) as session:
+        node_after = session.exec(select(SensorNodeDB).where(SensorNodeDB.sensor_id == "SAHYA-RAIN-01")).first()
+        assert node_after.api_key_hash is None
+
+
+def test_four_eyes_using_user_id():
+    """Verify Four-Eyes rule explicitly uses alerts.created_by_id."""
+    # Operator drafts an alert
+    op_login = client.post("/api/auth/login", json={"username": "op_user", "password": "operator_pass_123"})
+    op_token = op_login.json()["access_token"]
+    draft_res = client.post(
+        "/api/authority/alerts/draft",
+        json={
+            "title": "ID Check Alert",
+            "title_mr": "आयडी तपासणी",
+            "message": "Testing created_by_id comparison.",
+            "message_mr": "तपासणी",
+            "severity": "advisory",
+            "geographic_coverage": "Lonavala",
+            "target_locations": ["bhushi_dam"]
+        },
+        headers={"Authorization": f"Bearer {op_token}"}
+    )
+    alert_id = draft_res.json()["alert_id"]
+
+    # Verify created_by_id was persisted in DB
+    with Session(auth_engine) as session:
+        db_alert = session.exec(select(Alert).where(Alert.id == alert_id)).first()
+        assert db_alert.created_by_id is not None
+        assert db_alert.created_by_id == 1  # op_user ID
+

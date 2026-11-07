@@ -1,0 +1,26 @@
+{
+  "status_code": 200,
+  "body": {
+    "message": "Alert drafted successfully. Awaiting approval.",
+    "draft": {
+      "id": "ALERT-DRAFT-0F5E59",
+      "alert_type": "ai_advisory",
+      "severity": "advisory",
+      "issuer": "Maval Sub-Divisional Emergency Cell",
+      "source": "Authority Operations Desk (Draft)",
+      "source_url": null,
+      "title": "Golden Test Alert Draft",
+      "title_mr": "गोल्डन टेस्ट अलर्ट",
+      "title_hi": "Golden Test Alert Draft",
+      "message": "This is a test alert for golden file recording.",
+      "message_mr": "हा गोल्डन फाइल रेकॉर्डिंगसाठी चाचणी अलर्ट आहे.",
+      "message_hi": "This is a test alert for golden file recording.",
+      "geographic_coverage": "Lonavala Ghat Region",
+      "issue_time": "2026-11-07T18:57:46.388122+00:00",
+      "expiry_time": "2026-11-08T06:57:46.388122+00:00",
+      "approval_status": "draft",
+      "approved_by": null,
+      "cap_format": null
+    }
+  }
+}

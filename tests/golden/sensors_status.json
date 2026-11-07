@@ -1,0 +1,83 @@
+{
+  "status_code": 200,
+  "body": {
+    "network_status": "ONLINE (Simulated Prototype Feeds)",
+    "total_nodes": 4,
+    "healthy_count": 3,
+    "nodes": [
+      {
+        "sensor_id": "SAHYA-RAIN-01",
+        "station_name": "Tiger Valley Upstream Catchment Rain Gauge",
+        "sensor_type": "Tipping Bucket High-Precision (0.2mm resolution)",
+        "coordinates": [
+          18.718,
+          73.392
+        ],
+        "latest_value": 14.6,
+        "unit": "mm/hr",
+        "last_seen": "2026-10-24T18:24:00Z",
+        "battery_pct": 94,
+        "signal_rssi": -68,
+        "health_status": "HEALTHY",
+        "quality_flag": "NOMINAL",
+        "is_simulated": true
+      },
+      {
+        "sensor_id": "SAHYA-SOIL-02",
+        "station_name": "Amrutanjan Escarpment Moisture & Inclinometer",
+        "sensor_type": "FDR Multi-Depth Volumetric Water Content (30cm & 60cm)",
+        "coordinates": [
+          18.7758,
+          73.3592
+        ],
+        "latest_value": 84.2,
+        "unit": "% Saturation",
+        "last_seen": "2026-10-24T18:26:00Z",
+        "battery_pct": 88,
+        "signal_rssi": -74,
+        "health_status": "HEALTHY",
+        "quality_flag": "NOMINAL",
+        "is_simulated": true
+      },
+      {
+        "sensor_id": "SAHYA-STAGE-03",
+        "station_name": "Kune Stream Ultrasonic Water-Level Stage",
+        "sensor_type": "Non-contact 24GHz Radar Stage Gauge",
+        "coordinates": [
+          18.7618,
+          73.3854
+        ],
+        "latest_value": 1.42,
+        "unit": "meters above datum",
+        "last_seen": "2026-10-24T18:21:00Z",
+        "battery_pct": 79,
+        "signal_rssi": -82,
+        "health_status": "WARNING",
+        "quality_flag": "SUSPICIOUS_STABLE",
+        "is_simulated": true
+      },
+      {
+        "sensor_id": "SAHYA-TILT-04",
+        "station_name": "Monkey Hill Railway Cliff Dual-Axis Inclinometer",
+        "sensor_type": "MEMS Inclinometer with LoRaWAN Gateway",
+        "coordinates": [
+          18.7845,
+          73.361
+        ],
+        "latest_value": 0.08,
+        "unit": "degrees tilt deviation",
+        "last_seen": "2026-10-24T18:25:00Z",
+        "battery_pct": 91,
+        "signal_rssi": -71,
+        "health_status": "HEALTHY",
+        "quality_flag": "NOMINAL",
+        "is_simulated": true
+      }
+    ],
+    "anomaly_detection_rules": [
+      "Flag SUSPICIOUS_STABLE if reading remains constant across 4 observation cycles during active rain.",
+      "Flag OUT_OF_RANGE if rain intensity exceeds 150 mm/h or soil moisture > 100%.",
+      "Flag PACKET_LOSS if last_seen exceeds 30 minutes."
+    ]
+  }
+}

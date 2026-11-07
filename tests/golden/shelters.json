@@ -1,0 +1,70 @@
+{
+  "status_code": 200,
+  "body": [
+    {
+      "id": "shelter_bhangarwadi",
+      "name": "Lonavala Municipal Council Hall & School",
+      "name_mr": "लोणावळा नगरपरिषद सभागृह व शाळा (भांगरवाडी)",
+      "name_hi": "लोनावला नगर परिषद राहत केंद्र",
+      "location_name": "Bhangarwadi, Lonavala Town",
+      "coordinates": [
+        18.755,
+        73.412
+      ],
+      "capacity_persons": 450,
+      "facilities": [
+        "Emergency Medical Post",
+        "Backup Diesel Genset",
+        "Clean Drinking Water",
+        "Kitchen & Food Stores",
+        "Separate Sanitation Blocks"
+      ],
+      "official_contact": "+91 2114 273024 (LMC Disaster Cell)",
+      "managed_by": "Lonavala Municipal Council & Revenue Department",
+      "status": "STANDBY"
+    },
+    {
+      "id": "shelter_khandala_zp",
+      "name": "Khandala Zilla Parishad Disaster Shelter",
+      "name_mr": "खंडाळा जिल्हा परिषद आपत्ती निवारण केंद्र",
+      "name_hi": "खंडाला जिला परिषद राहत केंद्र",
+      "location_name": "Old Pune-Mumbai Highway, Khandala",
+      "coordinates": [
+        18.761,
+        73.376
+      ],
+      "capacity_persons": 220,
+      "facilities": [
+        "First Aid Post",
+        "Ham Radio Relay Station",
+        "Blankets & Rations",
+        "Solar Lighting"
+      ],
+      "official_contact": "+91 2114 269100 (Khandala Police Station)",
+      "managed_by": "Pune ZP & Maval Tehsildar",
+      "status": "STANDBY"
+    },
+    {
+      "id": "shelter_ryewood_relief",
+      "name": "Maval Disaster Relief Coordination Centre",
+      "name_mr": "मावळ तालुका मध्यवर्ती मदत केंद्र (रायवूड)",
+      "name_hi": "मावल आपदा राहत समन्वय केंद्र",
+      "location_name": "Ryewood Park Administrative Complex",
+      "coordinates": [
+        18.7512,
+        73.4082
+      ],
+      "capacity_persons": 600,
+      "facilities": [
+        "Incident Command Post",
+        "Helipad Vicinity (Police Ground)",
+        "Heavy Equipment Staging",
+        "Ambulance Bay",
+        "Satellite Phone Link"
+      ],
+      "official_contact": "+91 2114 222414 (Sub-Divisional Officer Maval)",
+      "managed_by": "Sub-Divisional Magistrate (SDM) Maval",
+      "status": "ACTIVE_OPEN"
+    }
+  ]
+}

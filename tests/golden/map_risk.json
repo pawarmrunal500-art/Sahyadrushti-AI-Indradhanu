@@ -1,0 +1,392 @@
+{
+  "status_code": 200,
+  "body": {
+    "type": "FeatureCollection",
+    "region": "Lonavala-Khandala Pilot Zone",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.3965,
+            18.7364
+          ]
+        },
+        "properties": {
+          "id": "bhushi_dam",
+          "name": "Bhushi Dam & Waterfall Catchment",
+          "name_mr": "भुशी धरण व धबधबा पाणलोट क्षेत्र",
+          "category": "tourist_spot",
+          "risk_level": "high",
+          "risk_score": 74,
+          "hazard_type": "flash_flood",
+          "elevation_m": 638.0,
+          "slope_deg": 24.5,
+          "guidance": "High upstream rainfall in Tiger Hill catchment elevates sudden water surge danger. Do not step onto overflow masonry or waterfall plunge areas.",
+          "telemetry_status": "modelled",
+          "upstream_info": "Fed by 4.8 km² steep catchment from Tiger Valley. Water level telemetry is modelled from radar & rain gauge proxies."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.3854,
+            18.7618
+          ]
+        },
+        "properties": {
+          "id": "kune_falls",
+          "name": "Kune Falls & Valley Escarpment",
+          "name_mr": "कुणे धबधबा व दरी कडा",
+          "category": "tourist_spot",
+          "risk_level": "moderate",
+          "risk_score": 52,
+          "hazard_type": "landslide",
+          "elevation_m": 622.0,
+          "slope_deg": 38.0,
+          "guidance": "Three-tiered 200m waterfall over basalt cliff. Wet spray causes slippery edges and minor pebble roll off cut slopes.",
+          "telemetry_status": "telemetry_unavailable",
+          "upstream_info": "Water-level telemetry unavailable. Risk estimated from IMD radar & regional precipitation."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.3881,
+            18.7077
+          ]
+        },
+        "properties": {
+          "id": "tiger_point",
+          "name": "Tiger's Leap (Waghai) Escarpment",
+          "name_mr": "वाघदरी / टायगर पॉईंट कडा",
+          "category": "tourist_spot",
+          "risk_level": "high",
+          "risk_score": 71,
+          "hazard_type": "landslide",
+          "elevation_m": 725.0,
+          "slope_deg": 46.0,
+          "guidance": "Severe 650m sheer cliff drop. Dense fog and strong monsoon updrafts reduce visibility. Stay strictly behind railing.",
+          "telemetry_status": "modelled",
+          "upstream_info": "High windshear zone, rapid surface runoff drains into Konkan plains."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.3912,
+            18.7122
+          ]
+        },
+        "properties": {
+          "id": "lions_point",
+          "name": "Lion's Point",
+          "name_mr": "लायन्स पॉईंट",
+          "category": "tourist_spot",
+          "risk_level": "moderate",
+          "risk_score": 48,
+          "hazard_type": "landslide",
+          "elevation_m": 718.0,
+          "slope_deg": 41.0,
+          "guidance": "Exposed ridge between Lonavala and Aamby Valley road. Minor surface erosion observed on unpaved shoulders.",
+          "telemetry_status": "modelled",
+          "upstream_info": "Surface sheet wash during intense showers."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.4005,
+            18.8262
+          ]
+        },
+        "properties": {
+          "id": "rajmachi_route",
+          "name": "Rajmachi Trek & Udhewadi Route",
+          "name_mr": "राजमाची ट्रेक मार्ग व उढेवाडी",
+          "category": "tourist_spot",
+          "risk_level": "very_high",
+          "risk_score": 88,
+          "hazard_type": "landslide",
+          "elevation_m": 780.0,
+          "slope_deg": 32.0,
+          "guidance": "15km kutcha jungle road severely waterlogged. Four mountain seasonal stream crossings are in spate. Do not attempt on two-wheelers or without local guides.",
+          "telemetry_status": "telemetry_unavailable",
+          "upstream_info": "No cellular telemetry. Satellite precipitation indicates over 160mm in 24 hours."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.3592,
+            18.7758
+          ]
+        },
+        "properties": {
+          "id": "khandala_expressway",
+          "name": "Amrutanjan Bridge / Bhor Ghat Expressway",
+          "name_mr": "अमृतांजन पूल / बोरघाट द्रुतगती महामार्ग",
+          "category": "corridor",
+          "risk_level": "high",
+          "risk_score": 79,
+          "hazard_type": "landslide",
+          "elevation_m": 585.0,
+          "slope_deg": 36.5,
+          "guidance": "Steep cut slopes stabilized with wire netting experiencing heavy saturation. Watch for loose boulders rolling onto Pune-bound corridor.",
+          "telemetry_status": "live",
+          "upstream_info": "Continuous road safety sensor active. Overburden saturation 86%."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.3441,
+            18.7792
+          ]
+        },
+        "properties": {
+          "id": "adoshi_tunnel",
+          "name": "Adoshi Tunnel Vicinity",
+          "name_mr": "अडोशी बोगदा परिसर",
+          "category": "corridor",
+          "risk_level": "moderate",
+          "risk_score": 45,
+          "hazard_type": "corridor_disruption",
+          "elevation_m": 490.0,
+          "slope_deg": 31.0,
+          "guidance": "Approach to tunnel portal. Drainage culverts flowing at 70% capacity. Surface aquaplaning risk during sudden downpours.",
+          "telemetry_status": "modelled",
+          "upstream_info": "Separate collision/incident risk monitored independently from natural hazards."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.361,
+            18.7845
+          ]
+        },
+        "properties": {
+          "id": "monkey_hill",
+          "name": "Monkey Hill Railway Ghat Corridor",
+          "name_mr": "मंकी हिल रेल्वे घाट मार्ग",
+          "category": "corridor",
+          "risk_level": "high",
+          "risk_score": 76,
+          "hazard_type": "landslide",
+          "elevation_m": 540.0,
+          "slope_deg": 44.0,
+          "guidance": "Central Railway ghat section. Historical boulder drop spot. Catch-water drains monitored; bank patrols deployed with detonators.",
+          "telemetry_status": "live",
+          "upstream_info": "Geotechnical fence sensor indicates minor tension cracks on upper terrace."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.3458,
+            18.8023
+          ]
+        },
+        "properties": {
+          "id": "thakurwadi",
+          "name": "Thakurwadi Railway Catchment",
+          "name_mr": "ठाकूरवाडी रेल्वे पाणलोट व घाट",
+          "category": "corridor",
+          "risk_level": "moderate",
+          "risk_score": 50,
+          "hazard_type": "waterlogging",
+          "elevation_m": 410.0,
+          "slope_deg": 35.0,
+          "guidance": "Ghat brake-testing station. Water overflow from mountain culverts into ballast. Operational caution.",
+          "telemetry_status": "modelled",
+          "upstream_info": "Catchment runoff drains towards Karjat plains."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.435,
+            18.7291
+          ]
+        },
+        "properties": {
+          "id": "patan_village",
+          "name": "Patan Village & Hillside Settlements",
+          "name_mr": "पाटण गाव व डोंगर पायथा वस्त्या",
+          "category": "settlement",
+          "risk_level": "high",
+          "risk_score": 75,
+          "hazard_type": "landslide",
+          "elevation_m": 665.0,
+          "slope_deg": 29.0,
+          "guidance": "Upper slope exhibits weathered soil mantle with high antecedent saturation. Residents near eastern escarpment advised to remain alert for ground fissures.",
+          "telemetry_status": "modelled",
+          "upstream_info": "Terrain slope 29°, soil moisture 84%. Nearest shelter at Bhangarwadi."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.4215,
+            18.7634
+          ]
+        },
+        "properties": {
+          "id": "valvan_dam",
+          "name": "Valvan Dam & Indrayani Headwaters",
+          "name_mr": "वळवण धरण व इंद्रायणी उगम",
+          "category": "water_body",
+          "risk_level": "low",
+          "risk_score": 22,
+          "hazard_type": "waterlogging",
+          "elevation_m": 625.0,
+          "slope_deg": 14.0,
+          "guidance": "Reservoir water storage at 78% capacity. Controlled spillway release not currently required. Downstream riverbed clear.",
+          "telemetry_status": "live",
+          "upstream_info": "Hydropower catchment for Khopoli generating station."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            73.4082,
+            18.7512
+          ]
+        },
+        "properties": {
+          "id": "lonavala_town",
+          "name": "Lonavala Civic Center (Ryewood)",
+          "name_mr": "लोणावळा शहर मध्यवर्ती (रायवूड)",
+          "category": "settlement",
+          "risk_level": "low",
+          "risk_score": 18,
+          "hazard_type": "waterlogging",
+          "elevation_m": 624.0,
+          "slope_deg": 6.5,
+          "guidance": "Flat urban plateau with good drainage. Municipal stormwater drains operating normally. Safe zone for emergency staging.",
+          "telemetry_status": "live",
+          "upstream_info": "Central assembly and coordination headquarters."
+        }
+      }
+    ],
+    "corridors": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              73.3592,
+              18.7758
+            ],
+            [
+              73.345,
+              18.782
+            ],
+            [
+              73.332,
+              18.789
+            ]
+          ]
+        },
+        "properties": {
+          "id": "corridor_expressway_ghat",
+          "name": "Mumbai-Pune Yashwantrao Chavan Expressway",
+          "segment": "Bhor Ghat Section (Amrutanjan Bridge to Khopoli Exit)",
+          "status": "CAUTION",
+          "hazard_type": "landslide",
+          "slope_susceptibility": "High (Cut Slopes 34°-48°)",
+          "traffic_notes": "All 6 lanes open. Catch-net monitoring crews active at km 41-44."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              73.3854,
+              18.7618
+            ],
+            [
+              73.362,
+              18.768
+            ],
+            [
+              73.339,
+              18.774
+            ]
+          ]
+        },
+        "properties": {
+          "id": "corridor_old_highway",
+          "name": "Old Mumbai-Pune Highway (NH 48)",
+          "segment": "Khandala Ghat to Khopoli Descent",
+          "status": "NORMAL",
+          "hazard_type": "landslide",
+          "slope_susceptibility": "Moderate",
+          "traffic_notes": "Open for two-wheelers and local transport. Surface wet."
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              73.361,
+              18.7845
+            ],
+            [
+              73.353,
+              18.793
+            ],
+            [
+              73.3458,
+              18.8023
+            ]
+          ]
+        },
+        "properties": {
+          "id": "corridor_central_rail",
+          "name": "Central Railway Mumbai-Pune Line",
+          "segment": "Monkey Hill to Thakurwadi Triple Ghat Line",
+          "status": "CAUTION",
+          "hazard_type": "landslide",
+          "slope_susceptibility": "Very High (Sheer Escarpment Cuts)",
+          "traffic_notes": "Catch-pits cleaned. Hill gangs equipped with walkie-talkies."
+        }
+      }
+    ],
+    "layer_metadata": {
+      "terrain_source": "Copernicus DEM 30m / SRTM 1-Arc-Second",
+      "rainfall_source": "IMD Regional Weather Network",
+      "soil_source": "Derived Soil Moisture Index (Antecedent Model)",
+      "updated_at": "2026-11-07T18:57:46.314948+00:00"
+    }
+  }
+}

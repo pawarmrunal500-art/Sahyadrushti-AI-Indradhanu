@@ -1,0 +1,41 @@
+{
+  "status_code": 200,
+  "body": {
+    "location_id": null,
+    "hazard_type": "landslide",
+    "risk_level": "very_high",
+    "risk_score": 99,
+    "trigger_index": 0.999,
+    "calibrated_probability": 0.999,
+    "contributing_factors": [
+      {
+        "factor": "Steep Escarpment Slope",
+        "weight": 0.24,
+        "direction": "increase",
+        "description": "Slope angle of 36.5° promotes gravitational shear stress along weathered basalt joints."
+      },
+      {
+        "factor": "High Antecedent Saturation",
+        "weight": 0.4,
+        "direction": "increase",
+        "description": "48h cumulative rainfall of 212.0mm with 84% soil wetness has degraded basal soil suction."
+      },
+      {
+        "factor": "Cut-Slope Anthropogenic Vulnerability",
+        "weight": 0.18,
+        "direction": "increase",
+        "description": "Within 25m of engineered road/rail cutting lacking toe retaining stabilization."
+      }
+    ],
+    "missing_data_flags": [],
+    "uncertainty_level": "low",
+    "precautions": [
+      "Evacuate vulnerable toe settlements and avoid mountain road cuts immediately.",
+      "Halt tourism access to waterfalls and low-lying escarpment viewing points.",
+      "Authorities to stage NDRF / SDRF teams and deploy heavy earthmovers to Bhor Ghat."
+    ],
+    "model_version": "Sahyadri-GeoRisk-v2.1",
+    "inference_time": "2026-11-07T18:57:46.367499+00:00",
+    "validation_status": "Calibrated Geotechnical Ensemble (Physically Grounded on Basalt Overburden)"
+  }
+}

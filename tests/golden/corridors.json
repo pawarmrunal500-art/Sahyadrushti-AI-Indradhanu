@@ -1,0 +1,83 @@
+{
+  "status_code": 200,
+  "body": [
+    {
+      "id": "corridor_expressway_ghat",
+      "corridor_name": "Mumbai-Pune Yashwantrao Chavan Expressway",
+      "segment_name": "Bhor Ghat Section (Amrutanjan Bridge to Khopoli Exit)",
+      "coordinates_start": [
+        18.7758,
+        73.3592
+      ],
+      "coordinates_end": [
+        18.789,
+        73.332
+      ],
+      "center_coords": [
+        18.782,
+        73.345
+      ],
+      "hazard_type": "landslide",
+      "current_status": "CAUTION",
+      "slope_susceptibility": "High (Cut Slopes 34°-48°)",
+      "rainfall_trigger_status": "Active Threshold Watch",
+      "verified_disruption": false,
+      "latest_report_time": "2026-10-24T18:20:00Z",
+      "source": "MSRDC & Highway Police Control Room",
+      "official_channel": "Twitter @MSRDC_Official / Dial 9822498224",
+      "traffic_notes": "All 6 lanes open. Catch-net monitoring crews active at km 41-44."
+    },
+    {
+      "id": "corridor_old_highway",
+      "corridor_name": "Old Mumbai-Pune Highway (NH 48)",
+      "segment_name": "Khandala Ghat to Khopoli Descent",
+      "coordinates_start": [
+        18.7618,
+        73.3854
+      ],
+      "coordinates_end": [
+        18.774,
+        73.339
+      ],
+      "center_coords": [
+        18.768,
+        73.362
+      ],
+      "hazard_type": "landslide",
+      "current_status": "NORMAL",
+      "slope_susceptibility": "Moderate",
+      "rainfall_trigger_status": "Normal Operating Range",
+      "verified_disruption": false,
+      "latest_report_time": "2026-10-24T18:00:00Z",
+      "source": "State PWD Sub-Division Lonavala",
+      "official_channel": "State PWD Helpline 1800-233-0222",
+      "traffic_notes": "Open for two-wheelers and local transport. Surface wet."
+    },
+    {
+      "id": "corridor_central_rail",
+      "corridor_name": "Central Railway Mumbai-Pune Line",
+      "segment_name": "Monkey Hill to Thakurwadi Triple Ghat Line",
+      "coordinates_start": [
+        18.7845,
+        73.361
+      ],
+      "coordinates_end": [
+        18.8023,
+        73.3458
+      ],
+      "center_coords": [
+        18.793,
+        73.353
+      ],
+      "hazard_type": "landslide",
+      "current_status": "CAUTION",
+      "slope_susceptibility": "Very High (Sheer Escarpment Cuts)",
+      "rainfall_trigger_status": "Advisory Level 2",
+      "verified_disruption": false,
+      "latest_report_time": "2026-10-24T18:15:00Z",
+      "source": "Central Railway Bhor Ghat Emergency Cell",
+      "official_channel": "CR Control Room Mumbai CSMT / Karjat Station Master",
+      "traffic_notes": "Catch-pits cleaned. Hill gangs equipped with walkie-talkies."
+    }
+  ]
+}

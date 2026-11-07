@@ -1,0 +1,6 @@
+{
+  "status_code": 404,
+  "body": {
+    "detail": "Location with id 'nonexistent_location_xyz' not found."
+  }
+}

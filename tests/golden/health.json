@@ -1,0 +1,20 @@
+{
+  "status_code": 200,
+  "body": {
+    "status": "HEALTHY",
+    "service": "SAHYADRUSHTI AI Platform",
+    "marathi_name": "सह्यादृष्टी एआय",
+    "tagline": "पावसाआधी नव्हे, धोक्याआधी सावध!",
+    "version": "2.1.0",
+    "pilot_region": "Lonavala - Khandala - Maval (Western Ghats, Maharashtra)",
+    "coordinates_bbox": {
+      "north": 18.84,
+      "south": 18.7,
+      "west": 73.32,
+      "east": 73.45
+    },
+    "model_version": "Sahyadri-GeoRisk-v2.1",
+    "sdg_target": "UN SDG 13.1 - Strengthen resilience and adaptive capacity to climate hazards",
+    "timestamp": "2026-11-07T18:57:46.269638+00:00"
+  }
+}

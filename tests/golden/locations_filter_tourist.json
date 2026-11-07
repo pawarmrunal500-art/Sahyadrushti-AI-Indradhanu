@@ -1,0 +1,170 @@
+{
+  "status_code": 200,
+  "body": [
+    {
+      "id": "bhushi_dam",
+      "name": "Bhushi Dam & Waterfall Catchment",
+      "name_mr": "भुशी धरण व धबधबा पाणलोट क्षेत्र",
+      "name_hi": "भुशी बांध और झरना जलग्रहण क्षेत्र",
+      "category": "tourist_spot",
+      "coordinates": [
+        18.7364,
+        73.3965
+      ],
+      "elevation_m": 638.0,
+      "slope_deg": 24.5,
+      "upstream_catchment_km2": 4.8,
+      "drainage_proximity_m": 15.0,
+      "status": "high",
+      "status_label": "High Surge Risk (पाणीपातळी वाढण्याचा धोका)",
+      "last_updated": "2026-10-24T18:15:00Z",
+      "telemetry_status": "modelled",
+      "current_hazard": "flash_flood",
+      "risk_score": 74,
+      "guidance": "High upstream rainfall in Tiger Hill catchment elevates sudden water surge danger. Do not step onto overflow masonry or waterfall plunge areas.",
+      "guidance_mr": "टायगर हिल पाणलोटात मुसळधार पावसामुळे धरणाच्या सांडव्यावर अचानक प्रवाह वाढण्याची शक्यता. पर्यटकांनी पाण्यात उतरू नये.",
+      "guidance_hi": "ऊपरी जलग्रहण क्षेत्र में भारी बारिश से अचानक जलस्तर बढ़ने का खतरा। पानी में न उतरें।",
+      "restrictions": "Section 144 / Police advisory active during torrential rains after 17:00.",
+      "upstream_info": "Fed by 4.8 km² steep catchment from Tiger Valley. Water level telemetry is modelled from radar & rain gauge proxies.",
+      "photo_description": "Masonry overflow weir, natural rocky rapids, and downstream gorge.",
+      "image_url": "/images/locations/bhushi_dam.jpg",
+      "tags": [
+        "Water Hazard",
+        "Tourist Hotspot",
+        "Upstream Catchment Alert"
+      ]
+    },
+    {
+      "id": "kune_falls",
+      "name": "Kune Falls & Valley Escarpment",
+      "name_mr": "कुणे धबधबा व दरी कडा",
+      "name_hi": "कुणे जलप्रपात और घाटी कगार",
+      "category": "tourist_spot",
+      "coordinates": [
+        18.7618,
+        73.3854
+      ],
+      "elevation_m": 622.0,
+      "slope_deg": 38.0,
+      "upstream_catchment_km2": 6.2,
+      "drainage_proximity_m": 30.0,
+      "status": "moderate",
+      "status_label": "Moderate Escarpment Caution (सावधगिरी)",
+      "last_updated": "2026-10-24T18:10:00Z",
+      "telemetry_status": "telemetry_unavailable",
+      "current_hazard": "landslide",
+      "risk_score": 52,
+      "guidance": "Three-tiered 200m waterfall over basalt cliff. Wet spray causes slippery edges and minor pebble roll off cut slopes.",
+      "guidance_mr": "२०० मीटर उंच कडा असून निसरड्या कड्यांवरून चालणे टाळा. कडे कोसळण्याचा मध्यम धोका.",
+      "guidance_hi": "खड़ी चट्टान और फिसलन भरे किनारे। घाटी के किनारे न जाएं।",
+      "restrictions": "Viewing restricted to marked viewpoints on Old Highway.",
+      "upstream_info": "Water-level telemetry unavailable. Risk estimated from IMD radar & regional precipitation.",
+      "photo_description": "Three-tiered waterfall cascading down sheer basalt escarpment.",
+      "image_url": "/images/locations/kune_falls.jpg",
+      "tags": [
+        "Waterfall",
+        "Steep Cliff",
+        "Spray Zone"
+      ]
+    },
+    {
+      "id": "tiger_point",
+      "name": "Tiger's Leap (Waghai) Escarpment",
+      "name_mr": "वाघदरी / टायगर पॉईंट कडा",
+      "name_hi": "टाइगर पॉइंट कगार",
+      "category": "tourist_spot",
+      "coordinates": [
+        18.7077,
+        73.3881
+      ],
+      "elevation_m": 725.0,
+      "slope_deg": 46.0,
+      "upstream_catchment_km2": 1.2,
+      "drainage_proximity_m": 120.0,
+      "status": "high",
+      "status_label": "High Wind & Cliff Shear (कडा कोसळण्याचा धोका)",
+      "last_updated": "2026-10-24T18:20:00Z",
+      "telemetry_status": "modelled",
+      "current_hazard": "landslide",
+      "risk_score": 71,
+      "guidance": "Severe 650m sheer cliff drop. Dense fog and strong monsoon updrafts reduce visibility. Stay strictly behind railing.",
+      "guidance_mr": "६५० मीटर खोल दरी. जोरदार वारे व दाट धुक्यामुळे कड्याच्या कठड्यापलीकडे जाऊ नये.",
+      "guidance_hi": "गहरी खाई और तेज हवाएं। सुरक्षा रेलिंग के पीछे रहें।",
+      "restrictions": "Strict ban on climbing over safety barricades.",
+      "upstream_info": "High windshear zone, rapid surface runoff drains into Konkan plains.",
+      "photo_description": "High cliff top overlooking deep sheer Konkan drop.",
+      "image_url": "/images/locations/tiger_point.jpg",
+      "tags": [
+        "Cliff",
+        "High Altitude",
+        "Windshear"
+      ]
+    },
+    {
+      "id": "lions_point",
+      "name": "Lion's Point",
+      "name_mr": "लायन्स पॉईंट",
+      "name_hi": "लायंस पॉइंट",
+      "category": "tourist_spot",
+      "coordinates": [
+        18.7122,
+        73.3912
+      ],
+      "elevation_m": 718.0,
+      "slope_deg": 41.0,
+      "upstream_catchment_km2": 1.5,
+      "drainage_proximity_m": 140.0,
+      "status": "moderate",
+      "status_label": "Moderate Ridge Caution",
+      "last_updated": "2026-10-24T18:00:00Z",
+      "telemetry_status": "modelled",
+      "current_hazard": "landslide",
+      "risk_score": 48,
+      "guidance": "Exposed ridge between Lonavala and Aamby Valley road. Minor surface erosion observed on unpaved shoulders.",
+      "guidance_mr": "उघड्या डोंगररांगेवर जोरदार वारे. रस्त्याच्या बाजूला माती खचण्याची शक्यता.",
+      "guidance_hi": "खुली पहाड़ी कगार पर तेज हवाएं। सावधानी बरतें।",
+      "restrictions": "Parking only in designated asphalt bays.",
+      "upstream_info": "Surface sheet wash during intense showers.",
+      "photo_description": "Panoramic ridge viewpoint between two valleys.",
+      "image_url": "/images/locations/lions_point.jpg",
+      "tags": [
+        "Ridge",
+        "Viewpoint",
+        "Road Access"
+      ]
+    },
+    {
+      "id": "rajmachi_route",
+      "name": "Rajmachi Trek & Udhewadi Route",
+      "name_mr": "राजमाची ट्रेक मार्ग व उढेवाडी",
+      "name_hi": "राजमाची ट्रेक मार्ग",
+      "category": "tourist_spot",
+      "coordinates": [
+        18.8262,
+        73.4005
+      ],
+      "elevation_m": 780.0,
+      "slope_deg": 32.0,
+      "upstream_catchment_km2": 9.5,
+      "drainage_proximity_m": 45.0,
+      "status": "very_high",
+      "status_label": "Very High Trail Washout Risk (मार्ग बंद / वाहून जाण्याचा धोका)",
+      "last_updated": "2026-10-24T18:25:00Z",
+      "telemetry_status": "telemetry_unavailable",
+      "current_hazard": "landslide",
+      "risk_score": 88,
+      "guidance": "15km kutcha jungle road severely waterlogged. Four mountain seasonal stream crossings are in spate. Do not attempt on two-wheelers or without local guides.",
+      "guidance_mr": "जंगल मार्ग चिखलामुळे अत्यंत निसरडा. ओढ्यांना आलेला पूर वाहून नेऊ शकतो. ट्रेकिंग टाळावी.",
+      "guidance_hi": "रास्ता अत्यधिक फिसलन भरा और नाले उफान पर हैं। ट्रेक न करें।",
+      "restrictions": "Forest department advisory in effect during red alerts.",
+      "upstream_info": "No cellular telemetry. Satellite precipitation indicates over 160mm in 24 hours.",
+      "photo_description": "Dense Sahyadri forest road with torrential seasonal stream crossings.",
+      "image_url": "/images/locations/rajmachi.jpg",
+      "tags": [
+        "Jungle Trail",
+        "Flash Streams",
+        "Remote Evacuation Difficulty"
+      ]
+    }
+  ]
+}

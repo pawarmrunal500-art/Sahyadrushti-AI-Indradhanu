@@ -1,0 +1,110 @@
+{
+  "status_code": 200,
+  "body": {
+    "scenario_name": "Golden File Test Scenario",
+    "inputs": {
+      "scenario_name": "Golden File Test Scenario",
+      "rain_1h_mm": 30.0,
+      "rain_24h_mm": 150.0,
+      "rain_48h_mm": 220.0,
+      "forecast_24h_mm": 160.0,
+      "soil_moisture_pct": 85.0,
+      "baseline_location_ids": [
+        "bhushi_dam",
+        "khandala_expressway",
+        "lonavala_town"
+      ]
+    },
+    "simulated_at": "2026-11-07T18:57:46.376501+00:00",
+    "model_version": "Sahyadri-GeoRisk-v2.1",
+    "results": [
+      {
+        "location_id": "bhushi_dam",
+        "location_name": "Bhushi Dam & Waterfall Catchment",
+        "baseline_score": 74,
+        "baseline_level": "high",
+        "simulated_score": 99,
+        "simulated_level": "very_high",
+        "delta_score": 25,
+        "slope_deg": 24.5,
+        "factors": [
+          {
+            "factor": "High Antecedent Saturation",
+            "weight": 0.4,
+            "direction": "increase",
+            "description": "48h cumulative rainfall of 220.0mm with 85% soil wetness has degraded basal soil suction."
+          },
+          {
+            "factor": "Intense Rain in Upstream Catchment",
+            "weight": 0.32,
+            "direction": "increase",
+            "description": "Short-duration rain intensity (30.0 mm/h) near watercourse (15m) accelerates sudden stream surge."
+          }
+        ],
+        "precautions": [
+          "Evacuate vulnerable toe settlements and avoid mountain road cuts immediately.",
+          "Halt tourism access to waterfalls and low-lying escarpment viewing points.",
+          "Authorities to stage NDRF / SDRF teams and deploy heavy earthmovers to Bhor Ghat."
+        ]
+      },
+      {
+        "location_id": "khandala_expressway",
+        "location_name": "Amrutanjan Bridge / Bhor Ghat Expressway",
+        "baseline_score": 79,
+        "baseline_level": "high",
+        "simulated_score": 99,
+        "simulated_level": "very_high",
+        "delta_score": 20,
+        "slope_deg": 36.5,
+        "factors": [
+          {
+            "factor": "Steep Escarpment Slope",
+            "weight": 0.24,
+            "direction": "increase",
+            "description": "Slope angle of 36.5° promotes gravitational shear stress along weathered basalt joints."
+          },
+          {
+            "factor": "High Antecedent Saturation",
+            "weight": 0.4,
+            "direction": "increase",
+            "description": "48h cumulative rainfall of 220.0mm with 85% soil wetness has degraded basal soil suction."
+          }
+        ],
+        "precautions": [
+          "Evacuate vulnerable toe settlements and avoid mountain road cuts immediately.",
+          "Halt tourism access to waterfalls and low-lying escarpment viewing points.",
+          "Authorities to stage NDRF / SDRF teams and deploy heavy earthmovers to Bhor Ghat."
+        ]
+      },
+      {
+        "location_id": "lonavala_town",
+        "location_name": "Lonavala Civic Center (Ryewood)",
+        "baseline_score": 18,
+        "baseline_level": "low",
+        "simulated_score": 96,
+        "simulated_level": "very_high",
+        "delta_score": 78,
+        "slope_deg": 6.5,
+        "factors": [
+          {
+            "factor": "Gentle Relief Terrain",
+            "weight": -0.15,
+            "direction": "decrease",
+            "description": "Low slope (6.5°) significantly reduces landslide detachment potential."
+          },
+          {
+            "factor": "High Antecedent Saturation",
+            "weight": 0.4,
+            "direction": "increase",
+            "description": "48h cumulative rainfall of 220.0mm with 85% soil wetness has degraded basal soil suction."
+          }
+        ],
+        "precautions": [
+          "Evacuate vulnerable toe settlements and avoid mountain road cuts immediately.",
+          "Halt tourism access to waterfalls and low-lying escarpment viewing points.",
+          "Authorities to stage NDRF / SDRF teams and deploy heavy earthmovers to Bhor Ghat."
+        ]
+      }
+    ]
+  }
+}

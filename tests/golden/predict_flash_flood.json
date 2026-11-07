@@ -1,0 +1,35 @@
+{
+  "status_code": 200,
+  "body": {
+    "location_id": null,
+    "hazard_type": "flash_flood",
+    "risk_level": "very_high",
+    "risk_score": 99,
+    "trigger_index": 0.998,
+    "calibrated_probability": 0.998,
+    "contributing_factors": [
+      {
+        "factor": "High Antecedent Saturation",
+        "weight": 0.4,
+        "direction": "increase",
+        "description": "48h cumulative rainfall of 212.0mm with 84% soil wetness has degraded basal soil suction."
+      },
+      {
+        "factor": "Intense Rain in Upstream Catchment",
+        "weight": 0.32,
+        "direction": "increase",
+        "description": "Short-duration rain intensity (45.0 mm/h) near watercourse (15m) accelerates sudden stream surge."
+      }
+    ],
+    "missing_data_flags": [],
+    "uncertainty_level": "low",
+    "precautions": [
+      "Evacuate vulnerable toe settlements and avoid mountain road cuts immediately.",
+      "Halt tourism access to waterfalls and low-lying escarpment viewing points.",
+      "Authorities to stage NDRF / SDRF teams and deploy heavy earthmovers to Bhor Ghat."
+    ],
+    "model_version": "Sahyadri-GeoRisk-v2.1",
+    "inference_time": "2026-11-07T18:57:46.371499+00:00",
+    "validation_status": "Calibrated Geotechnical Ensemble (Physically Grounded on Basalt Overburden)"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "status_code": 200,
+  "body": {
+    "storm_name": "Simulated Ghat Convective Cell 'Sahyadri-Storm-Alpha'",
+    "applied_uniform_rainfall_24h_mm": 160.0,
+    "applied_uniform_rain_1h_mm": 38.0,
+    "demonstration_purpose": "Demonstrates why broad district weather alerts fail local decision-makers: 3 nearby locations with identical 160mm rainfall exhibit completely divergent hazard outcomes based on local terrain physics.",
+    "comparisons": [
+      {
+        "location_name": "Location A: Lonavala Civic Center / Ryewood",
+        "lat_lon": [
+          18.7512,
+          73.4082
+        ],
+        "slope_deg": 6.5,
+        "soil_type": "Permeable urban garden loam on flat plateau",
+        "soil_moisture_pct": 52.0,
+        "drainage_prox_m": 220.0,
+        "predicted_hazard": "waterlogging",
+        "risk_score": 24,
+        "risk_level": "low",
+        "verdict": "SAFE & STABLE. Gently sloping flat plateau (6.5°) rapidly drains surface runoff without gravitational shear.",
+        "verdict_mr": "सुरक्षित: सपाट पठारी भाग (६.५°) असल्याने दरड किंवा पुराचा धोका नाही."
+      },
+      {
+        "location_name": "Location B: Amrutanjan Bridge Expressway Cutting",
+        "lat_lon": [
+          18.7758,
+          73.3592
+        ],
+        "slope_deg": 36.5,
+        "soil_type": "Steep fractured basalt overburden with road-cut toe",
+        "soil_moisture_pct": 86.0,
+        "drainage_prox_m": 50.0,
+        "predicted_hazard": "landslide",
+        "risk_score": 82,
+        "risk_level": "very_high",
+        "verdict": "CRITICAL LANDSLIDE DANGER. Identical rain on 36.5° steep engineered cut slope with 86% saturated basalt mantle triggers critical shear failure.",
+        "verdict_mr": "अतिधोका (दरड): ३६.५° तीव्र उतार आणि ८६% संपृक्त मातीमुळे दगडी दरड कोसळण्याची दाट शक्यता."
+      },
+      {
+        "location_name": "Location C: Bhushi Dam Downstream Cascade",
+        "lat_lon": [
+          18.7364,
+          73.3965
+        ],
+        "slope_deg": 24.5,
+        "soil_type": "Narrow gorge convergence channel receiving 4.8 km² upstream flow",
+        "soil_moisture_pct": 79.0,
+        "drainage_prox_m": 15.0,
+        "predicted_hazard": "flash_flood",
+        "risk_score": 78,
+        "risk_level": "high",
+        "verdict": "HIGH FLASH-SURGE DANGER. Upstream catchment convergence funnels intense runoff into a sudden hydraulic surge at the overflow weir.",
+        "verdict_mr": "अतिधोका (पाण्याचा लोंढा): वरच्या पाणलोटातून येणारा पाण्याचा अचानक मोठा लोंढा पर्यटकांना वाहून नेऊ शकतो."
+      }
+    ]
+  }
+}

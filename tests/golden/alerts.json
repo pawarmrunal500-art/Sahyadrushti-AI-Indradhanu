@@ -1,0 +1,77 @@
+{
+  "status_code": 200,
+  "body": [
+    {
+      "id": "ALERT-IMD-2026-088",
+      "alert_type": "official_warning",
+      "severity": "warning",
+      "issuer": "India Meteorological Department (IMD) Regional Meteorological Centre Mumbai",
+      "source": "Official IMD District Impact-Based Bulletin for Pune (Ghat Regions)",
+      "source_url": "https://mausam.imd.gov.in/mumbai",
+      "title": "Orange Alert: Heavy to Very Heavy Rainfall in Ghat Areas of Maval & Lonavala",
+      "title_mr": "ऑरेंज अलर्ट: मावळ व लोणावळा घाट परिसरात अतिमुसळधार पावसाचा इशारा",
+      "title_hi": "ऑरेंज अलर्ट: लोनावला घाट क्षेत्र में भारी से बहुत भारी बारिश की चेतावनी",
+      "message": "Isolated extremely heavy rainfall expected over Sahyadri ridges within the next 24 hours. Possibility of localized flash surges in streams and waterlogging in low-lying roads. District authorities advised to monitor vulnerable mountain slopes.",
+      "message_mr": "पुढील २४ तासांत सह्याद्री घाटमाथ्यावर अतिमुसळधार पावसाची शक्यता. ओढ्या-नाल्यांच्या पाणीपातळीत अचानक वाढ होण्याची भीती. नागरिकांनी खबरदारी घ्यावी.",
+      "message_hi": "अगले 24 घंटों में घाट क्षेत्रों में भारी बारिश की संभावना। प्रशासन अलर्ट पर रहे।",
+      "geographic_coverage": "Lonavala, Khandala, Bhor Ghat, Mulshi & Maval Tehsils",
+      "coordinates": [
+        18.75,
+        73.4
+      ],
+      "issue_time": "2026-10-24T12:00:00Z",
+      "expiry_time": "2026-10-25T12:00:00Z",
+      "approval_status": "approved",
+      "approved_by": "Official IMD Feed Integration",
+      "cap_format": "<alert xmlns='urn:oasis:names:tc:emergency:cap:1.2'><identifier>ALERT-IMD-2026-088</identifier><sender>IMD-MC-MUMBAI</sender><sent>2026-10-24T12:00:00Z</sent><status>Actual</status><msgType>Alert</msgType><scope>Public</scope><info><category>Met</category><event>Heavy Rainfall in Ghats</event><urgency>Expected</urgency><severity>Severe</severity><certainty>Likely</certainty><headline>Orange Alert for Pune Ghats</headline><area><areaDesc>Lonavala-Khandala</areaDesc></area></info></alert>"
+    },
+    {
+      "id": "ALERT-SAHYA-2026-014",
+      "alert_type": "ai_advisory",
+      "severity": "advisory",
+      "issuer": "SAHYADRUSHTI AI Hyperlocal Geotechnical Model (v2.1)",
+      "source": "Automated Terrain-Precipitation Fusion (Uncertainty: Low)",
+      "source_url": null,
+      "title": "Hyperlocal Flash-Surge Advisory: Bhushi Dam & Tiger Valley Catchment",
+      "title_mr": "हायपरलोकल एआय इशारा: भुशी धरण व टायगर व्हॅली जलप्रवाह सतर्कता",
+      "title_hi": "हाइपरलोकल एआई परामर्श: भुशी बांध जलप्रवाह चेतावनी",
+      "message": "Model trigger index reached 0.74 due to 3-hour upstream rainfall accumulation exceeding 48mm over saturated basalt overburden. Water flow velocity at Bhushi cascade steps projected to double within 45 minutes.",
+      "message_mr": "मागील ३ तासांत ४८ मिमी पाऊस नोंदवला गेल्याने धरणाच्या पायऱ्यांवर पाण्याचा प्रवाह अचानक दुप्पट वेगाने वाढण्याची शक्यता. पाण्यात उतरणे टाळावे.",
+      "message_hi": "ऊपरी जलग्रहण क्षेत्र में भारी बारिश से अचानक तेज बहाव की संभावना। जलक्रीड़ा से बचें।",
+      "geographic_coverage": "Bhushi Dam, INS Shivaji Access Corridor & Tiger Valley Drainage",
+      "coordinates": [
+        18.7364,
+        73.3965
+      ],
+      "issue_time": "2026-10-24T17:30:00Z",
+      "expiry_time": "2026-10-24T23:30:00Z",
+      "approval_status": "approved",
+      "approved_by": "Model Inference Daemon (Validated under Rule 4B)",
+      "cap_format": "<alert xmlns='urn:oasis:names:tc:emergency:cap:1.2'><identifier>ALERT-SAHYA-2026-014</identifier><sender>SAHYADRUSHTI-AI-ENGINE</sender><sent>2026-10-24T17:30:00Z</sent><status>Actual</status><msgType>Advisory</msgType><scope>Public</scope><info><category>Geo</category><event>Hyperlocal Flash Surge Concern</event><urgency>Immediate</urgency><severity>Moderate</severity><certainty>Observed/Modelled</certainty><headline>Bhushi Dam Surge Risk</headline></info></alert>"
+    },
+    {
+      "id": "ALERT-SAHYA-2026-015",
+      "alert_type": "ai_advisory",
+      "severity": "critical",
+      "issuer": "SAHYADRUSHTI AI Slope Stability Pipeline",
+      "source": "Ensemble Geotechnical Inclinometer & Rainfall Coupling",
+      "source_url": null,
+      "title": "Landslide Danger: Rajmachi Trekking Route Km 8-12",
+      "title_mr": "दरड व मार्ग वाहून जाण्याचा अतिधोका: राजमाची मार्ग",
+      "title_hi": "भूस्खलन अति गंभीर चेतावनी: राजमाची ट्रेक मार्ग",
+      "message": "Antecedent 48-hour rainfall reached 182mm with soil moisture at 88%. Mud slippage and stream inundation along Udhewadi access. Trekkers strongly advised not to proceed.",
+      "message_mr": "४८ तासांत १८२ मिमी पाऊस व ८८% मातीची संपृक्तता झाल्याने रस्ता खचण्याचा मोठा धोका. ट्रेकर्सनी या मार्गावर जाऊ नये.",
+      "message_hi": "रास्ता खिसकने व बाढ़ का अत्यधिक जोखिम। ट्रेकिंग स्थगित रखें।",
+      "geographic_coverage": "Rajmachi Jungle Route, Fanasrai & Udhewadi",
+      "coordinates": [
+        18.8262,
+        73.4005
+      ],
+      "issue_time": "2026-10-24T18:00:00Z",
+      "expiry_time": "2026-10-25T06:00:00Z",
+      "approval_status": "approved",
+      "approved_by": "SDM Maval Authorization Officer",
+      "cap_format": null
+    }
+  ]
+}

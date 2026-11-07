@@ -1,0 +1,46 @@
+{
+  "status_code": 200,
+  "body": {
+    "forecast_time": "2026-11-07T18:57:46.309951+00:00",
+    "provider": "IMD Meso-Scale WRF 3km & GPM IMERG Ensemble",
+    "provider_notes": "Orographic rain adjustment applied for Western Ghats western crest",
+    "forecast_3h_mm": 35.0,
+    "forecast_6h_mm": 62.0,
+    "forecast_24h_mm": 155.0,
+    "forecast_48h_mm": 240.0,
+    "general_alert": "Orange Warning - Intense Ghat Squalls Probable",
+    "lead_time_hours": 24,
+    "hourly_trajectory": [
+      {
+        "hour": "+1h",
+        "forecast_rain_mm": 12.0,
+        "risk_trend": "increasing"
+      },
+      {
+        "hour": "+2h",
+        "forecast_rain_mm": 16.5,
+        "risk_trend": "increasing"
+      },
+      {
+        "hour": "+3h",
+        "forecast_rain_mm": 18.0,
+        "risk_trend": "peak"
+      },
+      {
+        "hour": "+6h",
+        "forecast_rain_mm": 26.0,
+        "risk_trend": "high"
+      },
+      {
+        "hour": "+12h",
+        "forecast_rain_mm": 45.0,
+        "risk_trend": "sustained"
+      },
+      {
+        "hour": "+24h",
+        "forecast_rain_mm": 75.0,
+        "risk_trend": "decreasing"
+      }
+    ]
+  }
+}

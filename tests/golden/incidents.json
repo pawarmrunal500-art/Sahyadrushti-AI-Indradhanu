@@ -1,0 +1,131 @@
+{
+  "status_code": 200,
+  "body": [
+    {
+      "id": "INC-2024-0630-BHUSHI",
+      "hazard_type": "flash_flood",
+      "title": "Bhushi Dam Waterfall Surge Tragedy",
+      "title_mr": "भुशी धरण परिसरातील धबधब्यातून वाहून गेलेल्या दुर्घटनेची नोंद",
+      "date_time": "2024-06-30T12:30:00+05:30",
+      "location_name": "Bhushi Dam Waterfall Behind Guest House",
+      "coordinates": [
+        18.7364,
+        73.3965
+      ],
+      "description": "A family of five was swept away by a sudden, intense water surge while sitting on rocky cascades downstream of Bhushi Dam. Rapid runoff caused by intense localized rainfall in the unmonitored upstream catchment transformed a trickle into a torrential surge within 8 minutes.",
+      "source_name": "Times of India & Pune Rural Police Incident Report",
+      "source_url": "https://timesofindia.indiatimes.com/city/pune/lonavala-bhushi-dam-waterfall-tragedy",
+      "verification_status": "Verified official record",
+      "confidence": "High",
+      "impact_summary": "5 lives lost. Prompted district administration to enforce Section 144 around tourist waterbodies during monsoon red alerts.",
+      "casualties_reported": "5 Fatalities",
+      "image_url": "/images/locations/bhushi_dam.jpg",
+      "is_historical": true
+    },
+    {
+      "id": "INC-2025-0718-EXPRESSWAY",
+      "hazard_type": "landslide",
+      "title": "Bhor Ghat Expressway Boulder Fall & Mudflow",
+      "title_mr": "मुंबई-पुणे द्रुतगती मार्गावर अमृतांजन पुलाजवळ दरड कोसळली",
+      "date_time": "2025-07-18T05:45:00+05:30",
+      "location_name": "Mumbai-Pune Expressway, km 42 (Amrutanjan Bridge Cut)",
+      "coordinates": [
+        18.7758,
+        73.3592
+      ],
+      "description": "Massive 25-tonne basalt boulders detached from weathered escarpment joint planes after 210mm of 48-hour continuous rainfall, breaching wire rockfall catchment nets and obstructing Mumbai-bound lanes.",
+      "source_name": "MSRDC Highway Safety Patrol Log",
+      "source_url": "https://www.msrdc.in",
+      "verification_status": "Verified official record",
+      "confidence": "High",
+      "impact_summary": "Traffic suspended for 7 hours. Heavy earthmovers and IRB infrastructure crews deployed for clearance.",
+      "casualties_reported": "No fatalities; 2 vehicles damaged",
+      "image_url": "/images/locations/amrutanjan_bridge.jpg",
+      "is_historical": true
+    },
+    {
+      "id": "INC-2026-0712-PATAN",
+      "hazard_type": "landslide",
+      "title": "Patan Village Escarpment Tension Crack & Mudslide",
+      "title_mr": "पाटण गाव कड्यावर जमिनीला भेगा व दरड सरकणे",
+      "date_time": "2026-07-12T14:15:00+05:30",
+      "location_name": "Patan Village Upper Terraces",
+      "coordinates": [
+        18.7291,
+        73.435
+      ],
+      "description": "Sustained monsoon rain (280mm in 72 hours) saturated basalt overburden on a 30° slope above Patan village, causing ground fissures of 15cm width and localized mud slippage of 400 cubic meters.",
+      "source_name": "District Disaster Management Authority (DDMA) Pune",
+      "source_url": "https://pune.gov.in/disaster-management",
+      "verification_status": "Verified official record",
+      "confidence": "High",
+      "impact_summary": "Precautionary evacuation of 18 households to Bhangarwadi Municipal School. Zero casualties due to community alert.",
+      "casualties_reported": "Zero casualties (Precautionary evacuation)",
+      "image_url": "/images/locations/patan_village.jpg",
+      "is_historical": true
+    },
+    {
+      "id": "INC-2026-0724-THAKURWADI",
+      "hazard_type": "landslide",
+      "title": "Monkey Hill to Thakurwadi Rail Corridor Rockfall",
+      "title_mr": "मंकी हिल ते ठाकूरवाडी दरम्यान रेल्वे ट्रॅकवर दरड",
+      "date_time": "2026-07-24T03:10:00+05:30",
+      "location_name": "Central Railway Bhor Ghat Catchment km 118",
+      "coordinates": [
+        18.7845,
+        73.361
+      ],
+      "description": "A boulder fall damaged overhead railway traction equipment (OHE) and blocked the middle line between Monkey Hill and Thakurwadi during a nocturnal cloudburst.",
+      "source_name": "Central Railway Public Relations Office",
+      "source_url": "https://cr.indianrailways.gov.in",
+      "verification_status": "Verified official record",
+      "confidence": "High",
+      "impact_summary": "Suburban and long-distance trains diverted via Daund-Pune or held at Karjat; cleared within 4.5 hours.",
+      "casualties_reported": "Nil",
+      "image_url": "/images/locations/monkey_hill.jpg",
+      "is_historical": true
+    },
+    {
+      "id": "INC-2026-0210-ADOSHI",
+      "hazard_type": "corridor_disruption",
+      "title": "Adoshi Tunnel Hazardous Chemical Tanker Spill",
+      "title_mr": "अडोशी बोगद्याजवळ केमिकल टँकर अपघात व वाहतूक कोंडी",
+      "date_time": "2026-02-10T16:40:00+05:30",
+      "location_name": "Mumbai-Pune Expressway near Adoshi Tunnel",
+      "coordinates": [
+        18.7792,
+        73.3441
+      ],
+      "description": "Independent road incident: A multi-axle chemical tanker overturned near the Adoshi tunnel mouth, causing liquid cargo leakage and extensive 14km traffic snarl. Note: System explicitly records this as a vehicular/freight incident, not a natural hazard.",
+      "source_name": "Maharashtra State Highway Police Log",
+      "source_url": "https://mahapolice.gov.in",
+      "verification_status": "Verified official record",
+      "confidence": "High",
+      "impact_summary": "Hazardous material foam containment executed. Expressway traffic diverted to NH 48 for 6 hours.",
+      "casualties_reported": "1 injured (Driver)",
+      "image_url": "/images/locations/adoshi_tunnel.jpg",
+      "is_historical": true
+    },
+    {
+      "id": "INC-2026-0729-RAJMACHI",
+      "hazard_type": "waterlogging",
+      "title": "Rajmachi Jungle Trail Stream Washout & Stranded Trekkers",
+      "title_mr": "राजमाची मार्गावर ओढा वाहून गेल्याने ट्रेकर्स अडकले",
+      "date_time": "2026-07-29T17:00:00+05:30",
+      "location_name": "Rajmachi Trek Path beyond Fanasrai",
+      "coordinates": [
+        18.8262,
+        73.4005
+      ],
+      "description": "Sudden seasonal stream surge washed away a temporary log bridge. 34 trekkers stranded on the Udhewadi side until Shivdurg Trekkers and local villagers secured a safety guideline rescue across the gorge.",
+      "source_name": "Shivdurg Rescue Team Lonavala Report",
+      "source_url": "https://shivdurgrescue.org",
+      "verification_status": "Reported by media",
+      "confidence": "Medium",
+      "impact_summary": "All 34 trekkers rescued safely with zero injury. Highlights the need for upstream catchment early-warnings on remote trails.",
+      "casualties_reported": "Nil (Rescued)",
+      "image_url": null,
+      "is_historical": true
+    }
+  ]
+}

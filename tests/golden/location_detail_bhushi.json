@@ -1,0 +1,36 @@
+{
+  "status_code": 200,
+  "body": {
+    "id": "bhushi_dam",
+    "name": "Bhushi Dam & Waterfall Catchment",
+    "name_mr": "भुशी धरण व धबधबा पाणलोट क्षेत्र",
+    "name_hi": "भुशी बांध और झरना जलग्रहण क्षेत्र",
+    "category": "tourist_spot",
+    "coordinates": [
+      18.7364,
+      73.3965
+    ],
+    "elevation_m": 638.0,
+    "slope_deg": 24.5,
+    "upstream_catchment_km2": 4.8,
+    "drainage_proximity_m": 15.0,
+    "status": "high",
+    "status_label": "High Surge Risk (पाणीपातळी वाढण्याचा धोका)",
+    "last_updated": "2026-10-24T18:15:00Z",
+    "telemetry_status": "modelled",
+    "current_hazard": "flash_flood",
+    "risk_score": 74,
+    "guidance": "High upstream rainfall in Tiger Hill catchment elevates sudden water surge danger. Do not step onto overflow masonry or waterfall plunge areas.",
+    "guidance_mr": "टायगर हिल पाणलोटात मुसळधार पावसामुळे धरणाच्या सांडव्यावर अचानक प्रवाह वाढण्याची शक्यता. पर्यटकांनी पाण्यात उतरू नये.",
+    "guidance_hi": "ऊपरी जलग्रहण क्षेत्र में भारी बारिश से अचानक जलस्तर बढ़ने का खतरा। पानी में न उतरें।",
+    "restrictions": "Section 144 / Police advisory active during torrential rains after 17:00.",
+    "upstream_info": "Fed by 4.8 km² steep catchment from Tiger Valley. Water level telemetry is modelled from radar & rain gauge proxies.",
+    "photo_description": "Masonry overflow weir, natural rocky rapids, and downstream gorge.",
+    "image_url": "/images/locations/bhushi_dam.jpg",
+    "tags": [
+      "Water Hazard",
+      "Tourist Hotspot",
+      "Upstream Catchment Alert"
+    ]
+  }
+}

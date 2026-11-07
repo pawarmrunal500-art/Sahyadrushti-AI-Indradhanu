@@ -1,0 +1,193 @@
+{
+  "status_code": 200,
+  "body": {
+    "event_title": "July 2026 Severe Monsoon Squall Event Replay",
+    "event_date": "2026-07-24 to 2026-07-25",
+    "description": "Historical-calibrated replay demonstrating how high antecedent precipitation saturated Khandala cut-slopes and triggered sudden flash surges at Bhushi cascades.",
+    "total_frames": 6,
+    "timeline": [
+      {
+        "step_index": 1,
+        "timestamp_label": "00:00 (T+00h) - Baseline Pre-Monsoon Calm",
+        "rainfall_1h_mm": 2.1,
+        "cumulative_24h_mm": 12.0,
+        "soil_saturation_pct": 42.0,
+        "storm_stage": "Green / Baseline",
+        "narrative": "Intermittent light rain across Lonavala plateau. Soil saturation at nominal 42%. All stream stages normal.",
+        "narrative_mr": "हळुवार पाऊस, मातीची आर्द्रता ४२%. परिस्थिती पूर्णपणे सुरक्षित.",
+        "points_state": {
+          "bhushi_dam": {
+            "risk_level": "low",
+            "score": 14
+          },
+          "khandala_expressway": {
+            "risk_level": "low",
+            "score": 18
+          },
+          "rajmachi_route": {
+            "risk_level": "moderate",
+            "score": 28
+          },
+          "patan_village": {
+            "risk_level": "low",
+            "score": 12
+          }
+        },
+        "active_incidents": []
+      },
+      {
+        "step_index": 2,
+        "timestamp_label": "04:00 (T+04h) - Early Morning Ghat Inflow",
+        "rainfall_1h_mm": 14.5,
+        "cumulative_24h_mm": 48.0,
+        "soil_saturation_pct": 58.0,
+        "storm_stage": "Moderate Inflow",
+        "narrative": "Orographic enhancement causes steady downpours along the crest line. Runoff begins entering Bhushi Dam reservoir.",
+        "narrative_mr": "घाटमाथ्यावर पावसाचा जोर वाढला. धरणात पाण्याचा प्रवाह सुरू.",
+        "points_state": {
+          "bhushi_dam": {
+            "risk_level": "moderate",
+            "score": 38
+          },
+          "khandala_expressway": {
+            "risk_level": "moderate",
+            "score": 34
+          },
+          "rajmachi_route": {
+            "risk_level": "moderate",
+            "score": 46
+          },
+          "patan_village": {
+            "risk_level": "low",
+            "score": 24
+          }
+        },
+        "active_incidents": []
+      },
+      {
+        "step_index": 3,
+        "timestamp_label": "08:00 (T+08h) - Sustained Downpour",
+        "rainfall_1h_mm": 28.0,
+        "cumulative_24h_mm": 96.0,
+        "soil_saturation_pct": 71.0,
+        "storm_stage": "Advisory Escalation",
+        "narrative": "Catchment soil saturation crosses 70%. Inclinometer at Amrutanjan slope detects minor micro-strain. Tourist footfall active.",
+        "narrative_mr": "पावसाची संततधार. पर्यटकांची गर्दी वाढलेली असताना मातीची संपृक्तता ७०% पार.",
+        "points_state": {
+          "bhushi_dam": {
+            "risk_level": "moderate",
+            "score": 54
+          },
+          "khandala_expressway": {
+            "risk_level": "high",
+            "score": 62
+          },
+          "rajmachi_route": {
+            "risk_level": "high",
+            "score": 68
+          },
+          "patan_village": {
+            "risk_level": "moderate",
+            "score": 42
+          }
+        },
+        "active_incidents": []
+      },
+      {
+        "step_index": 4,
+        "timestamp_label": "12:00 (T+12h) - Intense Convective Squall",
+        "rainfall_1h_mm": 44.5,
+        "cumulative_24h_mm": 152.0,
+        "soil_saturation_pct": 84.0,
+        "storm_stage": "Critical Flash-Surge Window",
+        "narrative": "Sudden cloudburst-like squall hits Tiger Valley catchment (44.5 mm/h). Bhushi Dam waterfall surges abruptly over steps. AI model issues automated flash surge advisory.",
+        "narrative_mr": "टायगर व्हॅलीत ढगफुटीसदृश पाऊस. भुशी धरणाच्या पायऱ्यांवर पाण्याचा अचानक प्रचंड लोंढा. मॉडेलकडून तात्काळ इशारा.",
+        "points_state": {
+          "bhushi_dam": {
+            "risk_level": "very_high",
+            "score": 86
+          },
+          "khandala_expressway": {
+            "risk_level": "high",
+            "score": 78
+          },
+          "rajmachi_route": {
+            "risk_level": "very_high",
+            "score": 89
+          },
+          "patan_village": {
+            "risk_level": "high",
+            "score": 67
+          }
+        },
+        "active_incidents": [
+          "Bhushi waterfall surge: Police clear tourists from cascade steps."
+        ]
+      },
+      {
+        "step_index": 5,
+        "timestamp_label": "16:00 (T+16h) - Critical Slope Saturation",
+        "rainfall_1h_mm": 32.0,
+        "cumulative_24h_mm": 194.0,
+        "soil_saturation_pct": 91.0,
+        "storm_stage": "Peak Hazard: Escarpment Instability",
+        "narrative": "Antecedent 48h rainfall surpasses 240mm. Basalt overburden on 36° slope loses effective cohesion. Boulder roll detected on Bhor Ghat rail line km 118.",
+        "narrative_mr": "४८ तासांत २४० मिमी पाऊस. मंकी हिल ते ठाकूरवाडी दरम्यान रेल्वे ट्रॅकवर दगड पडले. महामार्गावर वेग मर्यादा लागू.",
+        "points_state": {
+          "bhushi_dam": {
+            "risk_level": "high",
+            "score": 79
+          },
+          "khandala_expressway": {
+            "risk_level": "very_high",
+            "score": 88
+          },
+          "rajmachi_route": {
+            "risk_level": "very_high",
+            "score": 94
+          },
+          "patan_village": {
+            "risk_level": "very_high",
+            "score": 82
+          }
+        },
+        "active_incidents": [
+          "Thakurwadi rail track rockfall reported; speed restriction enacted.",
+          "Patan village committee evacuates upper terrace homes."
+        ]
+      },
+      {
+        "step_index": 6,
+        "timestamp_label": "20:00 (T+20h) - Storm Easing & Post-Event Vigilance",
+        "rainfall_1h_mm": 8.0,
+        "cumulative_24h_mm": 218.0,
+        "soil_saturation_pct": 87.0,
+        "storm_stage": "Receding Inflow / Lingering Geotechnical Risk",
+        "narrative": "Rain intensity subsides to 8 mm/h, but saturated slopes remain prone to delayed rotational slump for up to 18 hours. Emergency shelters accommodate 65 evacuated villagers.",
+        "narrative_mr": "पाऊस मंदावला तरी डोंगरउतार अजूनही धोकादायक स्थितीत. मदत केंद्रात ग्रामस्थांची सोय.",
+        "points_state": {
+          "bhushi_dam": {
+            "risk_level": "moderate",
+            "score": 52
+          },
+          "khandala_expressway": {
+            "risk_level": "high",
+            "score": 72
+          },
+          "rajmachi_route": {
+            "risk_level": "high",
+            "score": 78
+          },
+          "patan_village": {
+            "risk_level": "high",
+            "score": 70
+          }
+        },
+        "active_incidents": [
+          "Road clearance crews active at Bhor Ghat.",
+          "Relief center at Bhangarwadi operational."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "status_code": 200,
+  "body": {
+    "landslide": {
+      "precision": 0.328,
+      "recall": 0.955,
+      "f1_score": 0.489,
+      "pr_auc": 0.892,
+      "test_samples": 300,
+      "positive_events": 67,
+      "validation_method": "Geotechnical Stratified Holdout on Deccan Trap Basalt Overburden",
+      "calibration_status": "Sigmoidal Platt Calibration (Reliability Tested)"
+    },
+    "flash_flood": {
+      "precision": 0.481,
+      "recall": 0.912,
+      "f1_score": 0.629,
+      "pr_auc": 0.914,
+      "test_samples": 300,
+      "positive_events": 68,
+      "validation_method": "Catchment Hydrograph Convergence Holdout",
+      "calibration_status": "Hydrological Sigmoid Calibrated"
+    }
+  }
+}

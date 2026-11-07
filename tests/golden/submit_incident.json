@@ -1,0 +1,9 @@
+{
+  "status_code": 201,
+  "body": {
+    "message": "Incident report submitted successfully for moderation.",
+    "incident_id": "CROWD-297C202E",
+    "verification_status": "Unverified report",
+    "note": "Public safety alert classifications are not altered until verified by authority coordinators."
+  }
+}

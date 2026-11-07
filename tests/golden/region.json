@@ -1,0 +1,25 @@
+{
+  "status_code": 200,
+  "body": {
+    "region_id": "lonavala_khandala_maval",
+    "display_name": "Lonavala - Khandala Pilot Zone (Maval, Maharashtra)",
+    "marathi_display_name": "लोणावळा - खंडाळा - मावळ प्रायोगिक क्षेत्र",
+    "center": [
+      18.755,
+      73.395
+    ],
+    "default_zoom": 13,
+    "geology": "Deccan Trap Basalt with weathered lateritic overburden",
+    "monsoon_context": "Orographic precipitation with extreme localized gradients (2,500mm - 4,500mm annual)",
+    "primary_hazards": [
+      "Rainfall-triggered rotational/debris landslides",
+      "Flash floods & rapid stream convergence surges",
+      "Transport corridor disruption (Expressway & Central Railway Ghat)",
+      "Tourist waterfall & reservoir access drownings"
+    ],
+    "monitored_nodes_count": 12,
+    "shelters_count": 3,
+    "corridors_count": 3,
+    "historical_incidents_count": 6
+  }
+}

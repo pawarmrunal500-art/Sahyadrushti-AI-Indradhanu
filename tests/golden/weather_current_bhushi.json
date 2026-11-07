@@ -1,0 +1,22 @@
+{
+  "status_code": 200,
+  "body": {
+    "location_id": "bhushi_dam",
+    "location_name": "Bhushi Dam & Waterfall Catchment",
+    "station_name": "Bhushi Dam & Waterfall Catchment Automated Station",
+    "observation_time": "2026-11-07T18:57:46.305949+00:00",
+    "rain_1h_mm": 24.5,
+    "rain_3h_mm": 56.349999999999994,
+    "rain_24h_mm": 138.0,
+    "rain_48h_mm": 212.0,
+    "rain_intensity_mm_hr": 24.5,
+    "soil_moisture_pct": 84.5,
+    "temperature_c": 21.8,
+    "humidity_pct": 96.0,
+    "wind_speed_kmh": 28.5,
+    "data_source": "IMD Regional Radar & AWS Network (Pilot Integration)",
+    "data_status": "satellite_modelled",
+    "staleness_threshold_minutes": 60,
+    "is_stale": false
+  }
+}

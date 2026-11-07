@@ -1,0 +1,7 @@
+{
+  "status_code": 201,
+  "body": {
+    "status": "REGISTERED",
+    "sensor_id": "GOLDEN-TEST-001"
+  }
+}

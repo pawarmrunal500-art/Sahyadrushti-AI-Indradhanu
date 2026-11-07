@@ -82,6 +82,7 @@ GET_TESTS = {
     "weather_forecast": "/api/weather/forecast",
     "map_risk": "/api/map/risk",
     "incidents": "/api/incidents",
+    "incidents_no_historical": "/api/incidents?include_historical=false",
     "alerts": "/api/alerts",
     "model_info": "/api/model/info",
     "model_metrics": "/api/model/metrics",

@@ -23,6 +23,7 @@ htmlcov/
 
 # Cache and scratch
 scripts/raw_archive_cache.json
+scripts/extended_archive_cache.json
 
 # Node / Frontend
 node_modules/

@@ -175,20 +175,28 @@ class SahyadriHazardEngine:
         
         rain_1h = payload.get("rain_1h_mm")
         if rain_1h is None:
+            rain_1h = payload.get("rain_1h")
+        if rain_1h is None:
             rain_1h = 0.0
             missing_flags.append("rain_1h_mm (assumed 0 mm)")
 
         rain_24h = payload.get("rain_24h_mm")
+        if rain_24h is None:
+            rain_24h = payload.get("rain_24h")
         if rain_24h is None:
             rain_24h = rain_1h * 5.0
             missing_flags.append("rain_24h_mm (interpolated from 1h)")
 
         rain_48h = payload.get("rain_48h_mm")
         if rain_48h is None:
+            rain_48h = payload.get("rain_48h")
+        if rain_48h is None:
             rain_48h = rain_24h * 1.5
             missing_flags.append("rain_48h_mm (estimated from 24h)")
 
         rain_72h = payload.get("rain_72h_mm")
+        if rain_72h is None:
+            rain_72h = payload.get("rain_72h")
         api_mm = payload.get("api_mm")
         tau_drain = float(payload.get("drainage_recession_hours", 60.0))
 
@@ -213,10 +221,31 @@ class SahyadriHazardEngine:
             else:
                 sat_matrix = float(soil_moisture_raw)
 
-        # Antecedent retention storage with 60h drainage recession
-        effective_antecedent_rain = max(rain_48h, float(rain_72h or 0.0), float(api_mm or 0.0))
-        sat_boost = min(18.0, (effective_antecedent_rain / 350.0) * 18.0)
-        soil_moisture = min(98.0, sat_matrix * 0.80 + sat_boost)
+        # Single defined antecedent state variable: Drained Water Store W(t) [mm]
+        # Represents retained water volume in the weathered basalt overburden decaying with time constant tau.
+        # Constants below are documented physical assumptions, NOT calibrated against field sensors:
+        #   - TAU_DRAIN_HOURS = 60.0h: Basalt fracture and saprolite drainage recession time constant (assumption, not calibrated).
+        #   - BASE_SAT_WEIGHT = 0.80: Relative weight of direct matrix moisture vs antecedent retention (assumption, not calibrated).
+        #   - MAX_SAT_BOOST = 18.0%: Maximum saturation boost from antecedent water storage (assumption, not calibrated).
+        #   - REF_SAT_STORAGE_MM = 350.0mm: Retained storage reference yielding max saturation boost (assumption, not calibrated).
+        TAU_DRAIN_HOURS = tau_drain
+        BASE_SAT_WEIGHT = 0.80
+        MAX_SAT_BOOST = 18.0
+        REF_SAT_STORAGE_MM = 350.0
+
+        if api_mm is not None:
+            w_storage = float(api_mm)
+        elif payload.get("antecedent_store_mm") is not None:
+            w_storage = float(payload["antecedent_store_mm"])
+        else:
+            p_day1 = rain_24h
+            p_day2 = max(0.0, rain_48h - rain_24h)
+            p_day3 = max(0.0, float(rain_72h or (rain_48h * 1.3)) - rain_48h)
+            k_daily = float(np.exp(-24.0 / max(1.0, TAU_DRAIN_HOURS)))
+            w_storage = p_day1 * float(np.exp(-12.0 / max(1.0, TAU_DRAIN_HOURS))) + p_day2 * k_daily + p_day3 * (k_daily ** 2)
+
+        sat_boost = min(MAX_SAT_BOOST, (w_storage / REF_SAT_STORAGE_MM) * MAX_SAT_BOOST)
+        soil_moisture = min(98.0, sat_matrix * BASE_SAT_WEIGHT + sat_boost)
 
         slope_deg = payload.get("slope_deg", 18.0)
         elevation_m = payload.get("elevation_m", 640.0)
@@ -249,7 +278,7 @@ class SahyadriHazardEngine:
             drainage_factor = (100.0 / max(drainage_prox, 15.0)) ** 0.35
             surge_index = (rain_1h * 2.8 + rain_24h * 0.22 + rain_48h * 0.08) * c_runoff * drainage_factor
             # Storage persistence from preceding storm
-            w_storage_proxy = effective_antecedent_rain * 0.7
+            w_storage_proxy = w_storage
             base_surge = min(22.0, (w_storage_proxy / 240.0) * 22.0 * (soil_moisture / 100.0))
             relief_term = max(0.0, (15.0 - slope_deg) * 0.8)
             calibrated_score = int(min(96, max(3, round(10.0 + surge_index * 0.85 + base_surge + relief_term))))
@@ -315,13 +344,13 @@ class SahyadriHazardEngine:
                 "description": f"Low slope ({slope_deg:.1f}°) significantly reduces landslide detachment potential."
             })
 
-        if effective_antecedent_rain > 120.0 or soil_moisture > 75.0:
-            weight = round(min(0.42, (effective_antecedent_rain / 300.0) + (soil_moisture / 250.0)), 2)
+        if w_storage > 120.0 or soil_moisture > 75.0:
+            weight = round(min(0.42, (w_storage / 300.0) + (soil_moisture / 250.0)), 2)
             contributing_factors.append({
                 "factor": "High Antecedent Saturation & Slow Basalt Drainage Lag",
                 "weight": weight,
                 "direction": "increase",
-                "description": f"Multi-day rainfall ({effective_antecedent_rain:.1f}mm) with {soil_moisture:.0f}% profile wetness sustains joint pore pressure (drainage tau={tau_drain:.0f}h; uncalibrated physical assumption)."
+                "description": f"Drained antecedent rainfall store ({w_storage:.1f}mm) with {soil_moisture:.0f}% profile wetness sustains joint pore pressure (drainage tau={tau_drain:.0f}h; uncalibrated physical assumption)."
             })
 
         if hazard_type == "flash_flood" and (rain_1h > 25.0 or drainage_prox < 80.0):
@@ -389,6 +418,7 @@ class SahyadriHazardEngine:
             "precautions": precautions,
             "model_version": self.model_version,
             "drainage_recession_tau_hours": tau_drain,
+            "antecedent_store_w_mm": round(float(w_storage), 1),
             "antecedent_saturation_pct": round(float(soil_moisture), 1),
             "inference_time": datetime.datetime.now(datetime.timezone.utc).isoformat(),
             "validation_status": "Calibrated Geotechnical Ensemble (Physically Grounded on Basalt Overburden)",

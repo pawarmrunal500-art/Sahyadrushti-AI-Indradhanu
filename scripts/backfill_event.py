@@ -1,10 +1,10 @@
 """
-scripts/backfill_event.py - Open-Meteo Archive Backfill for July 6-8, 2026 Storm Event.
+scripts/backfill_event.py - Extended Open-Meteo Archive Backfill (June 22 - July 8, 2026).
 
-Fetches historical archive data from Open-Meteo (including a 14-day antecedent window from 2026-06-22),
-computes true multi-day rainfall (1h, 24h, 48h, 72h, 7d, 14d) and Antecedent Precipitation Index (API),
-integrates multi-layer soil moisture (0-1cm, 3-9cm, 9-27cm) with 60h drainage recession modeling,
-runs the physics-based ML risk model (Sahyadri-GeoRisk-v2.2), and saves the event progression into backend/backfilled_replay.json.
+Fetches historical archive data from Open-Meteo with a 14-day antecedent buffer (starting 2026-06-08),
+generates a 12-hourly replay sequence across 17 days (June 22 to July 8),
+computes dynamic drained antecedent storage W(t) and profile soil saturation,
+and runs the physics-based ML risk model (Sahyadri-GeoRisk-v2.2) to evaluate per-location hazard scores.
 
 Attribution & Calibration Note:
   Source: Open-Meteo Archive (ERA5 / ECMWF coupled reanalysis).
@@ -16,10 +16,12 @@ Attribution & Calibration Note:
 import urllib.request
 import json
 import datetime
+import math
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+os.environ.setdefault("DEBUG", "true")
 
 from app.config import settings
 from app.services.risk import risk_service
@@ -32,57 +34,69 @@ OUTPUT_PATH = os.path.join(
     "backfilled_replay.json"
 )
 
+def calc_drained_storage_w(precips, t_idx, tau=60.0):
+    """Computes single antecedent state variable W(t) [mm] with exponential drainage recession."""
+    w = 0.0
+    for dt in range(min(t_idx + 1, 336)):
+        p = float(precips[t_idx - dt] or 0.0)
+        w += p * math.exp(-dt / tau)
+    return round(w, 1)
+
 def backfill():
-    print("=" * 65)
-    print("SAHYADRUSHTI AI - Open-Meteo Archive Backfill (July 6-8, 2026)")
-    print("=" * 65)
+    print("=" * 70)
+    print("SAHYADRUSHTI AI - Extended Archive Backfill (June 22 - July 8, 2026)")
+    print("=" * 70)
 
     lats = ",".join(str(loc["coordinates"][0]) for loc in LOCATIONS_DATA)
     lons = ",".join(str(loc["coordinates"][1]) for loc in LOCATIONS_DATA)
 
-    # Fetch archive starting 14 days prior to capture full antecedent monsoon saturation
-    url = (
-        f"{settings.OPENMETEO_ARCHIVE_URL}?"
-        f"latitude={lats}&longitude={lons}&"
-        f"start_date=2026-06-22&end_date=2026-07-08&"
-        f"hourly=precipitation,soil_moisture_0_to_1cm,soil_moisture_3_to_9cm,soil_moisture_9_to_27cm,temperature_2m&"
-        f"timezone=Asia/Kolkata"
-    )
-
-    # Check local cache first to avoid redundant API hits during testing
-    cache_path = os.path.join(os.path.dirname(__file__), "raw_archive_cache.json")
+    cache_path = os.path.join(os.path.dirname(__file__), "extended_archive_cache.json")
     if os.path.exists(cache_path):
         print(f"Loading cached raw archive telemetry from {cache_path}...")
         with open(cache_path, "r", encoding="utf-8") as f:
             data = json.load(f)
     else:
-        print(f"Fetching archive sequence with 14-day antecedent window from:\n  {url[:100]}...")
-        req = urllib.request.Request(url, headers={"User-Agent": "SahyadrushtiAI/2.2 (Research/Evaluation)"})
-        with urllib.request.urlopen(req, timeout=25) as res:
+        url = (
+            f"{settings.OPENMETEO_ARCHIVE_URL}?"
+            f"latitude={lats}&longitude={lons}&"
+            f"start_date=2026-06-08&end_date=2026-07-08&"
+            f"hourly=precipitation,soil_moisture_0_to_1cm,soil_moisture_3_to_9cm,soil_moisture_9_to_27cm,temperature_2m&"
+            f"timezone=Asia/Kolkata"
+        )
+        print(f"Fetching extended archive sequence from:\n  {url[:100]}...")
+        req = urllib.request.Request(url, headers={"User-Agent": "SahyadrushtiAI/2.2-Backfill"})
+        with urllib.request.urlopen(req, timeout=30) as res:
             data = json.loads(res.read().decode("utf-8"))
         with open(cache_path, "w", encoding="utf-8") as f:
             json.dump(data, f)
 
     results_list = data if isinstance(data, list) else [data]
-    print(f"Received archive telemetry for {len(results_list)} coordinate nodes.")
-
-    # Time series alignment: locate 2026-07-06T00:00 as base offset
     ref_hourly = results_list[0]["hourly"]
     timestamps = ref_hourly["time"]
-    base_target = "2026-07-06T00:00"
-    base_offset = timestamps.index(base_target) if base_target in timestamps else 336
-    print(f"Base index for {base_target} is {base_offset} (14 antecedent days = {base_offset} hours).")
 
-    # Time offsets: sample 9 key frames across the 72h storm progression (every ~9 hours)
-    step_offsets = [0, 9, 18, 27, 36, 45, 54, 63, 71]
+    # Replay runs from 2026-06-22 00:00 to 2026-07-08 23:00 at 12-hourly intervals
+    start_target = "2026-06-22T00:00"
+    end_target = "2026-07-08T23:00"
+    idx_start = timestamps.index(start_target) if start_target in timestamps else 336
+    idx_end = timestamps.index(end_target) if end_target in timestamps else len(timestamps) - 1
+
+    twelve_hourly_indices = list(range(idx_start, idx_end + 1, 12))
+    print(f"Generating {len(twelve_hourly_indices)} 12-hourly frames from {timestamps[idx_start]} to {timestamps[idx_end]}...")
 
     timeline = []
-    for step_idx, step_off in enumerate(step_offsets):
-        t_idx = base_offset + step_off
-        t_label = timestamps[t_idx] if t_idx < len(timestamps) else f"T+{step_off:02d}h"
+    for step_idx, t_idx in enumerate(twelve_hourly_indices):
+        t_label = timestamps[t_idx] if t_idx < len(timestamps) else f"T+{step_idx:02d}"
         
         precip_1h_all = []
         cum_24h_all = []
+        cum_48h_all = []
+        cum_72h_all = []
+        cum_7d_all = []
+        cum_14d_all = []
+        w_all = []
+        sm01_all = []
+        sm39_all = []
+        sm927_all = []
         sm_all = []
         points_state = {}
 
@@ -95,7 +109,7 @@ def backfill():
             sm39_series = h_data.get("soil_moisture_3_to_9cm", [])
             sm927_series = h_data.get("soil_moisture_9_to_27cm", [])
 
-            # Current hour rain
+            # 1h rain
             r_1h_raw = float(p_series[t_idx]) if t_idx < len(p_series) and p_series[t_idx] is not None else 0.0
             r_1h = apply_bias_correction(r_1h_raw, settings.BIAS_MULTIPLIER)
             precip_1h_all.append(r_1h)
@@ -106,31 +120,41 @@ def backfill():
             r_24h = apply_bias_correction(r_24h_raw, settings.BIAS_MULTIPLIER)
             cum_24h_all.append(r_24h)
 
-            # Cumulative past 48h
+            # Cumulative past 48h and 72h
             w_48 = max(0, t_idx - 47)
             r_48h_raw = sum(p for p in p_series[w_48:t_idx + 1] if p is not None)
             r_48h = apply_bias_correction(r_48h_raw, settings.BIAS_MULTIPLIER)
+            cum_48h_all.append(r_48h)
 
-            # Cumulative past 72h
             w_72 = max(0, t_idx - 71)
             r_72h_raw = sum(p for p in p_series[w_72:t_idx + 1] if p is not None)
             r_72h = apply_bias_correction(r_72h_raw, settings.BIAS_MULTIPLIER)
+            cum_72h_all.append(r_72h)
 
-            # Antecedent daily precipitation (14 days past) for API calculation
-            daily_blocks = []
-            for d in range(1, 15):
-                end_h = t_idx - (d - 1) * 24
-                start_h = max(0, t_idx - d * 24)
-                d_sum = sum(p for p in p_series[start_h:end_h] if p is not None)
-                daily_blocks.append(d_sum)
-            api_mm = compute_antecedent_precipitation_index(daily_blocks, decay_k=0.88)
+            # Cumulative past 7d and 14d lookback
+            w_7d = max(0, t_idx - (7 * 24 - 1))
+            r_7d_raw = sum(p for p in p_series[w_7d:t_idx + 1] if p is not None)
+            r_7d = apply_bias_correction(r_7d_raw, settings.BIAS_MULTIPLIER)
+            cum_7d_all.append(r_7d)
+
+            w_14d = max(0, t_idx - (14 * 24 - 1))
+            r_14d_raw = sum(p for p in p_series[w_14d:t_idx + 1] if p is not None)
+            r_14d = apply_bias_correction(r_14d_raw, settings.BIAS_MULTIPLIER)
+            cum_14d_all.append(r_14d)
+
+            # Antecedent drained storage W(t) [mm]
+            w_storage = calc_drained_storage_w(p_series, t_idx, tau=60.0)
+            w_all.append(w_storage)
 
             # Multi-layer soil moisture readings
-            s01 = float(sm01_series[t_idx]) if t_idx < len(sm01_series) and sm01_series[t_idx] is not None else 0.48
-            s39 = float(sm39_series[t_idx]) if t_idx < len(sm39_series) and sm39_series[t_idx] is not None else 0.48
-            s927 = float(sm927_series[t_idx]) if t_idx < len(sm927_series) and sm927_series[t_idx] is not None else 0.48
+            s01 = float(sm01_series[t_idx]) if t_idx < len(sm01_series) and sm01_series[t_idx] is not None else 0.45
+            s39 = float(sm39_series[t_idx]) if t_idx < len(sm39_series) and sm39_series[t_idx] is not None else 0.45
+            s927 = float(sm927_series[t_idx]) if t_idx < len(sm927_series) and sm927_series[t_idx] is not None else 0.45
+            sm01_all.append(s01)
+            sm39_all.append(s39)
+            sm927_all.append(s927)
 
-            # Recompute model risk with Sahyadri-GeoRisk-v2.2 (physics-consistent)
+            # Recompute model risk with Sahyadri-GeoRisk-v2.2
             pred = risk_service.predict({
                 "location_id": loc["id"],
                 "hazard_type": loc["current_hazard"],
@@ -138,7 +162,7 @@ def backfill():
                 "rain_24h_mm": r_24h,
                 "rain_48h_mm": r_48h,
                 "rain_72h_mm": r_72h,
-                "api_mm": api_mm,
+                "api_mm": w_storage,
                 "forecast_24h_mm": 50.0,
                 "soil_moisture_0_to_1cm": s01,
                 "soil_moisture_3_to_9cm": s39,
@@ -157,36 +181,49 @@ def backfill():
                 "factor_of_safety": pred.get("factor_of_safety"),
                 "antecedent_saturation_pct": pred.get("antecedent_saturation_pct")
             }
-            sm_all.append(pred.get("antecedent_saturation_pct", 80.0))
+            sm_all.append(pred.get("antecedent_saturation_pct", 60.0))
 
         avg_1h = round(sum(precip_1h_all) / len(precip_1h_all), 1) if precip_1h_all else 0.0
         avg_24h = round(sum(cum_24h_all) / len(cum_24h_all), 1) if cum_24h_all else 0.0
-        avg_sm = round(sum(sm_all) / len(sm_all), 1) if sm_all else 80.0
+        avg_sm = round(sum(sm_all) / len(sm_all), 1) if sm_all else 60.0
 
-        stage = "Pre-Storm Baseline" if step_idx == 0 else (
-            "Orographic Squall Genesis" if step_idx <= 2 else (
-                "Peak Convective Intensity" if step_idx <= 5 else "Receding Monsoon Surge"
-            )
-        )
+        # Stage classification
+        dt_val = t_label[:10]
+        if dt_val <= "2026-06-29":
+            stage = "Calm Pre-Monsoon Baseline"
+        elif dt_val <= "2026-07-03":
+            stage = "Monsoon Inflow Onset"
+        elif dt_val <= "2026-07-06":
+            stage = "Severe Orographic Surge"
+        else:
+            stage = "Receding Surge & Delayed Geotechnical Vigilance"
 
         frame = {
             "step_index": step_idx,
             "timestamp_label": t_label,
             "rainfall_1h_mm": avg_1h,
             "cumulative_24h_mm": avg_24h,
+            "cumulative_48h_mm": round(sum(cum_48h_all) / len(cum_48h_all), 1) if cum_48h_all else 0.0,
+            "cumulative_72h_mm": round(sum(cum_72h_all) / len(cum_72h_all), 1) if cum_72h_all else 0.0,
+            "cumulative_7d_mm": round(sum(cum_7d_all) / len(cum_7d_all), 1) if cum_7d_all else 0.0,
+            "cumulative_14d_mm": round(sum(cum_14d_all) / len(cum_14d_all), 1) if cum_14d_all else 0.0,
+            "antecedent_store_w_mm": round(sum(w_all) / len(w_all), 1) if w_all else 0.0,
+            "soil_moisture_0_to_1cm": round(sum(sm01_all) / len(sm01_all), 3) if sm01_all else 0.45,
+            "soil_moisture_3_to_9cm": round(sum(sm39_all) / len(sm39_all), 3) if sm39_all else 0.45,
+            "soil_moisture_9_to_27cm": round(sum(sm927_all) / len(sm927_all), 3) if sm927_all else 0.45,
             "soil_saturation_pct": avg_sm,
             "storm_stage": stage,
-            "narrative": f"Backfilled archive observation at {t_label}. 24h regional accumulation reaches {avg_24h:.1f}mm with {avg_sm:.1f}% profile soil saturation.",
+            "narrative": f"Archive observation at {t_label}. 24h regional accumulation reaches {avg_24h:.1f}mm with {avg_sm:.1f}% profile soil saturation.",
             "narrative_mr": f"{t_label} रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी {avg_24h:.1f} मिमी पाऊस व {avg_sm:.1f}% मातीची संपृक्तता.",
             "points_state": points_state,
-            "active_incidents": ["INC-2026-0712-PATAN"] if step_idx >= 3 else []
+            "active_incidents": ["INC-2026-0712-PATAN"] if t_label >= "2026-07-06T14:00" else []
         }
         timeline.append(frame)
 
     output_payload = {
-        "event_title": "July 6-8, 2026 Severe Monsoon Cloudburst Event (Archive Backfill)",
-        "event_date": "2026-07-06 to 2026-07-08",
-        "description": "Empirical reanalysis replay backfilled from Open-Meteo Archive (ERA5 coupled). Evaluated with Sahyadri-GeoRisk-v2.2 incorporating multi-layer saturation and 60h joint drainage recession.",
+        "event_title": "June 22 - July 8, 2026 Monsoon Storm & Cloudburst Sequence (Extended Archive)",
+        "event_date": "2026-06-22 to 2026-07-08",
+        "description": "17-day empirical reanalysis replay backfilled from Open-Meteo Archive (ERA5 coupled). Demonstrates calm baseline, progressive saturation accumulation, peak cloudburst, and delayed drainage recession.",
         "data_source": "open-meteo-archive",
         "peak_values_likely_underestimated": True,
         "model_version": "Sahyadri-GeoRisk-v2.2",

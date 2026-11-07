@@ -101,3 +101,4 @@ def get_storm_replay():
 def get_demo_scenario():
     """Returns deterministic 3-minute comparison scenario comparing Locations A, B, and C."""
     return DEMO_SCENARIO_DATA
+

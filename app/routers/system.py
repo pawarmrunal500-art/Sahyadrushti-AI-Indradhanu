@@ -1,15 +1,26 @@
 """
 app/routers/system.py - System metadata and health endpoints.
 """
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlmodel import Session
 import datetime
+
 from app.services.risk import risk_service
+from app.db import get_session
+from app.repositories import get_locations
 
 router = APIRouter(tags=["System"])
 
 @router.get("/api/health")
-def get_health():
+def get_health(session: Session = Depends(get_session)):
     """Returns backend service health, ML pipeline status, active region, and extended telemetry."""
+    # Check DB connectivity
+    db_status = "connected"
+    try:
+        session.connection()
+    except Exception:
+        db_status = "disconnected"
+
     return {
         "status": "HEALTHY",
         "service": "SAHYADRUSHTI AI Platform",
@@ -26,16 +37,17 @@ def get_health():
         "model_version": risk_service.engine.model_version,
         "sdg_target": "UN SDG 13.1 - Strengthen resilience and adaptive capacity to climate hazards",
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        # Amendment 6: Additive health fields
-        "db_status": "in_memory_prototype",
+        # Additive health fields (Amendment 6)
+        "db_status": db_status,
         "last_weather_fetch": None,
         "scheduler_status": "standby"
     }
 
 @router.get("/api/region", tags=["Geospatial"])
-def get_region_metadata():
+def get_region_metadata(session: Session = Depends(get_session)):
     """Returns pilot region geographical bounds, terrain characteristics, and baseline statistics."""
-    from backend.data_layer import LOCATIONS_DATA, SHELTERS_DATA, CORRIDORS_DATA, HISTORICAL_INCIDENTS
+    from backend.data_layer import SHELTERS_DATA, CORRIDORS_DATA, HISTORICAL_INCIDENTS
+    locations = get_locations(session)
     return {
         "region_id": "lonavala_khandala_maval",
         "display_name": "Lonavala - Khandala Pilot Zone (Maval, Maharashtra)",
@@ -50,7 +62,7 @@ def get_region_metadata():
             "Transport corridor disruption (Expressway & Central Railway Ghat)",
             "Tourist waterfall & reservoir access drownings"
         ],
-        "monitored_nodes_count": len(LOCATIONS_DATA),
+        "monitored_nodes_count": len(locations),
         "shelters_count": len(SHELTERS_DATA),
         "corridors_count": len(CORRIDORS_DATA),
         "historical_incidents_count": len(HISTORICAL_INCIDENTS)

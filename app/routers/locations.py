@@ -1,34 +1,43 @@
 """
 app/routers/locations.py - Geographic locations, map risk layers, corridors, and shelters.
 """
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from typing import List, Optional
+from sqlmodel import Session
 import datetime
+
 from backend.schemas import LocationItem, ShelterItem, CorridorItem
-from backend.data_layer import LOCATIONS_DATA, SHELTERS_DATA, CORRIDORS_DATA
+from backend.data_layer import SHELTERS_DATA, CORRIDORS_DATA
+from app.db import get_session
+from app.repositories import get_locations, get_location_by_id
 
 router = APIRouter(tags=["Locations & Geospatial"])
 
 @router.get("/api/locations", response_model=List[LocationItem])
-def get_all_locations(category: Optional[str] = None):
+def get_all_locations(
+    category: Optional[str] = None,
+    session: Session = Depends(get_session)
+):
     """Returns directory of verified monitored points (tourist spots, corridors, settlements)."""
-    if category:
-        return [loc for loc in LOCATIONS_DATA if loc.get("category") == category]
-    return LOCATIONS_DATA
+    return get_locations(session, category=category)
 
 @router.get("/api/locations/{location_id}", response_model=LocationItem)
-def get_location_detail(location_id: str):
+def get_location_detail(
+    location_id: str,
+    session: Session = Depends(get_session)
+):
     """Returns detailed hazard intelligence, upstream catchment info, and precautions for a location."""
-    for loc in LOCATIONS_DATA:
-        if loc["id"] == location_id:
-            return loc
-    raise HTTPException(status_code=404, detail=f"Location with id '{location_id}' not found.")
+    loc = get_location_by_id(session, location_id)
+    if not loc:
+        raise HTTPException(status_code=404, detail=f"Location with id '{location_id}' not found.")
+    return loc
 
 @router.get("/api/map/risk", tags=["Geospatial"])
-def get_risk_map_layers():
+def get_risk_map_layers(session: Session = Depends(get_session)):
     """Returns complete geospatial risk features: monitored points, corridors, and terrain metadata."""
+    locations = get_locations(session)
     features = []
-    for loc in LOCATIONS_DATA:
+    for loc in locations:
         features.append({
             "type": "Feature",
             "geometry": {

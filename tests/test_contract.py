@@ -22,8 +22,27 @@ import pytest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import tempfile
 from fastapi.testclient import TestClient
+from sqlmodel import Session, create_engine, SQLModel
 from backend.main import app
+from app.db import get_session
+from app.repositories import seed_all_if_empty
+
+# Isolated temporary test database
+temp_db_fd, temp_db_path = tempfile.mkstemp(suffix=".db")
+os.close(temp_db_fd)
+test_db_url = f"sqlite:///{temp_db_path}"
+test_engine = create_engine(test_db_url, connect_args={"check_same_thread": False})
+SQLModel.metadata.create_all(test_engine)
+with Session(test_engine) as seed_session:
+    seed_all_if_empty(seed_session)
+
+def get_test_session():
+    with Session(test_engine) as session:
+        yield session
+
+app.dependency_overrides[get_session] = get_test_session
 
 GOLDEN_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "golden")
 client = TestClient(app)

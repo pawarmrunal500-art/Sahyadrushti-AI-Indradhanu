@@ -19,3 +19,4 @@ def get_current_weather(location_id: Optional[str] = "bhushi_dam"):
 def get_weather_forecast():
     """Returns high-resolution precipitation forecasts with provider metadata and lead times."""
     return weather_service.get_forecast()
+

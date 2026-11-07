@@ -1,9 +1,12 @@
 {
   "event_title": "July 6-8, 2026 Severe Monsoon Cloudburst Event (Archive Backfill)",
   "event_date": "2026-07-06 to 2026-07-08",
-  "description": "Empirical reanalysis replay backfilled from Open-Meteo Archive (ERA5 coupled). Demonstrates progressive soil saturation and water surge triggering across Lonavala, Khandala, and Bhor Ghat corridors.",
+  "description": "Empirical reanalysis replay backfilled from Open-Meteo Archive (ERA5 coupled). Evaluated with Sahyadri-GeoRisk-v2.2 incorporating multi-layer saturation and 60h joint drainage recession.",
   "data_source": "open-meteo-archive",
   "peak_values_likely_underestimated": true,
+  "model_version": "Sahyadri-GeoRisk-v2.2",
+  "drainage_recession_tau_hours": 60.0,
+  "uncalibrated_assumption": "Pore pressure drainage recession tau=60h based on Deccan Trap vesicular saprolite hydraulics",
   "calibration_status": "suspected underestimate, to be calibrated against IMD station data",
   "bias_multiplier_used": 1.0,
   "total_frames": 9,
@@ -12,59 +15,83 @@
       "step_index": 0,
       "timestamp_label": "2026-07-06T00:00",
       "rainfall_1h_mm": 12.5,
-      "cumulative_24h_mm": 12.5,
-      "soil_saturation_pct": 76.5,
+      "cumulative_24h_mm": 182.8,
+      "soil_saturation_pct": 89.8,
       "storm_stage": "Pre-Storm Baseline",
-      "narrative": "Backfilled archive observation at 2026-07-06T00:00. 24h regional accumulation reaches 12.5mm with 76.5% soil saturation.",
-      "narrative_mr": "2026-07-06T00:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 12.5 मिमी पाऊस व 76.5% मातीची संपृक्तता.",
+      "narrative": "Backfilled archive observation at 2026-07-06T00:00. 24h regional accumulation reaches 182.8mm with 89.8% profile soil saturation.",
+      "narrative_mr": "2026-07-06T00:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 182.8 मिमी पाऊस व 89.8% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "low",
-          "score": 9
+          "risk_level": "very_high",
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 96.3
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 14
+          "risk_level": "very_high",
+          "score": 95,
+          "factor_of_safety": 0.62,
+          "antecedent_saturation_pct": 96.3
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 11
+          "risk_level": "very_high",
+          "score": 93,
+          "factor_of_safety": 0.69,
+          "antecedent_saturation_pct": 83.4
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 7
+          "risk_level": "very_high",
+          "score": 91,
+          "factor_of_safety": 0.78,
+          "antecedent_saturation_pct": 83.4
         },
         "rajmachi_route": {
-          "risk_level": "low",
-          "score": 7
+          "risk_level": "very_high",
+          "score": 85,
+          "factor_of_safety": 0.99,
+          "antecedent_saturation_pct": 84.1
         },
         "khandala_expressway": {
-          "risk_level": "low",
-          "score": 15
+          "risk_level": "very_high",
+          "score": 95,
+          "factor_of_safety": 0.64,
+          "antecedent_saturation_pct": 96.3
         },
         "adoshi_tunnel": {
-          "risk_level": "low",
-          "score": 7
+          "risk_level": "very_high",
+          "score": 91,
+          "factor_of_safety": 0.79,
+          "antecedent_saturation_pct": 95.2
         },
         "monkey_hill": {
-          "risk_level": "moderate",
-          "score": 25
+          "risk_level": "very_high",
+          "score": 98,
+          "factor_of_safety": 0.53,
+          "antecedent_saturation_pct": 96.3
         },
         "thakurwadi": {
-          "risk_level": "low",
-          "score": 10
+          "risk_level": "very_high",
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 95.2
         },
         "patan_village": {
-          "risk_level": "low",
-          "score": 3
+          "risk_level": "high",
+          "score": 69,
+          "factor_of_safety": 1.12,
+          "antecedent_saturation_pct": 83.4
         },
         "valvan_dam": {
-          "risk_level": "low",
-          "score": 1
+          "risk_level": "very_high",
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.1
         },
         "lonavala_town": {
-          "risk_level": "low",
-          "score": 0
+          "risk_level": "very_high",
+          "score": 83,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.1
         }
       },
       "active_incidents": []
@@ -73,59 +100,83 @@
       "step_index": 1,
       "timestamp_label": "2026-07-06T09:00",
       "rainfall_1h_mm": 12.6,
-      "cumulative_24h_mm": 68.3,
-      "soil_saturation_pct": 76.3,
+      "cumulative_24h_mm": 180.0,
+      "soil_saturation_pct": 90.1,
       "storm_stage": "Orographic Squall Genesis",
-      "narrative": "Backfilled archive observation at 2026-07-06T09:00. 24h regional accumulation reaches 68.3mm with 76.3% soil saturation.",
-      "narrative_mr": "2026-07-06T09:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 68.3 मिमी पाऊस व 76.3% मातीची संपृक्तता.",
+      "narrative": "Backfilled archive observation at 2026-07-06T09:00. 24h regional accumulation reaches 180.0mm with 90.1% profile soil saturation.",
+      "narrative_mr": "2026-07-06T09:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 180.0 मिमी पाऊस व 90.1% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "moderate",
-          "score": 49
+          "risk_level": "very_high",
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 96.3
         },
         "kune_falls": {
-          "risk_level": "high",
-          "score": 76
+          "risk_level": "very_high",
+          "score": 95,
+          "factor_of_safety": 0.62,
+          "antecedent_saturation_pct": 96.3
         },
         "tiger_point": {
-          "risk_level": "high",
-          "score": 67
+          "risk_level": "very_high",
+          "score": 93,
+          "factor_of_safety": 0.68,
+          "antecedent_saturation_pct": 84.1
         },
         "lions_point": {
-          "risk_level": "high",
-          "score": 56
+          "risk_level": "very_high",
+          "score": 91,
+          "factor_of_safety": 0.77,
+          "antecedent_saturation_pct": 84.1
         },
         "rajmachi_route": {
-          "risk_level": "moderate",
-          "score": 50
+          "risk_level": "very_high",
+          "score": 85,
+          "factor_of_safety": 0.99,
+          "antecedent_saturation_pct": 84.1
         },
         "khandala_expressway": {
-          "risk_level": "high",
-          "score": 62
+          "risk_level": "very_high",
+          "score": 95,
+          "factor_of_safety": 0.64,
+          "antecedent_saturation_pct": 96.3
         },
         "adoshi_tunnel": {
-          "risk_level": "moderate",
-          "score": 26
+          "risk_level": "very_high",
+          "score": 91,
+          "factor_of_safety": 0.78,
+          "antecedent_saturation_pct": 95.7
         },
         "monkey_hill": {
-          "risk_level": "high",
-          "score": 76
+          "risk_level": "very_high",
+          "score": 98,
+          "factor_of_safety": 0.53,
+          "antecedent_saturation_pct": 96.3
         },
         "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 34
+          "risk_level": "very_high",
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 95.7
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 35
+          "risk_level": "high",
+          "score": 70,
+          "factor_of_safety": 1.1,
+          "antecedent_saturation_pct": 84.1
         },
         "valvan_dam": {
-          "risk_level": "low",
-          "score": 17
+          "risk_level": "very_high",
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.1
         },
         "lonavala_town": {
-          "risk_level": "low",
-          "score": 5
+          "risk_level": "very_high",
+          "score": 83,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.1
         }
       },
       "active_incidents": []
@@ -134,59 +185,83 @@
       "step_index": 2,
       "timestamp_label": "2026-07-06T18:00",
       "rainfall_1h_mm": 5.1,
-      "cumulative_24h_mm": 175.8,
-      "soil_saturation_pct": 76.2,
+      "cumulative_24h_mm": 222.0,
+      "soil_saturation_pct": 90.0,
       "storm_stage": "Orographic Squall Genesis",
-      "narrative": "Backfilled archive observation at 2026-07-06T18:00. 24h regional accumulation reaches 175.8mm with 76.2% soil saturation.",
-      "narrative_mr": "2026-07-06T18:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 175.8 मिमी पाऊस व 76.2% मातीची संपृक्तता.",
+      "narrative": "Backfilled archive observation at 2026-07-06T18:00. 24h regional accumulation reaches 222.0mm with 90.0% profile soil saturation.",
+      "narrative_mr": "2026-07-06T18:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 222.0 मिमी पाऊस व 90.0% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
           "risk_level": "very_high",
-          "score": 93
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 96.3
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 95,
+          "factor_of_safety": 0.62,
+          "antecedent_saturation_pct": 96.3
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 93,
+          "factor_of_safety": 0.68,
+          "antecedent_saturation_pct": 84.1
         },
         "lions_point": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 91,
+          "factor_of_safety": 0.77,
+          "antecedent_saturation_pct": 84.1
         },
         "rajmachi_route": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 85,
+          "factor_of_safety": 0.99,
+          "antecedent_saturation_pct": 84.1
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 95,
+          "factor_of_safety": 0.64,
+          "antecedent_saturation_pct": 96.3
         },
         "adoshi_tunnel": {
           "risk_level": "very_high",
-          "score": 86
+          "score": 89,
+          "factor_of_safety": 0.79,
+          "antecedent_saturation_pct": 95.3
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 98,
+          "factor_of_safety": 0.53,
+          "antecedent_saturation_pct": 96.3
         },
         "thakurwadi": {
           "risk_level": "very_high",
-          "score": 90
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 95.3
         },
         "patan_village": {
-          "risk_level": "very_high",
-          "score": 98
+          "risk_level": "high",
+          "score": 70,
+          "factor_of_safety": 1.1,
+          "antecedent_saturation_pct": 84.1
         },
         "valvan_dam": {
           "risk_level": "very_high",
-          "score": 97
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.1
         },
         "lonavala_town": {
           "risk_level": "very_high",
-          "score": 90
+          "score": 84,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.1
         }
       },
       "active_incidents": []
@@ -196,58 +271,82 @@
       "timestamp_label": "2026-07-07T03:00",
       "rainfall_1h_mm": 3.5,
       "cumulative_24h_mm": 183.3,
-      "soil_saturation_pct": 76.2,
+      "soil_saturation_pct": 90.0,
       "storm_stage": "Peak Convective Intensity",
-      "narrative": "Backfilled archive observation at 2026-07-07T03:00. 24h regional accumulation reaches 183.3mm with 76.2% soil saturation.",
-      "narrative_mr": "2026-07-07T03:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 183.3 मिमी पाऊस व 76.2% मातीची संपृक्तता.",
+      "narrative": "Backfilled archive observation at 2026-07-07T03:00. 24h regional accumulation reaches 183.3mm with 90.0% profile soil saturation.",
+      "narrative_mr": "2026-07-07T03:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 183.3 मिमी पाऊस व 90.0% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
           "risk_level": "very_high",
-          "score": 94
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 96.3
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 95,
+          "factor_of_safety": 0.62,
+          "antecedent_saturation_pct": 96.3
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 93,
+          "factor_of_safety": 0.68,
+          "antecedent_saturation_pct": 84.1
         },
         "lions_point": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 91,
+          "factor_of_safety": 0.77,
+          "antecedent_saturation_pct": 84.1
         },
         "rajmachi_route": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 84,
+          "factor_of_safety": 0.99,
+          "antecedent_saturation_pct": 84.1
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 93,
+          "factor_of_safety": 0.64,
+          "antecedent_saturation_pct": 96.3
         },
         "adoshi_tunnel": {
           "risk_level": "very_high",
-          "score": 83
+          "score": 88,
+          "factor_of_safety": 0.79,
+          "antecedent_saturation_pct": 95.2
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 99
+          "score": 96,
+          "factor_of_safety": 0.53,
+          "antecedent_saturation_pct": 96.3
         },
         "thakurwadi": {
           "risk_level": "very_high",
-          "score": 87
+          "score": 83,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 95.2
         },
         "patan_village": {
-          "risk_level": "very_high",
-          "score": 99
+          "risk_level": "high",
+          "score": 70,
+          "factor_of_safety": 1.1,
+          "antecedent_saturation_pct": 84.1
         },
         "valvan_dam": {
           "risk_level": "very_high",
-          "score": 97
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.1
         },
         "lonavala_town": {
-          "risk_level": "very_high",
-          "score": 92
+          "risk_level": "high",
+          "score": 77,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.1
         }
       },
       "active_incidents": [
@@ -259,58 +358,82 @@
       "timestamp_label": "2026-07-07T12:00",
       "rainfall_1h_mm": 1.5,
       "cumulative_24h_mm": 135.9,
-      "soil_saturation_pct": 76.0,
+      "soil_saturation_pct": 89.5,
       "storm_stage": "Peak Convective Intensity",
-      "narrative": "Backfilled archive observation at 2026-07-07T12:00. 24h regional accumulation reaches 135.9mm with 76.0% soil saturation.",
-      "narrative_mr": "2026-07-07T12:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 135.9 मिमी पाऊस व 76.0% मातीची संपृक्तता.",
+      "narrative": "Backfilled archive observation at 2026-07-07T12:00. 24h regional accumulation reaches 135.9mm with 89.5% profile soil saturation.",
+      "narrative_mr": "2026-07-07T12:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 135.9 मिमी पाऊस व 89.5% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "high",
-          "score": 77
+          "risk_level": "very_high",
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 95.4
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 98
+          "score": 92,
+          "factor_of_safety": 0.63,
+          "antecedent_saturation_pct": 95.4
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 97
+          "score": 91,
+          "factor_of_safety": 0.69,
+          "antecedent_saturation_pct": 83.8
         },
         "lions_point": {
           "risk_level": "very_high",
-          "score": 96
+          "score": 89,
+          "factor_of_safety": 0.77,
+          "antecedent_saturation_pct": 83.8
         },
         "rajmachi_route": {
           "risk_level": "very_high",
-          "score": 95
+          "score": 82,
+          "factor_of_safety": 1.0,
+          "antecedent_saturation_pct": 84.0
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 94
+          "score": 91,
+          "factor_of_safety": 0.68,
+          "antecedent_saturation_pct": 94.2
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 60
+          "risk_level": "very_high",
+          "score": 87,
+          "factor_of_safety": 0.78,
+          "antecedent_saturation_pct": 95.6
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 97
+          "score": 94,
+          "factor_of_safety": 0.56,
+          "antecedent_saturation_pct": 94.2
         },
         "thakurwadi": {
           "risk_level": "high",
-          "score": 68
+          "score": 71,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 95.6
         },
         "patan_village": {
-          "risk_level": "very_high",
-          "score": 92
+          "risk_level": "high",
+          "score": 70,
+          "factor_of_safety": 1.11,
+          "antecedent_saturation_pct": 83.8
         },
         "valvan_dam": {
           "risk_level": "very_high",
-          "score": 81
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.0
         },
         "lonavala_town": {
           "risk_level": "high",
-          "score": 55
+          "score": 69,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.0
         }
       },
       "active_incidents": [
@@ -322,58 +445,82 @@
       "timestamp_label": "2026-07-07T21:00",
       "rainfall_1h_mm": 1.0,
       "cumulative_24h_mm": 68.4,
-      "soil_saturation_pct": 76.2,
+      "soil_saturation_pct": 89.7,
       "storm_stage": "Peak Convective Intensity",
-      "narrative": "Backfilled archive observation at 2026-07-07T21:00. 24h regional accumulation reaches 68.4mm with 76.2% soil saturation.",
-      "narrative_mr": "2026-07-07T21:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 68.4 मिमी पाऊस व 76.2% मातीची संपृक्तता.",
+      "narrative": "Backfilled archive observation at 2026-07-07T21:00. 24h regional accumulation reaches 68.4mm with 89.7% profile soil saturation.",
+      "narrative_mr": "2026-07-07T21:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 68.4 मिमी पाऊस व 89.7% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "low",
-          "score": 22
+          "risk_level": "very_high",
+          "score": 92,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 96.0
         },
         "kune_falls": {
-          "risk_level": "high",
-          "score": 67
+          "risk_level": "very_high",
+          "score": 91,
+          "factor_of_safety": 0.62,
+          "antecedent_saturation_pct": 96.0
         },
         "tiger_point": {
-          "risk_level": "high",
-          "score": 63
+          "risk_level": "very_high",
+          "score": 89,
+          "factor_of_safety": 0.69,
+          "antecedent_saturation_pct": 83.7
         },
         "lions_point": {
-          "risk_level": "moderate",
-          "score": 51
+          "risk_level": "very_high",
+          "score": 87,
+          "factor_of_safety": 0.77,
+          "antecedent_saturation_pct": 83.7
         },
         "rajmachi_route": {
-          "risk_level": "moderate",
-          "score": 47
+          "risk_level": "very_high",
+          "score": 81,
+          "factor_of_safety": 1.0,
+          "antecedent_saturation_pct": 84.0
         },
         "khandala_expressway": {
-          "risk_level": "high",
-          "score": 57
+          "risk_level": "very_high",
+          "score": 89,
+          "factor_of_safety": 0.68,
+          "antecedent_saturation_pct": 94.5
         },
         "adoshi_tunnel": {
-          "risk_level": "low",
-          "score": 22
+          "risk_level": "very_high",
+          "score": 87,
+          "factor_of_safety": 0.77,
+          "antecedent_saturation_pct": 96.0
         },
         "monkey_hill": {
-          "risk_level": "high",
-          "score": 71
+          "risk_level": "very_high",
+          "score": 93,
+          "factor_of_safety": 0.56,
+          "antecedent_saturation_pct": 94.5
         },
         "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 30
+          "risk_level": "high",
+          "score": 61,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 96.0
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 31
+          "risk_level": "high",
+          "score": 70,
+          "factor_of_safety": 1.11,
+          "antecedent_saturation_pct": 83.7
         },
         "valvan_dam": {
-          "risk_level": "low",
-          "score": 15
+          "risk_level": "very_high",
+          "score": 84,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.0
         },
         "lonavala_town": {
-          "risk_level": "low",
-          "score": 4
+          "risk_level": "high",
+          "score": 59,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 84.0
         }
       },
       "active_incidents": [
@@ -385,58 +532,82 @@
       "timestamp_label": "2026-07-08T06:00",
       "rainfall_1h_mm": 3.8,
       "cumulative_24h_mm": 97.4,
-      "soil_saturation_pct": 76.3,
+      "soil_saturation_pct": 90.0,
       "storm_stage": "Receding Monsoon Surge",
-      "narrative": "Backfilled archive observation at 2026-07-08T06:00. 24h regional accumulation reaches 97.4mm with 76.3% soil saturation.",
-      "narrative_mr": "2026-07-08T06:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 97.4 मिमी पाऊस व 76.3% मातीची संपृक्तता.",
+      "narrative": "Backfilled archive observation at 2026-07-08T06:00. 24h regional accumulation reaches 97.4mm with 90.0% profile soil saturation.",
+      "narrative_mr": "2026-07-08T06:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 97.4 मिमी पाऊस व 90.0% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "moderate",
-          "score": 46
+          "risk_level": "very_high",
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 96.2
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 89
+          "score": 92,
+          "factor_of_safety": 0.62,
+          "antecedent_saturation_pct": 96.2
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 88
+          "score": 91,
+          "factor_of_safety": 0.69,
+          "antecedent_saturation_pct": 84.0
         },
         "lions_point": {
           "risk_level": "very_high",
-          "score": 83
+          "score": 89,
+          "factor_of_safety": 0.77,
+          "antecedent_saturation_pct": 84.0
         },
         "rajmachi_route": {
           "risk_level": "very_high",
-          "score": 83
+          "score": 83,
+          "factor_of_safety": 1.0,
+          "antecedent_saturation_pct": 83.9
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 79
+          "score": 92,
+          "factor_of_safety": 0.65,
+          "antecedent_saturation_pct": 96.0
         },
         "adoshi_tunnel": {
-          "risk_level": "moderate",
-          "score": 34
+          "risk_level": "very_high",
+          "score": 87,
+          "factor_of_safety": 0.77,
+          "antecedent_saturation_pct": 95.8
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 87
+          "score": 95,
+          "factor_of_safety": 0.54,
+          "antecedent_saturation_pct": 96.0
         },
         "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 43
+          "risk_level": "high",
+          "score": 65,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 95.8
         },
         "patan_village": {
           "risk_level": "high",
-          "score": 68
+          "score": 70,
+          "factor_of_safety": 1.1,
+          "antecedent_saturation_pct": 84.0
         },
         "valvan_dam": {
-          "risk_level": "moderate",
-          "score": 50
+          "risk_level": "very_high",
+          "score": 96,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 83.9
         },
         "lonavala_town": {
-          "risk_level": "low",
-          "score": 22
+          "risk_level": "high",
+          "score": 69,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 83.9
         }
       },
       "active_incidents": [
@@ -448,58 +619,82 @@
       "timestamp_label": "2026-07-08T15:00",
       "rainfall_1h_mm": 1.4,
       "cumulative_24h_mm": 99.2,
-      "soil_saturation_pct": 75.6,
+      "soil_saturation_pct": 89.2,
       "storm_stage": "Receding Monsoon Surge",
-      "narrative": "Backfilled archive observation at 2026-07-08T15:00. 24h regional accumulation reaches 99.2mm with 75.6% soil saturation.",
-      "narrative_mr": "2026-07-08T15:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 99.2 मिमी पाऊस व 75.6% मातीची संपृक्तता.",
+      "narrative": "Backfilled archive observation at 2026-07-08T15:00. 24h regional accumulation reaches 99.2mm with 89.2% profile soil saturation.",
+      "narrative_mr": "2026-07-08T15:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 99.2 मिमी पाऊस व 89.2% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "moderate",
-          "score": 44
+          "risk_level": "very_high",
+          "score": 95,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 95.4
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 89
+          "score": 92,
+          "factor_of_safety": 0.63,
+          "antecedent_saturation_pct": 95.4
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 88
+          "score": 90,
+          "factor_of_safety": 0.69,
+          "antecedent_saturation_pct": 83.6
         },
         "lions_point": {
           "risk_level": "very_high",
-          "score": 82
+          "score": 87,
+          "factor_of_safety": 0.78,
+          "antecedent_saturation_pct": 83.6
         },
         "rajmachi_route": {
           "risk_level": "very_high",
-          "score": 82
+          "score": 81,
+          "factor_of_safety": 1.0,
+          "antecedent_saturation_pct": 83.9
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 79
+          "score": 89,
+          "factor_of_safety": 0.71,
+          "antecedent_saturation_pct": 92.6
         },
         "adoshi_tunnel": {
-          "risk_level": "moderate",
-          "score": 38
+          "risk_level": "very_high",
+          "score": 87,
+          "factor_of_safety": 0.78,
+          "antecedent_saturation_pct": 95.7
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 87
+          "score": 93,
+          "factor_of_safety": 0.59,
+          "antecedent_saturation_pct": 92.6
         },
         "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 47
+          "risk_level": "high",
+          "score": 60,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 95.7
         },
         "patan_village": {
           "risk_level": "high",
-          "score": 66
+          "score": 69,
+          "factor_of_safety": 1.11,
+          "antecedent_saturation_pct": 83.6
         },
         "valvan_dam": {
-          "risk_level": "moderate",
-          "score": 48
+          "risk_level": "very_high",
+          "score": 87,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 83.9
         },
         "lonavala_town": {
-          "risk_level": "low",
-          "score": 21
+          "risk_level": "high",
+          "score": 60,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 83.9
         }
       },
       "active_incidents": [
@@ -511,58 +706,82 @@
       "timestamp_label": "2026-07-08T23:00",
       "rainfall_1h_mm": 0.3,
       "cumulative_24h_mm": 77.5,
-      "soil_saturation_pct": 74.9,
+      "soil_saturation_pct": 88.6,
       "storm_stage": "Receding Monsoon Surge",
-      "narrative": "Backfilled archive observation at 2026-07-08T23:00. 24h regional accumulation reaches 77.5mm with 74.9% soil saturation.",
-      "narrative_mr": "2026-07-08T23:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 77.5 मिमी पाऊस व 74.9% मातीची संपृक्तता.",
+      "narrative": "Backfilled archive observation at 2026-07-08T23:00. 24h regional accumulation reaches 77.5mm with 88.6% profile soil saturation.",
+      "narrative_mr": "2026-07-08T23:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 77.5 मिमी पाऊस व 88.6% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "low",
-          "score": 23
+          "risk_level": "high",
+          "score": 73,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 92.6
         },
         "kune_falls": {
-          "risk_level": "high",
-          "score": 70
+          "risk_level": "very_high",
+          "score": 89,
+          "factor_of_safety": 0.68,
+          "antecedent_saturation_pct": 92.6
         },
         "tiger_point": {
-          "risk_level": "high",
-          "score": 69
+          "risk_level": "very_high",
+          "score": 88,
+          "factor_of_safety": 0.71,
+          "antecedent_saturation_pct": 82.5
         },
         "lions_point": {
-          "risk_level": "high",
-          "score": 58
+          "risk_level": "very_high",
+          "score": 86,
+          "factor_of_safety": 0.79,
+          "antecedent_saturation_pct": 82.5
         },
         "rajmachi_route": {
           "risk_level": "high",
-          "score": 62
+          "score": 77,
+          "factor_of_safety": 1.02,
+          "antecedent_saturation_pct": 82.9
         },
         "khandala_expressway": {
-          "risk_level": "high",
-          "score": 62
+          "risk_level": "very_high",
+          "score": 90,
+          "factor_of_safety": 0.66,
+          "antecedent_saturation_pct": 95.5
         },
         "adoshi_tunnel": {
-          "risk_level": "moderate",
-          "score": 25
+          "risk_level": "very_high",
+          "score": 86,
+          "factor_of_safety": 0.78,
+          "antecedent_saturation_pct": 95.6
         },
         "monkey_hill": {
-          "risk_level": "high",
-          "score": 76
+          "risk_level": "very_high",
+          "score": 93,
+          "factor_of_safety": 0.54,
+          "antecedent_saturation_pct": 95.5
         },
         "thakurwadi": {
           "risk_level": "moderate",
-          "score": 33
+          "score": 53,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 95.6
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 37
+          "risk_level": "high",
+          "score": 67,
+          "factor_of_safety": 1.14,
+          "antecedent_saturation_pct": 82.5
         },
         "valvan_dam": {
-          "risk_level": "moderate",
-          "score": 25
+          "risk_level": "high",
+          "score": 73,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 82.9
         },
         "lonavala_town": {
-          "risk_level": "low",
-          "score": 8
+          "risk_level": "high",
+          "score": 55,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 82.9
         }
       },
       "active_incidents": [

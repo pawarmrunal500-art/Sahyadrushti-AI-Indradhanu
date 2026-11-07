@@ -231,3 +231,4 @@ def test_location_404():
     assert errors == [], (
         f"Contract violations for 404 response:\n" + "\n".join(f"  - {e}" for e in errors)
     )
+

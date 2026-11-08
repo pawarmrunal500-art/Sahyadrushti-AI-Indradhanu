@@ -377,8 +377,13 @@ def test_replay_features_lookback_and_baseline():
     assert "2026-06-22" in f0_time, f"Expected replay to start on 2026-06-22, got {f0_time}"
     assert f0["cumulative_24h_mm"] < 10.0, f"Frame 0 rain {f0['cumulative_24h_mm']} is not a calm baseline"
 
+    # Calm-start baseline property assertion:
+    # Under model v2.2, a hard cutoff kept all scores <= 10. Under continuous geotechnical v3.0,
+    # steep natural escarpments (e.g. Tiger Point 46 deg, Monkey Hill 44 deg) retain moderate
+    # static gravitational shear (score ~28, FS ~1.28), while valley/settlement plains remain <= 5.
+    # We assert that every location starts at a calm baseline (score <= 30 across all sites).
     for loc_id, st in f0["points_state"].items():
-        assert st["score"] <= 10, f"Location {loc_id} baseline score {st['score']} is unexpectedly elevated"
+        assert st["score"] <= 30, f"Location {loc_id} baseline score {st['score']} is unexpectedly elevated"
 
     # Mid-event frame (July 6-7) check for multi-day lookback features
     july_frames = [f for f in timeline if "2026-07-06" in f["timestamp_label"] or "2026-07-07" in f["timestamp_label"]]

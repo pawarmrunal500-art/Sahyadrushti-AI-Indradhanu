@@ -4,7 +4,7 @@
   "description": "17-day empirical reanalysis replay backfilled from Open-Meteo Archive (ERA5 coupled). Demonstrates calm baseline, progressive saturation accumulation, peak cloudburst, and delayed drainage recession.",
   "data_source": "open-meteo-archive",
   "peak_values_likely_underestimated": true,
-  "model_version": "Sahyadri-GeoRisk-v2.2",
+  "model_version": "Sahyadri-GeoRisk-v3.0",
   "drainage_recession_tau_hours": 60.0,
   "uncalibrated_assumption": "Pore pressure drainage recession tau=60h based on Deccan Trap vesicular saprolite hydraulics",
   "calibration_status": "suspected underestimate, to be calibrated against IMD station data",
@@ -31,75 +31,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 0,
+          "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 41.0
+          "antecedent_saturation_pct": 41.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.29,
-          "antecedent_saturation_pct": 41.0
+          "score": 14,
+          "factor_of_safety": 1.49,
+          "antecedent_saturation_pct": 41.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.13,
-          "antecedent_saturation_pct": 31.6
+          "risk_level": "moderate",
+          "score": 28,
+          "factor_of_safety": 1.28,
+          "antecedent_saturation_pct": 31.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.25,
-          "antecedent_saturation_pct": 31.6
+          "score": 19,
+          "factor_of_safety": 1.4,
+          "antecedent_saturation_pct": 31.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 0,
-          "factor_of_safety": 1.57,
-          "antecedent_saturation_pct": 33.7
+          "score": 6,
+          "factor_of_safety": 1.75,
+          "antecedent_saturation_pct": 33.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.31,
-          "antecedent_saturation_pct": 47.9
+          "score": 14,
+          "factor_of_safety": 1.51,
+          "antecedent_saturation_pct": 47.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
           "risk_level": "low",
-          "score": 0,
-          "factor_of_safety": 1.55,
-          "antecedent_saturation_pct": 46.9
+          "score": 5,
+          "factor_of_safety": 1.77,
+          "antecedent_saturation_pct": 46.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.09,
-          "antecedent_saturation_pct": 47.9
+          "risk_level": "moderate",
+          "score": 28,
+          "factor_of_safety": 1.28,
+          "antecedent_saturation_pct": 47.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
           "score": 1,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 46.9
+          "antecedent_saturation_pct": 46.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 0,
-          "factor_of_safety": 1.75,
-          "antecedent_saturation_pct": 31.6
+          "score": 3,
+          "factor_of_safety": 1.93,
+          "antecedent_saturation_pct": 31.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 0,
+          "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 33.7
+          "antecedent_saturation_pct": 33.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 4,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 33.7
+          "antecedent_saturation_pct": 33.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -124,75 +136,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 1,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 43.3
+          "antecedent_saturation_pct": 43.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
           "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.28,
-          "antecedent_saturation_pct": 43.3
+          "score": 14,
+          "factor_of_safety": 1.49,
+          "antecedent_saturation_pct": 43.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.12,
-          "antecedent_saturation_pct": 32.9
+          "risk_level": "moderate",
+          "score": 28,
+          "factor_of_safety": 1.28,
+          "antecedent_saturation_pct": 32.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.24,
-          "antecedent_saturation_pct": 32.9
+          "score": 19,
+          "factor_of_safety": 1.4,
+          "antecedent_saturation_pct": 32.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 0,
-          "factor_of_safety": 1.56,
-          "antecedent_saturation_pct": 35.5
+          "score": 6,
+          "factor_of_safety": 1.75,
+          "antecedent_saturation_pct": 35.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
           "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.3,
-          "antecedent_saturation_pct": 49.0
+          "score": 15,
+          "factor_of_safety": 1.49,
+          "antecedent_saturation_pct": 49.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
           "risk_level": "low",
-          "score": 0,
-          "factor_of_safety": 1.54,
-          "antecedent_saturation_pct": 48.3
+          "score": 6,
+          "factor_of_safety": 1.75,
+          "antecedent_saturation_pct": 48.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 49.0
+          "risk_level": "moderate",
+          "score": 29,
+          "factor_of_safety": 1.27,
+          "antecedent_saturation_pct": 49.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 1,
+          "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 48.3
+          "antecedent_saturation_pct": 48.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 0,
-          "factor_of_safety": 1.74,
-          "antecedent_saturation_pct": 32.9
+          "score": 3,
+          "factor_of_safety": 1.92,
+          "antecedent_saturation_pct": 32.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 0,
+          "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 35.5
+          "antecedent_saturation_pct": 35.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 4,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 35.5
+          "antecedent_saturation_pct": 35.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -217,75 +241,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 1,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 53.9
+          "antecedent_saturation_pct": 53.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
           "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.22,
-          "antecedent_saturation_pct": 53.9
+          "score": 22,
+          "factor_of_safety": 1.37,
+          "antecedent_saturation_pct": 53.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.1,
-          "antecedent_saturation_pct": 37.1
+          "risk_level": "moderate",
+          "score": 28,
+          "factor_of_safety": 1.28,
+          "antecedent_saturation_pct": 37.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.22,
-          "antecedent_saturation_pct": 37.1
+          "score": 20,
+          "factor_of_safety": 1.4,
+          "antecedent_saturation_pct": 37.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.52,
-          "antecedent_saturation_pct": 42.7
+          "score": 6,
+          "factor_of_safety": 1.74,
+          "antecedent_saturation_pct": 42.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
           "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.26,
-          "antecedent_saturation_pct": 57.2
+          "score": 21,
+          "factor_of_safety": 1.38,
+          "antecedent_saturation_pct": 57.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.48,
-          "antecedent_saturation_pct": 57.5
+          "score": 10,
+          "factor_of_safety": 1.6,
+          "antecedent_saturation_pct": 57.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 6,
-          "factor_of_safety": 1.04,
-          "antecedent_saturation_pct": 57.2
+          "risk_level": "moderate",
+          "score": 38,
+          "factor_of_safety": 1.17,
+          "antecedent_saturation_pct": 57.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 1,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 57.5
+          "antecedent_saturation_pct": 57.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 0,
-          "factor_of_safety": 1.71,
-          "antecedent_saturation_pct": 37.1
+          "score": 3,
+          "factor_of_safety": 1.92,
+          "antecedent_saturation_pct": 37.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 1,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 42.7
+          "antecedent_saturation_pct": 42.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 5,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 42.7
+          "antecedent_saturation_pct": 42.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -310,75 +346,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 7,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 59.8
+          "antecedent_saturation_pct": 59.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 6,
-          "factor_of_safety": 1.19,
-          "antecedent_saturation_pct": 59.8
+          "risk_level": "moderate",
+          "score": 28,
+          "factor_of_safety": 1.29,
+          "antecedent_saturation_pct": 59.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 5,
-          "factor_of_safety": 1.05,
-          "antecedent_saturation_pct": 46.5
+          "risk_level": "moderate",
+          "score": 31,
+          "factor_of_safety": 1.25,
+          "antecedent_saturation_pct": 46.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
           "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.17,
-          "antecedent_saturation_pct": 46.5
+          "score": 22,
+          "factor_of_safety": 1.37,
+          "antecedent_saturation_pct": 46.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.48,
-          "antecedent_saturation_pct": 50.8
+          "score": 9,
+          "factor_of_safety": 1.64,
+          "antecedent_saturation_pct": 50.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "low",
-          "score": 6,
-          "factor_of_safety": 1.2,
-          "antecedent_saturation_pct": 65.8
+          "risk_level": "moderate",
+          "score": 31,
+          "factor_of_safety": 1.26,
+          "antecedent_saturation_pct": 65.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
           "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.33,
-          "antecedent_saturation_pct": 70.1
+          "score": 20,
+          "factor_of_safety": 1.4,
+          "antecedent_saturation_pct": 70.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 12,
-          "factor_of_safety": 0.99,
-          "antecedent_saturation_pct": 65.8
+          "risk_level": "moderate",
+          "score": 49,
+          "factor_of_safety": 1.07,
+          "antecedent_saturation_pct": 65.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 4,
+          "score": 9,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 70.1
+          "antecedent_saturation_pct": 70.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.66,
-          "antecedent_saturation_pct": 46.5
+          "score": 4,
+          "factor_of_safety": 1.88,
+          "antecedent_saturation_pct": 46.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 8,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 50.8
+          "antecedent_saturation_pct": 50.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 6,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 50.8
+          "antecedent_saturation_pct": 50.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -403,75 +451,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 4,
+          "score": 12,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 69.9
+          "antecedent_saturation_pct": 69.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 11,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 69.9
+          "risk_level": "moderate",
+          "score": 40,
+          "factor_of_safety": 1.15,
+          "antecedent_saturation_pct": 69.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 10,
-          "factor_of_safety": 1.01,
-          "antecedent_saturation_pct": 55.7
+          "risk_level": "moderate",
+          "score": 41,
+          "factor_of_safety": 1.14,
+          "antecedent_saturation_pct": 55.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 6,
-          "factor_of_safety": 1.13,
-          "antecedent_saturation_pct": 55.7
+          "risk_level": "moderate",
+          "score": 31,
+          "factor_of_safety": 1.25,
+          "antecedent_saturation_pct": 55.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 5,
-          "factor_of_safety": 1.42,
-          "antecedent_saturation_pct": 60.1
+          "score": 14,
+          "factor_of_safety": 1.5,
+          "antecedent_saturation_pct": 60.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "high",
-          "score": 76,
-          "factor_of_safety": 1.03,
-          "antecedent_saturation_pct": 75.4
+          "risk_level": "moderate",
+          "score": 43,
+          "factor_of_safety": 1.12,
+          "antecedent_saturation_pct": 75.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 65,
-          "factor_of_safety": 1.17,
-          "antecedent_saturation_pct": 77.5
+          "risk_level": "moderate",
+          "score": 29,
+          "factor_of_safety": 1.28,
+          "antecedent_saturation_pct": 77.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.85,
-          "antecedent_saturation_pct": 75.4
+          "risk_level": "high",
+          "score": 60,
+          "factor_of_safety": 0.95,
+          "antecedent_saturation_pct": 75.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 22,
+          "score": 9,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 77.5
+          "antecedent_saturation_pct": 77.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.6,
-          "antecedent_saturation_pct": 55.7
+          "score": 6,
+          "factor_of_safety": 1.72,
+          "antecedent_saturation_pct": 55.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 8,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 60.1
+          "antecedent_saturation_pct": 60.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 7,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 60.1
+          "antecedent_saturation_pct": 60.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -495,76 +555,88 @@
       "narrative_mr": "2026-06-24T12:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 30.3 मिमी पाऊस व 72.7% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "moderate",
-          "score": 27,
+          "risk_level": "low",
+          "score": 14,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 79.3
+          "antecedent_saturation_pct": 79.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 82,
-          "factor_of_safety": 0.91,
-          "antecedent_saturation_pct": 79.3
+          "risk_level": "moderate",
+          "score": 53,
+          "factor_of_safety": 1.02,
+          "antecedent_saturation_pct": 79.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 81,
-          "factor_of_safety": 0.96,
-          "antecedent_saturation_pct": 65.0
+          "risk_level": "moderate",
+          "score": 52,
+          "factor_of_safety": 1.03,
+          "antecedent_saturation_pct": 65.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "high",
-          "score": 72,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 65.0
+          "risk_level": "moderate",
+          "score": 42,
+          "factor_of_safety": 1.13,
+          "antecedent_saturation_pct": 65.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "moderate",
-          "score": 51,
-          "factor_of_safety": 1.36,
-          "antecedent_saturation_pct": 66.7
+          "risk_level": "low",
+          "score": 20,
+          "factor_of_safety": 1.4,
+          "antecedent_saturation_pct": 66.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 81,
-          "factor_of_safety": 0.95,
-          "antecedent_saturation_pct": 79.4
+          "risk_level": "moderate",
+          "score": 49,
+          "factor_of_safety": 1.06,
+          "antecedent_saturation_pct": 79.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 69,
-          "factor_of_safety": 1.12,
-          "antecedent_saturation_pct": 80.0
+          "risk_level": "moderate",
+          "score": 34,
+          "factor_of_safety": 1.22,
+          "antecedent_saturation_pct": 80.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 85,
-          "factor_of_safety": 0.79,
-          "antecedent_saturation_pct": 79.4
+          "risk_level": "high",
+          "score": 65,
+          "factor_of_safety": 0.9,
+          "antecedent_saturation_pct": 79.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 27,
+          "risk_level": "low",
+          "score": 13,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 80.0
+          "antecedent_saturation_pct": 80.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 40,
-          "factor_of_safety": 1.54,
-          "antecedent_saturation_pct": 65.0
+          "risk_level": "low",
+          "score": 11,
+          "factor_of_safety": 1.56,
+          "antecedent_saturation_pct": 65.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 23,
+          "score": 10,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 66.7
+          "antecedent_saturation_pct": 66.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 23,
+          "score": 7,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 66.7
+          "antecedent_saturation_pct": 66.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -589,75 +661,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 21,
+          "score": 9,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 75.4
+          "antecedent_saturation_pct": 75.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 80,
-          "factor_of_safety": 0.98,
-          "antecedent_saturation_pct": 75.4
+          "risk_level": "moderate",
+          "score": 47,
+          "factor_of_safety": 1.08,
+          "antecedent_saturation_pct": 75.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 13,
-          "factor_of_safety": 0.98,
-          "antecedent_saturation_pct": 60.4
+          "risk_level": "moderate",
+          "score": 46,
+          "factor_of_safety": 1.09,
+          "antecedent_saturation_pct": 60.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 8,
-          "factor_of_safety": 1.1,
-          "antecedent_saturation_pct": 60.4
+          "risk_level": "moderate",
+          "score": 36,
+          "factor_of_safety": 1.19,
+          "antecedent_saturation_pct": 60.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 5,
-          "factor_of_safety": 1.41,
-          "antecedent_saturation_pct": 62.7
+          "score": 16,
+          "factor_of_safety": 1.46,
+          "antecedent_saturation_pct": 62.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "high",
-          "score": 77,
-          "factor_of_safety": 1.01,
-          "antecedent_saturation_pct": 76.3
+          "risk_level": "moderate",
+          "score": 44,
+          "factor_of_safety": 1.11,
+          "antecedent_saturation_pct": 76.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 64,
-          "factor_of_safety": 1.18,
-          "antecedent_saturation_pct": 76.9
+          "risk_level": "moderate",
+          "score": 29,
+          "factor_of_safety": 1.28,
+          "antecedent_saturation_pct": 76.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.83,
-          "antecedent_saturation_pct": 76.3
+          "risk_level": "high",
+          "score": 61,
+          "factor_of_safety": 0.94,
+          "antecedent_saturation_pct": 76.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 21,
+          "score": 8,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 76.9
+          "antecedent_saturation_pct": 76.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.57,
-          "antecedent_saturation_pct": 60.4
+          "score": 9,
+          "factor_of_safety": 1.64,
+          "antecedent_saturation_pct": 60.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 6,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 62.7
+          "antecedent_saturation_pct": 62.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 6,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 62.7
+          "antecedent_saturation_pct": 62.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -682,75 +766,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 3,
+          "score": 6,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 74.3
+          "antecedent_saturation_pct": 74.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 11,
-          "factor_of_safety": 1.0,
-          "antecedent_saturation_pct": 74.3
+          "risk_level": "moderate",
+          "score": 45,
+          "factor_of_safety": 1.09,
+          "antecedent_saturation_pct": 74.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 8,
-          "factor_of_safety": 0.99,
-          "antecedent_saturation_pct": 58.2
+          "risk_level": "moderate",
+          "score": 43,
+          "factor_of_safety": 1.11,
+          "antecedent_saturation_pct": 58.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 5,
-          "factor_of_safety": 1.11,
-          "antecedent_saturation_pct": 58.2
+          "risk_level": "moderate",
+          "score": 33,
+          "factor_of_safety": 1.22,
+          "antecedent_saturation_pct": 58.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.42,
-          "antecedent_saturation_pct": 60.6
+          "score": 14,
+          "factor_of_safety": 1.5,
+          "antecedent_saturation_pct": 60.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "high",
-          "score": 76,
-          "factor_of_safety": 1.03,
-          "antecedent_saturation_pct": 75.1
+          "risk_level": "moderate",
+          "score": 42,
+          "factor_of_safety": 1.13,
+          "antecedent_saturation_pct": 75.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 61,
-          "factor_of_safety": 1.22,
-          "antecedent_saturation_pct": 75.0
+          "risk_level": "moderate",
+          "score": 26,
+          "factor_of_safety": 1.31,
+          "antecedent_saturation_pct": 75.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.85,
-          "antecedent_saturation_pct": 75.1
+          "risk_level": "high",
+          "score": 59,
+          "factor_of_safety": 0.95,
+          "antecedent_saturation_pct": 75.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 16,
+          "score": 5,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 75.0
+          "antecedent_saturation_pct": 75.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.59,
-          "antecedent_saturation_pct": 58.2
+          "score": 7,
+          "factor_of_safety": 1.68,
+          "antecedent_saturation_pct": 58.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 1,
+          "score": 4,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 60.6
+          "antecedent_saturation_pct": 60.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 5,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 60.6
+          "antecedent_saturation_pct": 60.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -775,75 +871,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 3,
+          "score": 4,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 73.3
+          "antecedent_saturation_pct": 73.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 8,
-          "factor_of_safety": 1.02,
-          "antecedent_saturation_pct": 73.3
+          "risk_level": "moderate",
+          "score": 43,
+          "factor_of_safety": 1.11,
+          "antecedent_saturation_pct": 73.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 6,
-          "factor_of_safety": 1.01,
-          "antecedent_saturation_pct": 55.8
+          "risk_level": "moderate",
+          "score": 40,
+          "factor_of_safety": 1.14,
+          "antecedent_saturation_pct": 55.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.12,
-          "antecedent_saturation_pct": 55.8
+          "risk_level": "moderate",
+          "score": 30,
+          "factor_of_safety": 1.25,
+          "antecedent_saturation_pct": 55.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.43,
-          "antecedent_saturation_pct": 58.2
+          "score": 12,
+          "factor_of_safety": 1.54,
+          "antecedent_saturation_pct": 58.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "low",
-          "score": 6,
-          "factor_of_safety": 1.06,
-          "antecedent_saturation_pct": 73.5
+          "risk_level": "moderate",
+          "score": 40,
+          "factor_of_safety": 1.15,
+          "antecedent_saturation_pct": 73.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.23,
-          "antecedent_saturation_pct": 74.7
+          "risk_level": "moderate",
+          "score": 25,
+          "factor_of_safety": 1.32,
+          "antecedent_saturation_pct": 74.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 11,
-          "factor_of_safety": 0.87,
-          "antecedent_saturation_pct": 73.5
+          "risk_level": "high",
+          "score": 57,
+          "factor_of_safety": 0.98,
+          "antecedent_saturation_pct": 73.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 3,
+          "score": 4,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 74.7
+          "antecedent_saturation_pct": 74.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.6,
-          "antecedent_saturation_pct": 55.8
+          "score": 6,
+          "factor_of_safety": 1.72,
+          "antecedent_saturation_pct": 55.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 1,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 58.2
+          "antecedent_saturation_pct": 58.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 5,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 58.2
+          "antecedent_saturation_pct": 58.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -868,75 +976,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 71.1
+          "antecedent_saturation_pct": 71.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 5,
-          "factor_of_safety": 1.06,
-          "antecedent_saturation_pct": 71.1
+          "risk_level": "moderate",
+          "score": 41,
+          "factor_of_safety": 1.14,
+          "antecedent_saturation_pct": 71.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 4,
-          "factor_of_safety": 1.01,
-          "antecedent_saturation_pct": 54.8
+          "risk_level": "moderate",
+          "score": 39,
+          "factor_of_safety": 1.16,
+          "antecedent_saturation_pct": 54.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.13,
-          "antecedent_saturation_pct": 54.8
+          "risk_level": "moderate",
+          "score": 29,
+          "factor_of_safety": 1.27,
+          "antecedent_saturation_pct": 54.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.44,
-          "antecedent_saturation_pct": 56.6
+          "score": 11,
+          "factor_of_safety": 1.56,
+          "antecedent_saturation_pct": 56.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "low",
-          "score": 4,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 72.2
+          "risk_level": "moderate",
+          "score": 38,
+          "factor_of_safety": 1.17,
+          "antecedent_saturation_pct": 72.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.26,
-          "antecedent_saturation_pct": 73.2
+          "score": 23,
+          "factor_of_safety": 1.35,
+          "antecedent_saturation_pct": 73.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 7,
-          "factor_of_safety": 0.89,
-          "antecedent_saturation_pct": 72.2
+          "risk_level": "high",
+          "score": 55,
+          "factor_of_safety": 0.99,
+          "antecedent_saturation_pct": 72.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 2,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 73.2
+          "antecedent_saturation_pct": 73.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.61,
-          "antecedent_saturation_pct": 54.8
+          "score": 6,
+          "factor_of_safety": 1.75,
+          "antecedent_saturation_pct": 54.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 1,
+          "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 56.6
+          "antecedent_saturation_pct": 56.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 5,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 56.6
+          "antecedent_saturation_pct": 56.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -961,75 +1081,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 69.7
+          "antecedent_saturation_pct": 69.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 5,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 69.7
+          "risk_level": "moderate",
+          "score": 39,
+          "factor_of_safety": 1.16,
+          "antecedent_saturation_pct": 69.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 4,
-          "factor_of_safety": 1.02,
-          "antecedent_saturation_pct": 53.0
+          "risk_level": "moderate",
+          "score": 37,
+          "factor_of_safety": 1.18,
+          "antecedent_saturation_pct": 53.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.14,
-          "antecedent_saturation_pct": 53.0
+          "risk_level": "moderate",
+          "score": 27,
+          "factor_of_safety": 1.29,
+          "antecedent_saturation_pct": 53.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.45,
-          "antecedent_saturation_pct": 55.2
+          "score": 10,
+          "factor_of_safety": 1.59,
+          "antecedent_saturation_pct": 55.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "low",
-          "score": 4,
-          "factor_of_safety": 1.11,
-          "antecedent_saturation_pct": 70.7
+          "risk_level": "moderate",
+          "score": 36,
+          "factor_of_safety": 1.19,
+          "antecedent_saturation_pct": 70.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.31,
-          "antecedent_saturation_pct": 71.2
+          "score": 21,
+          "factor_of_safety": 1.38,
+          "antecedent_saturation_pct": 71.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 7,
-          "factor_of_safety": 0.92,
-          "antecedent_saturation_pct": 70.7
+          "risk_level": "moderate",
+          "score": 53,
+          "factor_of_safety": 1.01,
+          "antecedent_saturation_pct": 70.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 2,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 71.2
+          "antecedent_saturation_pct": 71.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.62,
-          "antecedent_saturation_pct": 53.0
+          "score": 5,
+          "factor_of_safety": 1.78,
+          "antecedent_saturation_pct": 53.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 1,
+          "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 55.2
+          "antecedent_saturation_pct": 55.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 4,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 55.2
+          "antecedent_saturation_pct": 55.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1054,75 +1186,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 69.4
+          "antecedent_saturation_pct": 69.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 5,
-          "factor_of_safety": 1.09,
-          "antecedent_saturation_pct": 69.4
+          "risk_level": "moderate",
+          "score": 38,
+          "factor_of_safety": 1.17,
+          "antecedent_saturation_pct": 69.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.02,
-          "antecedent_saturation_pct": 52.6
+          "risk_level": "moderate",
+          "score": 37,
+          "factor_of_safety": 1.18,
+          "antecedent_saturation_pct": 52.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.14,
-          "antecedent_saturation_pct": 52.6
+          "risk_level": "moderate",
+          "score": 27,
+          "factor_of_safety": 1.3,
+          "antecedent_saturation_pct": 52.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.45,
-          "antecedent_saturation_pct": 54.8
+          "score": 10,
+          "factor_of_safety": 1.59,
+          "antecedent_saturation_pct": 54.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "low",
-          "score": 4,
-          "factor_of_safety": 1.11,
-          "antecedent_saturation_pct": 70.6
+          "risk_level": "moderate",
+          "score": 35,
+          "factor_of_safety": 1.2,
+          "antecedent_saturation_pct": 70.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.32,
-          "antecedent_saturation_pct": 70.4
+          "score": 20,
+          "factor_of_safety": 1.4,
+          "antecedent_saturation_pct": 70.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 7,
-          "factor_of_safety": 0.92,
-          "antecedent_saturation_pct": 70.6
+          "risk_level": "moderate",
+          "score": 53,
+          "factor_of_safety": 1.01,
+          "antecedent_saturation_pct": 70.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 2,
+          "score": 3,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 70.4
+          "antecedent_saturation_pct": 70.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.62,
-          "antecedent_saturation_pct": 52.6
+          "score": 5,
+          "factor_of_safety": 1.78,
+          "antecedent_saturation_pct": 52.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 1,
+          "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 54.8
+          "antecedent_saturation_pct": 54.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 4,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 54.8
+          "antecedent_saturation_pct": 54.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1147,75 +1291,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 4,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 70.0
+          "antecedent_saturation_pct": 70.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 6,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 70.0
+          "risk_level": "moderate",
+          "score": 39,
+          "factor_of_safety": 1.16,
+          "antecedent_saturation_pct": 70.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 4,
-          "factor_of_safety": 1.01,
-          "antecedent_saturation_pct": 55.4
+          "risk_level": "moderate",
+          "score": 40,
+          "factor_of_safety": 1.15,
+          "antecedent_saturation_pct": 55.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.13,
-          "antecedent_saturation_pct": 55.4
+          "risk_level": "moderate",
+          "score": 30,
+          "factor_of_safety": 1.26,
+          "antecedent_saturation_pct": 55.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.44,
-          "antecedent_saturation_pct": 56.4
+          "score": 11,
+          "factor_of_safety": 1.57,
+          "antecedent_saturation_pct": 56.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "low",
-          "score": 4,
-          "factor_of_safety": 1.11,
-          "antecedent_saturation_pct": 70.7
+          "risk_level": "moderate",
+          "score": 35,
+          "factor_of_safety": 1.2,
+          "antecedent_saturation_pct": 70.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.3,
-          "antecedent_saturation_pct": 71.6
+          "score": 21,
+          "factor_of_safety": 1.38,
+          "antecedent_saturation_pct": 71.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 7,
-          "factor_of_safety": 0.92,
-          "antecedent_saturation_pct": 70.7
+          "risk_level": "moderate",
+          "score": 53,
+          "factor_of_safety": 1.01,
+          "antecedent_saturation_pct": 70.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
           "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 71.6
+          "antecedent_saturation_pct": 71.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.6,
-          "antecedent_saturation_pct": 55.4
+          "score": 6,
+          "factor_of_safety": 1.74,
+          "antecedent_saturation_pct": 55.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 1,
+          "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 56.4
+          "antecedent_saturation_pct": 56.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 4,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 56.4
+          "antecedent_saturation_pct": 56.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1240,75 +1396,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 5,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 69.6
+          "antecedent_saturation_pct": 69.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 6,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 69.6
+          "risk_level": "moderate",
+          "score": 39,
+          "factor_of_safety": 1.16,
+          "antecedent_saturation_pct": 69.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 4,
-          "factor_of_safety": 1.02,
-          "antecedent_saturation_pct": 53.8
+          "risk_level": "moderate",
+          "score": 38,
+          "factor_of_safety": 1.17,
+          "antecedent_saturation_pct": 53.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.13,
-          "antecedent_saturation_pct": 53.8
+          "risk_level": "moderate",
+          "score": 28,
+          "factor_of_safety": 1.28,
+          "antecedent_saturation_pct": 53.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.46,
-          "antecedent_saturation_pct": 54.2
+          "score": 10,
+          "factor_of_safety": 1.6,
+          "antecedent_saturation_pct": 54.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "low",
-          "score": 3,
-          "factor_of_safety": 1.14,
-          "antecedent_saturation_pct": 69.3
+          "risk_level": "moderate",
+          "score": 34,
+          "factor_of_safety": 1.22,
+          "antecedent_saturation_pct": 69.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.35,
-          "antecedent_saturation_pct": 69.4
+          "score": 19,
+          "factor_of_safety": 1.42,
+          "antecedent_saturation_pct": 69.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 7,
-          "factor_of_safety": 0.94,
-          "antecedent_saturation_pct": 69.3
+          "risk_level": "moderate",
+          "score": 51,
+          "factor_of_safety": 1.03,
+          "antecedent_saturation_pct": 69.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
           "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 69.4
+          "antecedent_saturation_pct": 69.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 1,
-          "factor_of_safety": 1.61,
-          "antecedent_saturation_pct": 53.8
+          "score": 5,
+          "factor_of_safety": 1.77,
+          "antecedent_saturation_pct": 53.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 1,
+          "score": 2,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 54.2
+          "antecedent_saturation_pct": 54.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 4,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 54.2
+          "antecedent_saturation_pct": 54.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1333,75 +1501,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 4,
+          "score": 8,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 74.8
+          "antecedent_saturation_pct": 74.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "low",
-          "score": 10,
-          "factor_of_safety": 0.99,
-          "antecedent_saturation_pct": 74.8
+          "risk_level": "moderate",
+          "score": 46,
+          "factor_of_safety": 1.09,
+          "antecedent_saturation_pct": 74.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 7,
-          "factor_of_safety": 1.0,
-          "antecedent_saturation_pct": 56.5
+          "risk_level": "moderate",
+          "score": 41,
+          "factor_of_safety": 1.14,
+          "antecedent_saturation_pct": 56.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 4,
-          "factor_of_safety": 1.12,
-          "antecedent_saturation_pct": 56.5
+          "risk_level": "moderate",
+          "score": 31,
+          "factor_of_safety": 1.25,
+          "antecedent_saturation_pct": 56.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 4,
-          "factor_of_safety": 1.42,
-          "antecedent_saturation_pct": 60.8
+          "score": 14,
+          "factor_of_safety": 1.49,
+          "antecedent_saturation_pct": 60.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "low",
-          "score": 7,
-          "factor_of_safety": 1.04,
-          "antecedent_saturation_pct": 74.5
+          "risk_level": "moderate",
+          "score": 41,
+          "factor_of_safety": 1.14,
+          "antecedent_saturation_pct": 74.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 64,
-          "factor_of_safety": 1.18,
-          "antecedent_saturation_pct": 76.9
+          "risk_level": "moderate",
+          "score": 28,
+          "factor_of_safety": 1.29,
+          "antecedent_saturation_pct": 76.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "low",
-          "score": 13,
-          "factor_of_safety": 0.86,
-          "antecedent_saturation_pct": 74.5
+          "risk_level": "high",
+          "score": 58,
+          "factor_of_safety": 0.96,
+          "antecedent_saturation_pct": 74.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 19,
+          "score": 7,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 76.9
+          "antecedent_saturation_pct": 76.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.6,
-          "antecedent_saturation_pct": 56.5
+          "score": 7,
+          "factor_of_safety": 1.71,
+          "antecedent_saturation_pct": 56.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 6,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 60.8
+          "antecedent_saturation_pct": 60.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 6,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 60.8
+          "antecedent_saturation_pct": 60.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1426,75 +1606,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 23,
+          "score": 11,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 76.0
+          "antecedent_saturation_pct": 76.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 80,
-          "factor_of_safety": 0.97,
-          "antecedent_saturation_pct": 76.0
+          "risk_level": "moderate",
+          "score": 48,
+          "factor_of_safety": 1.07,
+          "antecedent_saturation_pct": 76.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 8,
-          "factor_of_safety": 1.0,
-          "antecedent_saturation_pct": 56.7
+          "risk_level": "moderate",
+          "score": 42,
+          "factor_of_safety": 1.13,
+          "antecedent_saturation_pct": 56.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 5,
-          "factor_of_safety": 1.12,
-          "antecedent_saturation_pct": 56.7
+          "risk_level": "moderate",
+          "score": 32,
+          "factor_of_safety": 1.24,
+          "antecedent_saturation_pct": 56.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 5,
-          "factor_of_safety": 1.41,
-          "antecedent_saturation_pct": 61.5
+          "score": 15,
+          "factor_of_safety": 1.48,
+          "antecedent_saturation_pct": 61.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "high",
-          "score": 76,
-          "factor_of_safety": 1.03,
-          "antecedent_saturation_pct": 75.1
+          "risk_level": "moderate",
+          "score": 42,
+          "factor_of_safety": 1.13,
+          "antecedent_saturation_pct": 75.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 65,
-          "factor_of_safety": 1.17,
-          "antecedent_saturation_pct": 77.4
+          "risk_level": "moderate",
+          "score": 29,
+          "factor_of_safety": 1.28,
+          "antecedent_saturation_pct": 77.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.85,
-          "antecedent_saturation_pct": 75.1
+          "risk_level": "high",
+          "score": 59,
+          "factor_of_safety": 0.96,
+          "antecedent_saturation_pct": 75.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 19,
+          "score": 7,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 77.4
+          "antecedent_saturation_pct": 77.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.6,
-          "antecedent_saturation_pct": 56.7
+          "score": 7,
+          "factor_of_safety": 1.71,
+          "antecedent_saturation_pct": 56.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 3,
+          "score": 9,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 61.5
+          "antecedent_saturation_pct": 61.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 7,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 61.5
+          "antecedent_saturation_pct": 61.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1519,75 +1711,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "low",
-          "score": 20,
+          "score": 8,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 77.9
+          "antecedent_saturation_pct": 77.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 81,
-          "factor_of_safety": 0.94,
-          "antecedent_saturation_pct": 77.9
+          "risk_level": "moderate",
+          "score": 50,
+          "factor_of_safety": 1.05,
+          "antecedent_saturation_pct": 77.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "low",
-          "score": 10,
-          "factor_of_safety": 0.99,
-          "antecedent_saturation_pct": 59.0
+          "risk_level": "moderate",
+          "score": 44,
+          "factor_of_safety": 1.1,
+          "antecedent_saturation_pct": 59.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "low",
-          "score": 6,
-          "factor_of_safety": 1.11,
-          "antecedent_saturation_pct": 59.0
+          "risk_level": "moderate",
+          "score": 34,
+          "factor_of_safety": 1.21,
+          "antecedent_saturation_pct": 59.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "low",
-          "score": 5,
-          "factor_of_safety": 1.41,
-          "antecedent_saturation_pct": 62.3
+          "score": 16,
+          "factor_of_safety": 1.47,
+          "antecedent_saturation_pct": 62.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 79,
-          "factor_of_safety": 0.99,
-          "antecedent_saturation_pct": 77.1
+          "risk_level": "moderate",
+          "score": 45,
+          "factor_of_safety": 1.1,
+          "antecedent_saturation_pct": 77.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 68,
-          "factor_of_safety": 1.13,
-          "antecedent_saturation_pct": 79.5
+          "risk_level": "moderate",
+          "score": 32,
+          "factor_of_safety": 1.24,
+          "antecedent_saturation_pct": 79.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.82,
-          "antecedent_saturation_pct": 77.1
+          "risk_level": "high",
+          "score": 61,
+          "factor_of_safety": 0.93,
+          "antecedent_saturation_pct": 77.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "low",
-          "score": 20,
+          "score": 8,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 79.5
+          "antecedent_saturation_pct": 79.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "low",
-          "score": 2,
-          "factor_of_safety": 1.58,
-          "antecedent_saturation_pct": 59.0
+          "score": 8,
+          "factor_of_safety": 1.67,
+          "antecedent_saturation_pct": 59.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "low",
-          "score": 2,
+          "score": 6,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 62.3
+          "antecedent_saturation_pct": 62.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
           "risk_level": "low",
-          "score": 0,
+          "score": 6,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 62.3
+          "antecedent_saturation_pct": 62.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1611,76 +1815,88 @@
       "narrative_mr": "2026-06-30T12:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 28.1 मिमी पाऊस व 71.9% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "moderate",
-          "score": 35,
+          "risk_level": "low",
+          "score": 19,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 79.3
+          "antecedent_saturation_pct": 79.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.91,
-          "antecedent_saturation_pct": 79.3
+          "risk_level": "moderate",
+          "score": 54,
+          "factor_of_safety": 1.02,
+          "antecedent_saturation_pct": 79.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 81,
-          "factor_of_safety": 0.97,
-          "antecedent_saturation_pct": 62.5
+          "risk_level": "moderate",
+          "score": 50,
+          "factor_of_safety": 1.06,
+          "antecedent_saturation_pct": 62.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "high",
-          "score": 71,
-          "factor_of_safety": 1.09,
-          "antecedent_saturation_pct": 62.5
+          "risk_level": "moderate",
+          "score": 40,
+          "factor_of_safety": 1.16,
+          "antecedent_saturation_pct": 62.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "moderate",
-          "score": 51,
-          "factor_of_safety": 1.37,
-          "antecedent_saturation_pct": 66.1
+          "risk_level": "low",
+          "score": 20,
+          "factor_of_safety": 1.4,
+          "antecedent_saturation_pct": 66.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 82,
-          "factor_of_safety": 0.94,
-          "antecedent_saturation_pct": 79.8
+          "risk_level": "moderate",
+          "score": 51,
+          "factor_of_safety": 1.05,
+          "antecedent_saturation_pct": 79.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 68,
-          "factor_of_safety": 1.13,
-          "antecedent_saturation_pct": 79.5
+          "risk_level": "moderate",
+          "score": 34,
+          "factor_of_safety": 1.23,
+          "antecedent_saturation_pct": 79.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.78,
-          "antecedent_saturation_pct": 79.8
+          "risk_level": "high",
+          "score": 66,
+          "factor_of_safety": 0.89,
+          "antecedent_saturation_pct": 79.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 31,
+          "risk_level": "low",
+          "score": 15,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 79.5
+          "antecedent_saturation_pct": 79.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 39,
-          "factor_of_safety": 1.56,
-          "antecedent_saturation_pct": 62.5
+          "risk_level": "low",
+          "score": 10,
+          "factor_of_safety": 1.6,
+          "antecedent_saturation_pct": 62.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "moderate",
-          "score": 28,
+          "risk_level": "low",
+          "score": 14,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 66.1
+          "antecedent_saturation_pct": 66.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "moderate",
-          "score": 25,
+          "risk_level": "low",
+          "score": 9,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 66.1
+          "antecedent_saturation_pct": 66.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1704,76 +1920,88 @@
       "narrative_mr": "2026-07-01T00:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 44.6 मिमी पाऊस व 75.3% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "high",
-          "score": 57,
+          "risk_level": "moderate",
+          "score": 36,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.6
+          "antecedent_saturation_pct": 81.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 86,
-          "factor_of_safety": 0.87,
-          "antecedent_saturation_pct": 81.6
+          "risk_level": "high",
+          "score": 59,
+          "factor_of_safety": 0.97,
+          "antecedent_saturation_pct": 81.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.9,
-          "antecedent_saturation_pct": 69.1
+          "risk_level": "high",
+          "score": 59,
+          "factor_of_safety": 0.97,
+          "antecedent_saturation_pct": 69.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "high",
-          "score": 77,
-          "factor_of_safety": 1.01,
-          "antecedent_saturation_pct": 69.1
+          "risk_level": "moderate",
+          "score": 50,
+          "factor_of_safety": 1.07,
+          "antecedent_saturation_pct": 69.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "moderate",
-          "score": 54,
-          "factor_of_safety": 1.31,
-          "antecedent_saturation_pct": 69.0
+          "risk_level": "low",
+          "score": 24,
+          "factor_of_safety": 1.35,
+          "antecedent_saturation_pct": 69.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 85,
-          "factor_of_safety": 0.91,
-          "antecedent_saturation_pct": 81.6
+          "risk_level": "high",
+          "score": 56,
+          "factor_of_safety": 1.01,
+          "antecedent_saturation_pct": 81.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 72,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 81.7
+          "risk_level": "moderate",
+          "score": 39,
+          "factor_of_safety": 1.18,
+          "antecedent_saturation_pct": 81.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 89,
-          "factor_of_safety": 0.75,
-          "antecedent_saturation_pct": 81.6
+          "risk_level": "high",
+          "score": 70,
+          "factor_of_safety": 0.86,
+          "antecedent_saturation_pct": 81.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "moderate",
-          "score": 50,
+          "score": 28,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.7
+          "antecedent_saturation_pct": 81.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 46,
-          "factor_of_safety": 1.45,
-          "antecedent_saturation_pct": 69.1
+          "risk_level": "low",
+          "score": 16,
+          "factor_of_safety": 1.48,
+          "antecedent_saturation_pct": 69.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "moderate",
-          "score": 41,
+          "risk_level": "low",
+          "score": 23,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 69.0
+          "antecedent_saturation_pct": 69.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "moderate",
-          "score": 31,
+          "risk_level": "low",
+          "score": 12,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 69.0
+          "antecedent_saturation_pct": 69.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1798,75 +2026,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "moderate",
-          "score": 42,
+          "score": 25,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 80.9
+          "antecedent_saturation_pct": 80.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.89,
-          "antecedent_saturation_pct": 80.9
+          "risk_level": "high",
+          "score": 58,
+          "factor_of_safety": 0.98,
+          "antecedent_saturation_pct": 80.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 82,
-          "factor_of_safety": 0.92,
-          "antecedent_saturation_pct": 67.6
+          "risk_level": "high",
+          "score": 57,
+          "factor_of_safety": 0.98,
+          "antecedent_saturation_pct": 67.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "high",
-          "score": 75,
-          "factor_of_safety": 1.04,
-          "antecedent_saturation_pct": 67.6
+          "risk_level": "moderate",
+          "score": 48,
+          "factor_of_safety": 1.08,
+          "antecedent_saturation_pct": 67.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "moderate",
-          "score": 53,
-          "factor_of_safety": 1.33,
-          "antecedent_saturation_pct": 68.1
+          "risk_level": "low",
+          "score": 24,
+          "factor_of_safety": 1.35,
+          "antecedent_saturation_pct": 68.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.91,
-          "antecedent_saturation_pct": 81.6
+          "risk_level": "high",
+          "score": 55,
+          "factor_of_safety": 1.01,
+          "antecedent_saturation_pct": 81.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 71,
-          "factor_of_safety": 1.09,
-          "antecedent_saturation_pct": 81.4
+          "risk_level": "moderate",
+          "score": 39,
+          "factor_of_safety": 1.18,
+          "antecedent_saturation_pct": 81.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.75,
-          "antecedent_saturation_pct": 81.6
+          "risk_level": "high",
+          "score": 69,
+          "factor_of_safety": 0.85,
+          "antecedent_saturation_pct": 81.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 37,
+          "risk_level": "low",
+          "score": 20,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.4
+          "antecedent_saturation_pct": 81.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 44,
+          "risk_level": "low",
+          "score": 15,
           "factor_of_safety": 1.49,
-          "antecedent_saturation_pct": 67.6
+          "antecedent_saturation_pct": 67.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "moderate",
-          "score": 32,
+          "risk_level": "low",
+          "score": 17,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 68.1
+          "antecedent_saturation_pct": 68.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "moderate",
-          "score": 28,
+          "risk_level": "low",
+          "score": 11,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 68.1
+          "antecedent_saturation_pct": 68.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1891,75 +2131,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "moderate",
-          "score": 49,
+          "score": 30,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 82.8
+          "antecedent_saturation_pct": 82.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.85,
-          "antecedent_saturation_pct": 82.8
+          "risk_level": "high",
+          "score": 62,
+          "factor_of_safety": 0.93,
+          "antecedent_saturation_pct": 82.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.89,
-          "antecedent_saturation_pct": 69.7
+          "risk_level": "high",
+          "score": 61,
+          "factor_of_safety": 0.94,
+          "antecedent_saturation_pct": 69.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "very_high",
-          "score": 78,
-          "factor_of_safety": 1.0,
-          "antecedent_saturation_pct": 69.7
+          "risk_level": "moderate",
+          "score": 52,
+          "factor_of_safety": 1.03,
+          "antecedent_saturation_pct": 69.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "high",
-          "score": 56,
+          "risk_level": "moderate",
+          "score": 28,
           "factor_of_safety": 1.29,
-          "antecedent_saturation_pct": 70.0
+          "antecedent_saturation_pct": 70.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.91,
-          "antecedent_saturation_pct": 81.7
+          "risk_level": "high",
+          "score": 57,
+          "factor_of_safety": 0.98,
+          "antecedent_saturation_pct": 81.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 72,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 81.7
-        },
-        "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.75,
-          "antecedent_saturation_pct": 81.7
-        },
-        "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 38,
-          "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.7
-        },
-        "patan_village": {
-          "risk_level": "moderate",
-          "score": 47,
-          "factor_of_safety": 1.43,
-          "antecedent_saturation_pct": 69.7
-        },
-        "valvan_dam": {
           "risk_level": "moderate",
           "score": 41,
+          "factor_of_safety": 1.15,
+          "antecedent_saturation_pct": 81.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "monkey_hill": {
+          "risk_level": "high",
+          "score": 71,
+          "factor_of_safety": 0.83,
+          "antecedent_saturation_pct": 81.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "thakurwadi": {
+          "risk_level": "low",
+          "score": 20,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 70.0
+          "antecedent_saturation_pct": 81.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "patan_village": {
+          "risk_level": "low",
+          "score": 18,
+          "factor_of_safety": 1.43,
+          "antecedent_saturation_pct": 69.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "valvan_dam": {
+          "risk_level": "low",
+          "score": 23,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 70.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "moderate",
-          "score": 33,
+          "risk_level": "low",
+          "score": 14,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 70.0
+          "antecedent_saturation_pct": 70.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -1984,75 +2236,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "moderate",
-          "score": 49,
+          "score": 30,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 82.2
+          "antecedent_saturation_pct": 82.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.87,
-          "antecedent_saturation_pct": 82.2
+          "risk_level": "high",
+          "score": 61,
+          "factor_of_safety": 0.95,
+          "antecedent_saturation_pct": 82.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.9,
-          "antecedent_saturation_pct": 69.1
+          "risk_level": "high",
+          "score": 60,
+          "factor_of_safety": 0.95,
+          "antecedent_saturation_pct": 69.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "high",
-          "score": 77,
-          "factor_of_safety": 1.01,
-          "antecedent_saturation_pct": 69.1
+          "risk_level": "moderate",
+          "score": 51,
+          "factor_of_safety": 1.05,
+          "antecedent_saturation_pct": 69.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "high",
-          "score": 55,
-          "factor_of_safety": 1.3,
-          "antecedent_saturation_pct": 69.7
+          "risk_level": "moderate",
+          "score": 27,
+          "factor_of_safety": 1.31,
+          "antecedent_saturation_pct": 69.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.92,
-          "antecedent_saturation_pct": 81.1
+          "risk_level": "high",
+          "score": 56,
+          "factor_of_safety": 1.0,
+          "antecedent_saturation_pct": 81.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 71,
-          "factor_of_safety": 1.09,
-          "antecedent_saturation_pct": 81.2
-        },
-        "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.76,
-          "antecedent_saturation_pct": 81.1
-        },
-        "thakurwadi": {
           "risk_level": "moderate",
           "score": 39,
+          "factor_of_safety": 1.17,
+          "antecedent_saturation_pct": 81.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "monkey_hill": {
+          "risk_level": "high",
+          "score": 70,
+          "factor_of_safety": 0.84,
+          "antecedent_saturation_pct": 81.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "thakurwadi": {
+          "risk_level": "low",
+          "score": 21,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.2
+          "antecedent_saturation_pct": 81.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 46,
+          "risk_level": "low",
+          "score": 17,
           "factor_of_safety": 1.45,
-          "antecedent_saturation_pct": 69.1
+          "antecedent_saturation_pct": 69.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "moderate",
-          "score": 41,
+          "risk_level": "low",
+          "score": 23,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 69.7
+          "antecedent_saturation_pct": 69.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "moderate",
-          "score": 32,
+          "risk_level": "low",
+          "score": 13,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 69.7
+          "antecedent_saturation_pct": 69.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -2076,76 +2340,88 @@
       "narrative_mr": "2026-07-03T00:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 22.2 मिमी पाऊस व 76.1% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "moderate",
-          "score": 37,
+          "risk_level": "low",
+          "score": 21,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 82.2
+          "antecedent_saturation_pct": 82.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.86,
-          "antecedent_saturation_pct": 82.2
+          "risk_level": "high",
+          "score": 60,
+          "factor_of_safety": 0.95,
+          "antecedent_saturation_pct": 82.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.89,
-          "antecedent_saturation_pct": 69.6
+          "risk_level": "high",
+          "score": 60,
+          "factor_of_safety": 0.95,
+          "antecedent_saturation_pct": 69.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "very_high",
-          "score": 78,
-          "factor_of_safety": 1.0,
-          "antecedent_saturation_pct": 69.6
+          "risk_level": "moderate",
+          "score": 51,
+          "factor_of_safety": 1.04,
+          "antecedent_saturation_pct": 69.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "high",
-          "score": 57,
-          "factor_of_safety": 1.28,
-          "antecedent_saturation_pct": 70.5
+          "risk_level": "moderate",
+          "score": 27,
+          "factor_of_safety": 1.3,
+          "antecedent_saturation_pct": 70.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.9,
-          "antecedent_saturation_pct": 82.3
+          "risk_level": "high",
+          "score": 57,
+          "factor_of_safety": 0.98,
+          "antecedent_saturation_pct": 82.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 73,
-          "factor_of_safety": 1.07,
-          "antecedent_saturation_pct": 82.2
+          "risk_level": "moderate",
+          "score": 41,
+          "factor_of_safety": 1.15,
+          "antecedent_saturation_pct": 82.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.74,
-          "antecedent_saturation_pct": 82.3
+          "risk_level": "high",
+          "score": 71,
+          "factor_of_safety": 0.83,
+          "antecedent_saturation_pct": 82.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 34,
+          "risk_level": "low",
+          "score": 18,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 82.2
+          "antecedent_saturation_pct": 82.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 47,
-          "factor_of_safety": 1.44,
-          "antecedent_saturation_pct": 69.6
+          "risk_level": "low",
+          "score": 17,
+          "factor_of_safety": 1.45,
+          "antecedent_saturation_pct": 69.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "moderate",
-          "score": 35,
+          "risk_level": "low",
+          "score": 19,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 70.5
+          "antecedent_saturation_pct": 70.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "moderate",
-          "score": 30,
+          "risk_level": "low",
+          "score": 12,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 70.5
+          "antecedent_saturation_pct": 70.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -2170,75 +2446,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "moderate",
-          "score": 44,
+          "score": 27,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 83.5
+          "antecedent_saturation_pct": 83.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 85,
-          "factor_of_safety": 0.84,
-          "antecedent_saturation_pct": 83.5
+          "risk_level": "high",
+          "score": 63,
+          "factor_of_safety": 0.92,
+          "antecedent_saturation_pct": 83.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.88,
-          "antecedent_saturation_pct": 70.5
+          "risk_level": "high",
+          "score": 62,
+          "factor_of_safety": 0.93,
+          "antecedent_saturation_pct": 70.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "very_high",
-          "score": 80,
-          "factor_of_safety": 0.99,
-          "antecedent_saturation_pct": 70.5
+          "risk_level": "moderate",
+          "score": 53,
+          "factor_of_safety": 1.02,
+          "antecedent_saturation_pct": 70.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "high",
-          "score": 58,
+          "risk_level": "moderate",
+          "score": 30,
           "factor_of_safety": 1.27,
-          "antecedent_saturation_pct": 71.1
+          "antecedent_saturation_pct": 71.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.89,
-          "antecedent_saturation_pct": 82.8
+          "risk_level": "high",
+          "score": 59,
+          "factor_of_safety": 0.97,
+          "antecedent_saturation_pct": 82.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 72,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 81.5
+          "risk_level": "moderate",
+          "score": 40,
+          "factor_of_safety": 1.16,
+          "antecedent_saturation_pct": 81.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 88,
-          "factor_of_safety": 0.73,
-          "antecedent_saturation_pct": 82.8
+          "risk_level": "high",
+          "score": 72,
+          "factor_of_safety": 0.81,
+          "antecedent_saturation_pct": 82.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 37,
+          "risk_level": "low",
+          "score": 20,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.5
+          "antecedent_saturation_pct": 81.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 48,
+          "risk_level": "low",
+          "score": 19,
           "factor_of_safety": 1.42,
-          "antecedent_saturation_pct": 70.5
+          "antecedent_saturation_pct": 70.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "moderate",
-          "score": 43,
+          "risk_level": "low",
+          "score": 24,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 71.1
+          "antecedent_saturation_pct": 71.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "moderate",
-          "score": 33,
+          "risk_level": "low",
+          "score": 14,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 71.1
+          "antecedent_saturation_pct": 71.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -2263,75 +2551,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "moderate",
-          "score": 44,
+          "score": 26,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.9
+          "antecedent_saturation_pct": 81.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.87,
-          "antecedent_saturation_pct": 81.9
+          "risk_level": "high",
+          "score": 61,
+          "factor_of_safety": 0.94,
+          "antecedent_saturation_pct": 81.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.87,
-          "antecedent_saturation_pct": 70.9
+          "risk_level": "high",
+          "score": 63,
+          "factor_of_safety": 0.92,
+          "antecedent_saturation_pct": 70.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "very_high",
-          "score": 81,
-          "factor_of_safety": 0.98,
-          "antecedent_saturation_pct": 70.9
+          "risk_level": "moderate",
+          "score": 54,
+          "factor_of_safety": 1.02,
+          "antecedent_saturation_pct": 70.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "high",
-          "score": 58,
+          "risk_level": "moderate",
+          "score": 30,
           "factor_of_safety": 1.27,
-          "antecedent_saturation_pct": 71.1
+          "antecedent_saturation_pct": 71.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.9,
-          "antecedent_saturation_pct": 82.2
+          "risk_level": "high",
+          "score": 58,
+          "factor_of_safety": 0.97,
+          "antecedent_saturation_pct": 82.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 72,
-          "factor_of_safety": 1.08,
-          "antecedent_saturation_pct": 81.8
-        },
-        "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.74,
-          "antecedent_saturation_pct": 82.2
-        },
-        "thakurwadi": {
-          "risk_level": "moderate",
-          "score": 34,
-          "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.8
-        },
-        "patan_village": {
-          "risk_level": "moderate",
-          "score": 48,
-          "factor_of_safety": 1.41,
-          "antecedent_saturation_pct": 70.9
-        },
-        "valvan_dam": {
           "risk_level": "moderate",
           "score": 41,
+          "factor_of_safety": 1.15,
+          "antecedent_saturation_pct": 81.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "monkey_hill": {
+          "risk_level": "high",
+          "score": 72,
+          "factor_of_safety": 0.82,
+          "antecedent_saturation_pct": 82.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "thakurwadi": {
+          "risk_level": "low",
+          "score": 17,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 71.1
+          "antecedent_saturation_pct": 81.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "patan_village": {
+          "risk_level": "low",
+          "score": 20,
+          "factor_of_safety": 1.41,
+          "antecedent_saturation_pct": 70.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "valvan_dam": {
+          "risk_level": "low",
+          "score": 23,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 71.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "moderate",
-          "score": 33,
+          "risk_level": "low",
+          "score": 14,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 71.1
+          "antecedent_saturation_pct": 71.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -2355,76 +2655,88 @@
       "narrative_mr": "2026-07-04T12:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 71.4 मिमी पाऊस व 78.7% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "high",
-          "score": 73,
+          "risk_level": "moderate",
+          "score": 48,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 84.8
+          "antecedent_saturation_pct": 84.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 88,
-          "factor_of_safety": 0.82,
-          "antecedent_saturation_pct": 84.8
+          "risk_level": "high",
+          "score": 68,
+          "factor_of_safety": 0.88,
+          "antecedent_saturation_pct": 84.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.85,
-          "antecedent_saturation_pct": 72.5
+          "risk_level": "high",
+          "score": 68,
+          "factor_of_safety": 0.89,
+          "antecedent_saturation_pct": 72.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.96,
-          "antecedent_saturation_pct": 72.5
+          "risk_level": "high",
+          "score": 59,
+          "factor_of_safety": 0.98,
+          "antecedent_saturation_pct": 72.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "high",
-          "score": 61,
-          "factor_of_safety": 1.23,
-          "antecedent_saturation_pct": 72.9
+          "risk_level": "moderate",
+          "score": 36,
+          "factor_of_safety": 1.22,
+          "antecedent_saturation_pct": 72.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.85,
-          "antecedent_saturation_pct": 85.0
+          "risk_level": "high",
+          "score": 66,
+          "factor_of_safety": 0.91,
+          "antecedent_saturation_pct": 85.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 76,
-          "factor_of_safety": 1.03,
-          "antecedent_saturation_pct": 84.2
+          "risk_level": "moderate",
+          "score": 48,
+          "factor_of_safety": 1.09,
+          "antecedent_saturation_pct": 84.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 91,
-          "factor_of_safety": 0.7,
-          "antecedent_saturation_pct": 85.0
+          "score": 78,
+          "factor_of_safety": 0.77,
+          "antecedent_saturation_pct": 85.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "moderate",
-          "score": 53,
+          "score": 31,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 84.2
+          "antecedent_saturation_pct": 84.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 51,
-          "factor_of_safety": 1.37,
-          "antecedent_saturation_pct": 72.5
+          "risk_level": "low",
+          "score": 24,
+          "factor_of_safety": 1.36,
+          "antecedent_saturation_pct": 72.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "high",
-          "score": 73,
-          "factor_of_safety": null,
-          "antecedent_saturation_pct": 72.9
-        },
-        "lonavala_town": {
           "risk_level": "moderate",
           "score": 47,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 72.9
+          "antecedent_saturation_pct": 72.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
+        },
+        "lonavala_town": {
+          "risk_level": "low",
+          "score": 22,
+          "factor_of_safety": null,
+          "antecedent_saturation_pct": 72.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -2448,76 +2760,88 @@
       "narrative_mr": "2026-07-05T00:00 रोजी प्रत्यक्ष नोंदवलेला पाऊस. २४ तासांत सरासरी 80.5 मिमी पाऊस व 78.8% मातीची संपृक्तता.",
       "points_state": {
         "bhushi_dam": {
-          "risk_level": "high",
-          "score": 65,
+          "risk_level": "moderate",
+          "score": 42,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 85.5
+          "antecedent_saturation_pct": 85.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.81,
-          "antecedent_saturation_pct": 85.5
+          "risk_level": "high",
+          "score": 68,
+          "factor_of_safety": 0.87,
+          "antecedent_saturation_pct": 85.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 85,
-          "factor_of_safety": 0.86,
-          "antecedent_saturation_pct": 72.1
+          "risk_level": "high",
+          "score": 66,
+          "factor_of_safety": 0.89,
+          "antecedent_saturation_pct": 72.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "very_high",
-          "score": 82,
-          "factor_of_safety": 0.96,
-          "antecedent_saturation_pct": 72.1
+          "risk_level": "high",
+          "score": 58,
+          "factor_of_safety": 0.98,
+          "antecedent_saturation_pct": 72.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "high",
-          "score": 61,
-          "factor_of_safety": 1.22,
-          "antecedent_saturation_pct": 73.1
+          "risk_level": "moderate",
+          "score": 36,
+          "factor_of_safety": 1.21,
+          "antecedent_saturation_pct": 73.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 86,
-          "factor_of_safety": 0.85,
-          "antecedent_saturation_pct": 85.0
+          "risk_level": "high",
+          "score": 65,
+          "factor_of_safety": 0.91,
+          "antecedent_saturation_pct": 85.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "high",
-          "score": 77,
-          "factor_of_safety": 1.02,
-          "antecedent_saturation_pct": 84.5
+          "risk_level": "moderate",
+          "score": 48,
+          "factor_of_safety": 1.09,
+          "antecedent_saturation_pct": 84.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
-          "risk_level": "very_high",
-          "score": 90,
-          "factor_of_safety": 0.7,
-          "antecedent_saturation_pct": 85.0
+          "risk_level": "high",
+          "score": 77,
+          "factor_of_safety": 0.76,
+          "antecedent_saturation_pct": 85.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
           "risk_level": "moderate",
-          "score": 52,
+          "score": 30,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 84.5
+          "antecedent_saturation_pct": 84.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "moderate",
-          "score": 50,
-          "factor_of_safety": 1.38,
-          "antecedent_saturation_pct": 72.1
+          "risk_level": "low",
+          "score": 23,
+          "factor_of_safety": 1.36,
+          "antecedent_saturation_pct": 72.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "high",
-          "score": 57,
+          "risk_level": "moderate",
+          "score": 35,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 73.1
+          "antecedent_saturation_pct": 73.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "moderate",
-          "score": 41,
+          "risk_level": "low",
+          "score": 19,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 73.1
+          "antecedent_saturation_pct": 73.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -2542,75 +2866,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "very_high",
-          "score": 96,
+          "score": 78,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 88.5
+          "antecedent_saturation_pct": 88.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
-          "risk_level": "very_high",
-          "score": 91,
-          "factor_of_safety": 0.75,
-          "antecedent_saturation_pct": 88.5
+          "risk_level": "high",
+          "score": 77,
+          "factor_of_safety": 0.79,
+          "antecedent_saturation_pct": 88.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
-          "risk_level": "very_high",
-          "score": 89,
-          "factor_of_safety": 0.81,
-          "antecedent_saturation_pct": 75.2
+          "risk_level": "high",
+          "score": 74,
+          "factor_of_safety": 0.82,
+          "antecedent_saturation_pct": 75.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "very_high",
-          "score": 87,
+          "risk_level": "high",
+          "score": 67,
           "factor_of_safety": 0.91,
-          "antecedent_saturation_pct": 75.2
+          "antecedent_saturation_pct": 75.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "high",
-          "score": 65,
-          "factor_of_safety": 1.17,
-          "antecedent_saturation_pct": 75.5
+          "risk_level": "moderate",
+          "score": 45,
+          "factor_of_safety": 1.14,
+          "antecedent_saturation_pct": 75.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
-          "risk_level": "very_high",
-          "score": 88,
-          "factor_of_safety": 0.83,
-          "antecedent_saturation_pct": 86.1
+          "risk_level": "high",
+          "score": 71,
+          "factor_of_safety": 0.86,
+          "antecedent_saturation_pct": 86.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.97,
-          "antecedent_saturation_pct": 86.9
+          "risk_level": "high",
+          "score": 57,
+          "factor_of_safety": 1.0,
+          "antecedent_saturation_pct": 86.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 92,
-          "factor_of_safety": 0.69,
-          "antecedent_saturation_pct": 86.1
+          "score": 82,
+          "factor_of_safety": 0.72,
+          "antecedent_saturation_pct": 86.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "high",
-          "score": 73,
+          "risk_level": "moderate",
+          "score": 44,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 86.9
+          "antecedent_saturation_pct": 86.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "moderate",
-          "score": 54,
-          "factor_of_safety": 1.31,
-          "antecedent_saturation_pct": 75.2
+          "score": 32,
+          "factor_of_safety": 1.27,
+          "antecedent_saturation_pct": 75.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "very_high",
-          "score": 88,
+          "risk_level": "high",
+          "score": 58,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 75.5
+          "antecedent_saturation_pct": 75.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "high",
-          "score": 55,
+          "risk_level": "moderate",
+          "score": 27,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 75.5
+          "antecedent_saturation_pct": 75.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -2637,73 +2973,85 @@
           "risk_level": "very_high",
           "score": 96,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 91.8
+          "antecedent_saturation_pct": 91.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 93,
-          "factor_of_safety": 0.7,
-          "antecedent_saturation_pct": 91.8
+          "score": 85,
+          "factor_of_safety": 0.69,
+          "antecedent_saturation_pct": 91.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 91,
-          "factor_of_safety": 0.77,
-          "antecedent_saturation_pct": 78.2
+          "score": 80,
+          "factor_of_safety": 0.75,
+          "antecedent_saturation_pct": 78.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
-          "risk_level": "very_high",
-          "score": 88,
-          "factor_of_safety": 0.86,
-          "antecedent_saturation_pct": 78.2
+          "risk_level": "high",
+          "score": 74,
+          "factor_of_safety": 0.83,
+          "antecedent_saturation_pct": 78.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "high",
-          "score": 70,
-          "factor_of_safety": 1.1,
-          "antecedent_saturation_pct": 78.9
+          "score": 57,
+          "factor_of_safety": 1.03,
+          "antecedent_saturation_pct": 78.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 92,
-          "factor_of_safety": 0.73,
-          "antecedent_saturation_pct": 91.3
+          "score": 83,
+          "factor_of_safety": 0.74,
+          "antecedent_saturation_pct": 91.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.9,
-          "antecedent_saturation_pct": 89.8
+          "risk_level": "high",
+          "score": 68,
+          "factor_of_safety": 0.92,
+          "antecedent_saturation_pct": 89.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 96,
+          "score": 90,
           "factor_of_safety": 0.61,
-          "antecedent_saturation_pct": 91.3
+          "antecedent_saturation_pct": 91.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "very_high",
-          "score": 96,
+          "risk_level": "high",
+          "score": 74,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 89.8
+          "antecedent_saturation_pct": 89.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "high",
-          "score": 60,
-          "factor_of_safety": 1.24,
-          "antecedent_saturation_pct": 78.2
+          "risk_level": "moderate",
+          "score": 43,
+          "factor_of_safety": 1.16,
+          "antecedent_saturation_pct": 78.2,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "very_high",
           "score": 96,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 78.9
+          "antecedent_saturation_pct": 78.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "very_high",
-          "score": 78,
+          "risk_level": "moderate",
+          "score": 42,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 78.9
+          "antecedent_saturation_pct": 78.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -2730,73 +3078,85 @@
           "risk_level": "very_high",
           "score": 96,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 93.9
+          "antecedent_saturation_pct": 93.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 94,
-          "factor_of_safety": 0.66,
-          "antecedent_saturation_pct": 93.9
+          "score": 88,
+          "factor_of_safety": 0.64,
+          "antecedent_saturation_pct": 93.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 92,
-          "factor_of_safety": 0.74,
-          "antecedent_saturation_pct": 80.4
+          "score": 84,
+          "factor_of_safety": 0.7,
+          "antecedent_saturation_pct": 80.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
           "risk_level": "very_high",
-          "score": 89,
-          "factor_of_safety": 0.83,
-          "antecedent_saturation_pct": 80.4
+          "score": 79,
+          "factor_of_safety": 0.77,
+          "antecedent_saturation_pct": 80.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "high",
-          "score": 74,
-          "factor_of_safety": 1.06,
-          "antecedent_saturation_pct": 81.1
+          "score": 64,
+          "factor_of_safety": 0.96,
+          "antecedent_saturation_pct": 81.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 93,
-          "factor_of_safety": 0.71,
-          "antecedent_saturation_pct": 92.7
+          "score": 85,
+          "factor_of_safety": 0.7,
+          "antecedent_saturation_pct": 92.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "very_high",
-          "score": 88,
-          "factor_of_safety": 0.88,
-          "antecedent_saturation_pct": 90.7
+          "risk_level": "high",
+          "score": 69,
+          "factor_of_safety": 0.89,
+          "antecedent_saturation_pct": 90.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 96,
-          "factor_of_safety": 0.59,
-          "antecedent_saturation_pct": 92.7
+          "score": 91,
+          "factor_of_safety": 0.58,
+          "antecedent_saturation_pct": 92.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "very_high",
-          "score": 96,
+          "risk_level": "high",
+          "score": 67,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 90.7
+          "antecedent_saturation_pct": 90.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "high",
-          "score": 64,
-          "factor_of_safety": 1.19,
-          "antecedent_saturation_pct": 80.4
+          "risk_level": "moderate",
+          "score": 51,
+          "factor_of_safety": 1.09,
+          "antecedent_saturation_pct": 80.4,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "very_high",
           "score": 96,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.1
+          "antecedent_saturation_pct": 81.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "very_high",
-          "score": 82,
+          "risk_level": "moderate",
+          "score": 44,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.1
+          "antecedent_saturation_pct": 81.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": []
@@ -2823,73 +3183,85 @@
           "risk_level": "very_high",
           "score": 96,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 96.3
+          "antecedent_saturation_pct": 96.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 95,
-          "factor_of_safety": 0.62,
-          "antecedent_saturation_pct": 96.3
+          "score": 89,
+          "factor_of_safety": 0.6,
+          "antecedent_saturation_pct": 96.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 92,
-          "factor_of_safety": 0.7,
-          "antecedent_saturation_pct": 82.9
+          "score": 87,
+          "factor_of_safety": 0.64,
+          "antecedent_saturation_pct": 82.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
           "risk_level": "very_high",
-          "score": 90,
-          "factor_of_safety": 0.79,
-          "antecedent_saturation_pct": 82.9
+          "score": 83,
+          "factor_of_safety": 0.71,
+          "antecedent_saturation_pct": 82.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
-          "risk_level": "very_high",
-          "score": 78,
-          "factor_of_safety": 1.0,
-          "antecedent_saturation_pct": 83.6
+          "risk_level": "high",
+          "score": 68,
+          "factor_of_safety": 0.9,
+          "antecedent_saturation_pct": 83.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 93,
-          "factor_of_safety": 0.67,
-          "antecedent_saturation_pct": 94.8
+          "score": 86,
+          "factor_of_safety": 0.64,
+          "antecedent_saturation_pct": 94.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "very_high",
-          "score": 85,
-          "factor_of_safety": 0.89,
-          "antecedent_saturation_pct": 90.5
+          "risk_level": "high",
+          "score": 68,
+          "factor_of_safety": 0.88,
+          "antecedent_saturation_pct": 90.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 96,
-          "factor_of_safety": 0.55,
-          "antecedent_saturation_pct": 94.8
+          "score": 91,
+          "factor_of_safety": 0.53,
+          "antecedent_saturation_pct": 94.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "very_high",
-          "score": 84,
+          "risk_level": "moderate",
+          "score": 53,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 90.5
+          "antecedent_saturation_pct": 90.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "high",
-          "score": 68,
-          "factor_of_safety": 1.13,
-          "antecedent_saturation_pct": 82.9
+          "score": 58,
+          "factor_of_safety": 1.0,
+          "antecedent_saturation_pct": 82.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "very_high",
           "score": 96,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 83.6
+          "antecedent_saturation_pct": 83.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "very_high",
-          "score": 79,
+          "risk_level": "moderate",
+          "score": 45,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 83.6
+          "antecedent_saturation_pct": 83.6,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": [
@@ -2916,75 +3288,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "very_high",
-          "score": 96,
+          "score": 90,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 93.9
+          "antecedent_saturation_pct": 93.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 92,
-          "factor_of_safety": 0.66,
-          "antecedent_saturation_pct": 93.9
+          "score": 86,
+          "factor_of_safety": 0.62,
+          "antecedent_saturation_pct": 93.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 90,
-          "factor_of_safety": 0.73,
-          "antecedent_saturation_pct": 81.1
+          "score": 83,
+          "factor_of_safety": 0.68,
+          "antecedent_saturation_pct": 81.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
           "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.82,
-          "antecedent_saturation_pct": 81.1
+          "score": 78,
+          "factor_of_safety": 0.75,
+          "antecedent_saturation_pct": 81.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "high",
-          "score": 75,
-          "factor_of_safety": 1.04,
-          "antecedent_saturation_pct": 82.0
+          "score": 63,
+          "factor_of_safety": 0.93,
+          "antecedent_saturation_pct": 82.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 89,
-          "factor_of_safety": 0.74,
-          "antecedent_saturation_pct": 91.1
+          "score": 81,
+          "factor_of_safety": 0.71,
+          "antecedent_saturation_pct": 91.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "very_high",
-          "score": 83,
+          "risk_level": "high",
+          "score": 63,
           "factor_of_safety": 0.92,
-          "antecedent_saturation_pct": 89.3
+          "antecedent_saturation_pct": 89.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 93,
-          "factor_of_safety": 0.61,
-          "antecedent_saturation_pct": 91.1
+          "score": 87,
+          "factor_of_safety": 0.59,
+          "antecedent_saturation_pct": 91.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "high",
-          "score": 64,
+          "risk_level": "moderate",
+          "score": 39,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 89.3
+          "antecedent_saturation_pct": 89.3,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "high",
-          "score": 65,
-          "factor_of_safety": 1.17,
-          "antecedent_saturation_pct": 81.1
+          "risk_level": "moderate",
+          "score": 52,
+          "factor_of_safety": 1.05,
+          "antecedent_saturation_pct": 81.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "very_high",
-          "score": 96,
+          "risk_level": "high",
+          "score": 74,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 82.0
+          "antecedent_saturation_pct": 82.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "high",
-          "score": 68,
+          "risk_level": "moderate",
+          "score": 38,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 82.0
+          "antecedent_saturation_pct": 82.0,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": [
@@ -3013,73 +3397,85 @@
           "risk_level": "very_high",
           "score": 96,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 94.8
+          "antecedent_saturation_pct": 94.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 95,
-          "factor_of_safety": 0.64,
-          "antecedent_saturation_pct": 94.8
+          "score": 90,
+          "factor_of_safety": 0.61,
+          "antecedent_saturation_pct": 94.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 92,
-          "factor_of_safety": 0.72,
-          "antecedent_saturation_pct": 81.5
+          "score": 87,
+          "factor_of_safety": 0.67,
+          "antecedent_saturation_pct": 81.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
           "risk_level": "very_high",
-          "score": 90,
-          "factor_of_safety": 0.81,
-          "antecedent_saturation_pct": 81.5
+          "score": 82,
+          "factor_of_safety": 0.75,
+          "antecedent_saturation_pct": 81.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "high",
-          "score": 75,
-          "factor_of_safety": 1.04,
-          "antecedent_saturation_pct": 81.8
+          "score": 66,
+          "factor_of_safety": 0.94,
+          "antecedent_saturation_pct": 81.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 92,
-          "factor_of_safety": 0.71,
-          "antecedent_saturation_pct": 92.7
+          "score": 83,
+          "factor_of_safety": 0.7,
+          "antecedent_saturation_pct": 92.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "very_high",
-          "score": 84,
-          "factor_of_safety": 0.92,
-          "antecedent_saturation_pct": 88.9
+          "risk_level": "high",
+          "score": 62,
+          "factor_of_safety": 0.94,
+          "antecedent_saturation_pct": 88.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 95,
-          "factor_of_safety": 0.59,
-          "antecedent_saturation_pct": 92.7
+          "score": 89,
+          "factor_of_safety": 0.58,
+          "antecedent_saturation_pct": 92.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "high",
-          "score": 66,
+          "risk_level": "moderate",
+          "score": 40,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 88.9
+          "antecedent_saturation_pct": 88.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
           "risk_level": "high",
-          "score": 66,
-          "factor_of_safety": 1.16,
-          "antecedent_saturation_pct": 81.5
+          "score": 56,
+          "factor_of_safety": 1.05,
+          "antecedent_saturation_pct": 81.5,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
           "risk_level": "very_high",
           "score": 96,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.8
+          "antecedent_saturation_pct": 81.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "very_high",
-          "score": 81,
+          "risk_level": "moderate",
+          "score": 44,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.8
+          "antecedent_saturation_pct": 81.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": [
@@ -3106,75 +3502,87 @@
       "points_state": {
         "bhushi_dam": {
           "risk_level": "very_high",
-          "score": 96,
+          "score": 81,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 92.1
+          "antecedent_saturation_pct": 92.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "kune_falls": {
           "risk_level": "very_high",
-          "score": 91,
-          "factor_of_safety": 0.69,
-          "antecedent_saturation_pct": 92.1
+          "score": 84,
+          "factor_of_safety": 0.66,
+          "antecedent_saturation_pct": 92.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "tiger_point": {
           "risk_level": "very_high",
-          "score": 90,
-          "factor_of_safety": 0.73,
-          "antecedent_saturation_pct": 80.8
+          "score": 82,
+          "factor_of_safety": 0.69,
+          "antecedent_saturation_pct": 80.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lions_point": {
           "risk_level": "very_high",
-          "score": 87,
-          "factor_of_safety": 0.82,
-          "antecedent_saturation_pct": 80.8
+          "score": 78,
+          "factor_of_safety": 0.76,
+          "antecedent_saturation_pct": 80.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "rajmachi_route": {
           "risk_level": "high",
-          "score": 75,
-          "factor_of_safety": 1.05,
-          "antecedent_saturation_pct": 81.7
+          "score": 63,
+          "factor_of_safety": 0.94,
+          "antecedent_saturation_pct": 81.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "khandala_expressway": {
           "risk_level": "very_high",
-          "score": 90,
-          "factor_of_safety": 0.73,
-          "antecedent_saturation_pct": 91.9
+          "score": 81,
+          "factor_of_safety": 0.71,
+          "antecedent_saturation_pct": 91.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "adoshi_tunnel": {
-          "risk_level": "very_high",
-          "score": 83,
-          "factor_of_safety": 0.94,
-          "antecedent_saturation_pct": 88.1
+          "risk_level": "high",
+          "score": 60,
+          "factor_of_safety": 0.96,
+          "antecedent_saturation_pct": 88.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "monkey_hill": {
           "risk_level": "very_high",
-          "score": 94,
-          "factor_of_safety": 0.6,
-          "antecedent_saturation_pct": 91.9
+          "score": 88,
+          "factor_of_safety": 0.59,
+          "antecedent_saturation_pct": 91.9,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "thakurwadi": {
-          "risk_level": "high",
-          "score": 58,
+          "risk_level": "moderate",
+          "score": 34,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 88.1
+          "antecedent_saturation_pct": 88.1,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "patan_village": {
-          "risk_level": "high",
-          "score": 64,
-          "factor_of_safety": 1.18,
-          "antecedent_saturation_pct": 80.8
+          "risk_level": "moderate",
+          "score": 50,
+          "factor_of_safety": 1.07,
+          "antecedent_saturation_pct": 80.8,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "valvan_dam": {
-          "risk_level": "very_high",
-          "score": 96,
+          "risk_level": "high",
+          "score": 67,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.7
+          "antecedent_saturation_pct": 81.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         },
         "lonavala_town": {
-          "risk_level": "high",
-          "score": 65,
+          "risk_level": "moderate",
+          "score": 35,
           "factor_of_safety": null,
-          "antecedent_saturation_pct": 81.7
+          "antecedent_saturation_pct": 81.7,
+          "model_version": "Sahyadri-GeoRisk-v3.0"
         }
       },
       "active_incidents": [

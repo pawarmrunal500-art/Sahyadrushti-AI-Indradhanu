@@ -3,7 +3,7 @@
 
 > [!IMPORTANT]
 > **Platform Maturity Status:** Demo-ready, pilot-stage, synthetic-calibrated model.
-> Risk scores represent a relative physical vulnerability **risk index (0–100)**, NOT empirical probability of occurrence. Geotechnical factor of safety (FS) and hydrological routing are physically grounded on Deccan Trap basalt overburden mechanics with generic global empirical thresholds (e.g., Caine 1980 Intensity-Duration trigger). **Parameters have NOT been calibrated against field instrumentation or IMD station records.**
+> Risk scores represent a relative physical vulnerability **risk index (0–100)**, NOT empirical probability of occurrence. Geotechnical factor of safety (FS) and hydrological routing are physically grounded on Deccan Trap basalt overburden mechanics with generic global empirical thresholds (e.g., Caine 1980 Intensity-Duration trigger). **Parameters have NOT been calibrated against field instrumentation or IMD station records. Checks C1–C8 are internal diagnostic checks, not field-validated benchmarks.**
 
 ---
 
@@ -55,17 +55,21 @@ copy .env.example .env
 python -m backend.data_layer
 ```
 
-### Running the Test Suite
+### Running the Test Suite & Verification Harness
 ```powershell
 # Run full unit, contract, auth, and regression suite (69 tests)
 python -m pytest tests/ -v
 
-# Run the automated problem statement & honesty verification harness (C1-C8)
+# Run the automated problem statement diagnostic harness (C1-C8)
 python scripts/ps_check.py
 ```
 
 ### Running the Application Locally
 ```powershell
+# Launch both backend and frontend servers via the helper script:
+powershell -ExecutionPolicy Bypass -File scripts/start_demo.ps1
+
+# Or manually in separate terminal windows:
 # Terminal 1: Backend API server (runs on port 8000)
 uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 
@@ -78,29 +82,24 @@ Open your browser to `http://localhost:5173`.
 
 ---
 
-## 4. Operational Governance & User Management
-User creation and role-based access control (RBAC) are managed via the administrative CLI:
-```powershell
-# Create admin / approver / operator securely via interactive prompt:
-python scripts/create_user.py --username admin_officer --role admin
-# When prompted, enter a secure password (minimum 8 characters).
-```
-> [!NOTE]
-> Passwords must never be passed as plaintext command-line arguments. In production, `DEBUG=false` enforces a minimum 32-character `JWT_SECRET`.
-
----
-
-## 5. Known Limitations & Transparency Disclosure
+## 4. Known Limitations & Transparency Disclosure
 In accordance with scientific integrity standards, the following platform boundaries are explicitly disclosed:
-1. **Uncalibrated Model Parameters:** All geotechnical parameters (effective cohesion $c' = 2.5\text{–}16\text{ kPa}$, internal friction angle $\phi = 30^\circ\text{–}34^\circ$, colluvium thickness $z = 2.2\text{m}$, saprolite drainage recession time constant $\tau = 60\text{h}$) are physical estimates based on Deccan Trap basalt literature, not fitted to localized slope inclinometer or piezometer records.
+1. **Uncalibrated Model Parameters:** All geotechnical parameters (effective cohesion $c' = 2.5\text{–}16\text{ kPa}$, internal friction angle $\phi = 30^\circ\text{–}34^\circ$, colluvium thickness $z = 2.2\text{m}$, saprolite drainage recession time constant $\tau = 60\text{h}$) are generic physical estimates based on Deccan Trap basalt literature, not fitted to localized slope inclinometer or piezometer records.
 2. **Reanalysis Spatial Grid Resolution:** Weather inputs are retrieved from Open-Meteo's 9–11 km reanalysis raster. Multiple pilot locations share identical regional rainfall figures; local risk differences arise from slope, DEM relief, soil saturation, and catchment geometry.
 3. **Suspected Extreme Rainfall Underestimation:** 9–11 km reanalysis grids tend to smooth sharp orographic cloudburst peaks. Peak rainfall values in steep ghats should be considered lower-bound estimates until calibrated against IMD station data.
-4. **Digital Elevation Model (DEM) Spatial Resolution:** Terrain slopes are derived from the Copernicus GLO-30 30-meter DEM. Narrow highway cuts or vertical retaining structures smaller than 30m may not be fully resolved in point slopes, though extended buffer filters (60m, 150m, 300m) capture the broader escarpment relief.
-5. **Coordinate Ground-Truthing Requirements (`TODO-USER`):** Several pilot sites (e.g., Patan Village, Monkey Hill) require ground-truthing to verify whether monitoring targets refer to valley floor habitations or upper escarpment headwalls.
+4. **Seed Slopes & Elevations Partly Unsupported by DEM:** Several seed elevations and slopes disagree with the Copernicus GLO-30 DEM (e.g. Patan Village point is on near-flat valley ground, Bhor Ghat sites sit far below the plateau). See full table in [`docs/dem_verification.md`](docs/dem_verification.md).
+5. **Unverified Coordinates (`TODO-USER`):**
+   - Patan Village stored coordinates `[18.7303, 73.3855]` sit on near-flat ground ($1.2^\circ$ slope); actual landslide scar requires sourced ground-truthing.
+   - Low-elevation ghat sites (`monkey_hill`, `adoshi_tunnel`, `thakurwadi`) sit below 200m; administrative district (Pune vs Raigad) requires confirmation for alert dispatch.
+6. **Hazard Mechanism Scope:** Pure rockfall (individual rolling boulders without soil failure) is not explicitly modeled by the infinite-slope colluvium formulation.
+7. **Reanalysis-Based Replay:** Historical replay is backfilled from ERA5 reanalysis data; peak convective intensity is likely smoothed.
+8. **No Field Backtest:** Event inventory contains zero confirmed ground-truth sensor rows; backtesting was evaluated against synthetic benchmark scenarios.
+9. **Database Scope:** PostgreSQL migrations are supported via SQLModel/Alembic, but automated tests ran against SQLite (WAL mode).
+10. **Diagnostic Checks:** Harness checks C1–C7 are internal diagnostic consistency checks, not independent validation (see [`docs/CHANGES_AUDIT.md`](docs/CHANGES_AUDIT.md)).
 
 ---
 
-## 6. Attributions & Data Sources
+## 5. Attributions & Data Sources
 - **Weather Data:** Weather data by [Open-Meteo.com](https://open-meteo.com/) (CC BY 4.0).
 - **Elevation Model:** Copernicus GLO-30 Digital Elevation Model (`COPERNICUS/DEM/GLO30`) accessed via Google Earth Engine.
 - **Cartography:** Base maps by OpenStreetMap contributors & OpenTopoMap.

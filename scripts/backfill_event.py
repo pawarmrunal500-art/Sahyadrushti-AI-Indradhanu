@@ -179,7 +179,8 @@ def backfill():
                 "risk_level": pred["risk_level"],
                 "score": pred["risk_score"],
                 "factor_of_safety": pred.get("factor_of_safety"),
-                "antecedent_saturation_pct": pred.get("antecedent_saturation_pct")
+                "antecedent_saturation_pct": pred.get("antecedent_saturation_pct"),
+                "model_version": pred.get("model_version", risk_service.engine.model_version)
             }
             sm_all.append(pred.get("antecedent_saturation_pct", 60.0))
 
@@ -226,7 +227,7 @@ def backfill():
         "description": "17-day empirical reanalysis replay backfilled from Open-Meteo Archive (ERA5 coupled). Demonstrates calm baseline, progressive saturation accumulation, peak cloudburst, and delayed drainage recession.",
         "data_source": "open-meteo-archive",
         "peak_values_likely_underestimated": True,
-        "model_version": "Sahyadri-GeoRisk-v2.2",
+        "model_version": risk_service.engine.model_version,
         "drainage_recession_tau_hours": 60.0,
         "uncalibrated_assumption": "Pore pressure drainage recession tau=60h based on Deccan Trap vesicular saprolite hydraulics",
         "calibration_status": "suspected underestimate, to be calibrated against IMD station data",

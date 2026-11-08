@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     PralaySense AI / SAHYADRUSHTI AI - One-Click Demo Launcher
 .DESCRIPTION
@@ -18,6 +18,15 @@ if (Test-Path ".\.venv\Scripts\python.exe") {
     Write-Host "[OK] Using virtual environment Python: $PythonExe" -ForegroundColor Green
 } else {
     Write-Host "[INFO] Using system Python: $PythonExe" -ForegroundColor Yellow
+}
+
+# 1b. Ensure .env exists with a secure random JWT_SECRET if not already present
+if (-not (Test-Path ".\.env")) {
+    Write-Host "[INFO] No .env file detected. Generating .env with secure random JWT secret..." -ForegroundColor Yellow
+    Copy-Item ".\.env.example" ".\.env"
+    $randSecret = & $PythonExe -c "import secrets; print(secrets.token_urlsafe(48))"
+    (Get-Content ".\.env") -replace 'JWT_SECRET=".*"', "JWT_SECRET=`"$randSecret`"" | Set-Content ".\.env"
+    Write-Host "[OK] Generated .env file with randomized session secret." -ForegroundColor Green
 }
 
 # 2. Run automated sanity check harness

@@ -22,3 +22,4 @@
   - Endpoint `/api/risk/forecast`: **PRESENT** (HTTP 200)
   - Endpoint `/api/locations/{id}/history`: **PRESENT** (HTTP 200)
   - Endpoint `/api/vulnerable-zones`: **PRESENT** (HTTP 200)
+

@@ -21,7 +21,7 @@ The following locations exhibited elevation discrepancies greater than 50 meters
 
 - [ ] **TODO-USER (Patan Village Coordinate Ambiguity):**
   - **Issue:** Stored coordinates `[18.7303, 73.3855]` show DEM point slope $1.2^\circ$ and 300m relief $26.5\text{m}$ (flat valley shelf), whereas seed slope is configured as $29.0^\circ$.
-  - **Recommendation:** Confirm whether the monitoring target is the village residential center (`[18.7303, 73.3855]`, low slope) or the vulnerable hillside escarpment immediately east/south of Patan (`~18.7285, 73.3895`, steep colluvium slope).
+  - **Action Required:** TODO-USER: confirm the real landslide location from a sourced report; the stored pin is on near-flat ground (DEM 2.3 degrees within 60 m). Do not assume coordinates without ground-truth surveys.
 
 - [ ] **TODO-USER (Bhor Ghat Elevation & Administrative District Assignment):**
   - **Issue:** Sites `monkey_hill` (109.9m), `adoshi_tunnel` (162.6m), and `thakurwadi` (141.6m) sit below 200m elevation.

@@ -187,6 +187,14 @@ export const ReplayView: React.FC<ReplayViewProps> = ({
               ? 'जुलै २०२६ च्या मुसळधार पावसात धोका कसा वाढला? वेळेनुसार पावसाचा जोर, मातीची संपृक्तता आणि धरणाच्या सांडव्यावरील पाण्याचा लोंढा रीप्ले करून पहा.'
               : 'Examine how a severe 24-hour monsoon cloudburst evolved across the Sahyadri Ghats. Observe real-time transitions from low baseline into critical escarpment rockfall and waterfall flash surges.'}
           </p>
+          <div style={{ marginTop: '8px', display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center', fontSize: '0.75rem' }}>
+            <span style={{ padding: '2px 8px', borderRadius: '4px', background: '#f1f5f9', color: '#475569', fontWeight: 600 }}>
+              Engine: Sahyadri-GeoRisk-v3.0
+            </span>
+            <span style={{ color: '#64748b' }}>
+              • Reanalysis-based archive (ERA5/ECMWF coupled, 9–11 km grid; peak convective values likely underestimated)
+            </span>
+          </div>
         </div>
       </div>
 

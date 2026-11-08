@@ -55,3 +55,4 @@ The table below contrasts the exact check results when run against the commit **
 
 ## 4. Honest Conclusion
 The model modifications improved the physical continuity of the algorithms (removing artificial cutoffs and adding catchment area physics). However, because these changes were developed interactively alongside the check harness, **checks C1 through C8 must be interpreted solely as diagnostic sanity checks, NOT field-validated benchmark accuracy.**
+

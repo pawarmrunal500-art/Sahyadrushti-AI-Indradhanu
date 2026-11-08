@@ -104,3 +104,4 @@ Retrieved from live `/api/risk?lat=18.7611&lon=73.3644`:
   - `model_version`: `"Sahyadri-GeoRisk-v3.0"`
   - `uncalibrated_assumption`: `"Pore pressure driven by W(t) with tau=60h and n_drain=0.15 over z=2.2m saprolite; Caine (1980) global empirical rainfall trigger"`
   - `disclaimer`: `"Pilot-stage physics-informed risk index (0-100), not calibrated against field sensors."`
+

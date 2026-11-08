@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
     PralaySense AI / SAHYADRUSHTI AI - One-Click Demo Launcher
 .DESCRIPTION

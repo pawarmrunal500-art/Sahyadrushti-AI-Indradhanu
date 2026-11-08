@@ -21,7 +21,8 @@ def _load_env_file():
                     k, v = line.split("=", 1)
                     k = k.strip()
                     v = v.strip().strip('"').strip("'")
-                    os.environ.setdefault(k, v)
+                    if v:  # Skip empty values so dev defaults take effect
+                        os.environ.setdefault(k, v)
         except Exception:
             pass
 
@@ -58,7 +59,8 @@ class Settings:
             self.CORS_ORIGINS = ["*"] if self.DEBUG else ["http://localhost:5173", "http://127.0.0.1:5173"]
 
         # JWT / Auth (Phase 3)
-        self.JWT_SECRET: str = os.getenv("JWT_SECRET", "sahyadrushti_dev_jwt_secret_key_minimum_32_bytes_long_12345")
+        _raw_jwt = os.getenv("JWT_SECRET", "").strip()
+        self.JWT_SECRET: str = _raw_jwt if _raw_jwt else "sahyadrushti_dev_jwt_secret_key_minimum_32_bytes_long_12345"
         self.JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
         self.JWT_ACCESS_TOKEN_MINUTES: int = int(
             os.getenv("JWT_ACCESS_TOKEN_MINUTES", "30")

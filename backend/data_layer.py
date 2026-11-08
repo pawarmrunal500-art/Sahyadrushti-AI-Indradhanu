@@ -633,7 +633,7 @@ ALERTS_DATA: List[Dict[str, Any]] = [
         "issue_time": "2026-10-24T17:30:00Z",
         "expiry_time": "2026-10-24T23:30:00Z",
         "approval_status": "approved",
-        "approved_by": "Model Inference Daemon (Validated under Rule 4B)",
+        "approved_by": "Model Inference Daemon (Automated Rule 4B)",
         "cap_format": "<alert xmlns='urn:oasis:names:tc:emergency:cap:1.2'><identifier>ALERT-SAHYA-2026-014</identifier><sender>SAHYADRUSHTI-AI-ENGINE</sender><sent>2026-10-24T17:30:00Z</sent><status>Actual</status><msgType>Advisory</msgType><scope>Public</scope><info><category>Geo</category><event>Hyperlocal Flash Surge Concern</event><urgency>Immediate</urgency><severity>Moderate</severity><certainty>Observed/Modelled</certainty><headline>Bhushi Dam Surge Risk</headline></info></alert>"
     },
     {

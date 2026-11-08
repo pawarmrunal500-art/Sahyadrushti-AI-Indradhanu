@@ -369,7 +369,7 @@ export const AuthorityView: React.FC<AuthorityViewProps> = ({
                       {item.hazard_type?.replace('_', ' ')}
                     </td>
                     <td style={{ padding: '8px 12px' }}>
-                      <span className="hazard-badge high">{item.risk_score} / 100{item.risk_score === 96 ? ' (Capped)' : ''}</span>
+                      <span className="hazard-badge high">{item.risk_score} / 100{(item.score_capped || item.risk_score >= 96) ? ` (Capped at ${item.current_hazard === 'landslide' ? 98 : 96})` : ''}</span>
                     </td>
                     <td style={{ padding: '8px 12px' }}>{item.slope_deg}°</td>
                     <td style={{ padding: '8px 12px', color: item.requires_action ? '#c2410c' : '#15803d', fontWeight: 600 }}>
@@ -418,7 +418,7 @@ export const AuthorityView: React.FC<AuthorityViewProps> = ({
                   </td>
                   <td style={{ padding: '8px 12px' }}>
                     <span className={`hazard-badge ${loc.status}`}>
-                      {loc.risk_score} / 100{(loc.score_capped || loc.risk_score === 96) ? ' (Capped)' : ''}
+                      {loc.risk_score} / 100{(loc.score_capped || loc.risk_score >= 96) ? ` (Capped at ${loc.current_hazard === 'landslide' ? 98 : 96})` : ''}
                     </span>
                   </td>
                   <td style={{ padding: '8px 12px' }}>{loc.slope_deg}°</td>

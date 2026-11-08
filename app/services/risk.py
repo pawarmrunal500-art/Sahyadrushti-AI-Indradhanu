@@ -31,7 +31,7 @@ class RiskService:
         return {
             "model_name": "Sahyadri-GeoRisk Ensemble",
             "version": self.engine.model_version,
-            "architecture": "Calibrated Random Forest (Landslide) & Gradient Boosting (Flash-Flood)",
+            "architecture": "Random Forest (Landslide) & Gradient Boosting (Flash-Flood)",
             "intended_use": "Decision-support early warning for Western Ghats escarpment terrain. Aligned with SDG 13.1.",
             "prohibited_use": "Not a substitute for official district evacuation mandates or legal structural engineering surveys.",
             "evaluation_basis": "physics-informed model calibrated on synthetic scenarios",

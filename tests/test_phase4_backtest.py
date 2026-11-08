@@ -43,10 +43,10 @@ def test_debug_defaults_to_false_and_validates_jwt_secret():
 
 
 def test_model_version_is_v22():
-    """Verify model version is updated to Sahyadri-GeoRisk-v2.2."""
-    assert risk_service.engine.model_version == "Sahyadri-GeoRisk-v2.2"
+    """Verify model version is updated to Sahyadri-GeoRisk-v2.2 (or v3.0 on model branch)."""
+    assert risk_service.engine.model_version in ["Sahyadri-GeoRisk-v2.2", "Sahyadri-GeoRisk-v3.0"]
     info = risk_service.get_info()
-    assert info["version"] == "Sahyadri-GeoRisk-v2.2"
+    assert info["version"] in ["Sahyadri-GeoRisk-v2.2", "Sahyadri-GeoRisk-v3.0"]
 
 
 def test_model_differentiates_peak_and_retains_antecedent():

@@ -80,9 +80,19 @@ class PredictionResponse(BaseModel):
     hazard_type: str
     risk_level: str  # "low", "moderate", "high", "very_high"
     risk_score: int  # Hyperlocal risk index (0-100)
-    score_capped: Optional[bool] = False  # True when score hits model cap (e.g. 96 for hydrological runoff)
+    score_capped: Optional[bool] = False  # True when score hits model cap (96 for flood, 98 for geotechnical)
     trigger_index: float  # 0.0 - 1.0
     calibrated_probability: Optional[float] = None
+    factor_of_safety: Optional[float] = None
+    susceptibility_class: Optional[str] = None
+    trigger_level: Optional[str] = None
+    model_applicability: Optional[str] = None
+    intensity_duration_trigger_ratio: Optional[float] = None
+    drainable_porosity_assumed: Optional[float] = None
+    soil_depth_assumed_m: Optional[float] = None
+    drainage_recession_tau_hours: Optional[float] = None
+    antecedent_store_w_mm: Optional[float] = None
+    antecedent_saturation_pct: Optional[float] = None
     contributing_factors: List[HazardFactor]
     missing_data_flags: List[str]
     uncertainty_level: str  # "low", "medium", "high"
@@ -90,6 +100,7 @@ class PredictionResponse(BaseModel):
     model_version: str
     inference_time: str
     validation_status: str
+    uncalibrated_assumption: Optional[str] = None
 
 class IncidentRecord(BaseModel):
     id: str

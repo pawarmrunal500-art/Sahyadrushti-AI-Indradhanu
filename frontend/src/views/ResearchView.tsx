@@ -35,8 +35,8 @@ export const ResearchView: React.FC<ResearchViewProps> = ({ lang }) => {
       <div className="grid-4">
         <div className="card">
           <div className="metric-label">Model Pipeline</div>
-          <div className="metric-value" style={{ fontSize: '1.15rem' }}>Sahyadri-GeoRisk v2.1</div>
-          <div className="metric-sub">Calibrated Geotechnical Ensemble</div>
+          <div className="metric-value" style={{ fontSize: '1.15rem' }}>Sahyadri-GeoRisk v3.0</div>
+          <div className="metric-sub">Continuous Infinite-Slope Model (Uncalibrated Assumptions)</div>
         </div>
 
         <div className="card">
@@ -81,7 +81,7 @@ export const ResearchView: React.FC<ResearchViewProps> = ({ lang }) => {
           <div style={{ color: '#0369a1' }}>&nbsp;&nbsp;&nbsp;&nbsp;↓ (Missing Data Imputation: Antecedent Precipitation Index fallback when telemetry offline)</div>
           <div><strong>2. Geospatial Feature Engineering:</strong> 1h/24h/48h Acc + Topographic Wetness Index + Slope Angle + Drainage Flow Accumulation</div>
           <div style={{ color: '#0369a1' }}>&nbsp;&nbsp;&nbsp;&nbsp;↓ (Decoupled Task Separation: Landslides ≠ Flash Floods)</div>
-          <div><strong>3. Machine Learning Inference:</strong> Calibrated Basalt Overburden Classifier (FS proxy) + Hydrograph Catchment Convergence</div>
+          <div><strong>3. Machine Learning Inference:</strong> Infinite-Slope Overburden Classifier (Continuous FS) + Hydrograph Catchment Convergence</div>
           <div style={{ color: '#0369a1' }}>&nbsp;&nbsp;&nbsp;&nbsp;↓ (Explainability & Threshold Classification)</div>
           <div><strong>4. Explainability & Output:</strong> SHAP-Proxy Perturbation Weights + 0-100 Risk Score + Multilingual Precaution Directives</div>
           <div style={{ color: '#0369a1' }}>&nbsp;&nbsp;&nbsp;&nbsp;↓</div>

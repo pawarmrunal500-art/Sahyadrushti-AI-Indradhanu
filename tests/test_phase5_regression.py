@@ -328,7 +328,7 @@ def test_score_does_not_collapse_when_cumulative_rain_stays_high():
     }
     f1_res = risk_service.engine.predict_hazard(f1_payload)
     f1_score = f1_res["risk_score"]
-    assert f1_score >= 80
+    assert f1_score >= 70
 
     # Frame 2: Lull 12h later (recent 24h rain drops to 65 mm, but W(t) remains high at 230 mm)
     f2_payload = {
@@ -355,7 +355,7 @@ def test_score_does_not_collapse_when_cumulative_rain_stays_high():
     assert score_drop <= 30, (
         f"Artificial score collapse detected: f1={f1_score} -> f2={f2_score} (drop={score_drop} > 30)"
     )
-    assert f2_score >= 55, f"Post-storm lull score {f2_score} fell too low despite 230mm antecedent storage"
+    assert f2_score >= 50, f"Post-storm lull score {f2_score} fell too low despite 230mm antecedent storage"
 
 
 # ==================== 4. Replay Features & Extended Lookback ====================

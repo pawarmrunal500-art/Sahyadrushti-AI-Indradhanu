@@ -190,7 +190,7 @@ export const FeatureIntelligenceGrid: React.FC<FeatureIntelligenceGridProps> = (
         <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '2px' }}>
           {lang === 'mr'
             ? 'प्रत्येक मोड्युलमध्ये सत्य छायाचित्रे, शास्त्रीय भूपृष्ठ विश्लेषण आणि उपयुक्त कृती तत्काळ उपलब्ध आहेत.'
-            : 'Each feature pairs authentic Western Ghats visual imagery with calibrated geotechnical metrics and actionable emergency tools.'}
+            : 'Each feature pairs authentic Western Ghats visual imagery with uncalibrated geotechnical metrics and actionable emergency tools.'}
         </p>
       </div>
 

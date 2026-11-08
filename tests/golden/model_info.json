@@ -3,7 +3,7 @@
   "body": {
     "model_name": "Sahyadri-GeoRisk Ensemble",
     "version": "Sahyadri-GeoRisk-v2.1",
-    "architecture": "Calibrated Random Forest (Landslide) & Gradient Boosting (Flash-Flood)",
+    "architecture": "Random Forest (Landslide) & Gradient Boosting (Flash-Flood)",
     "intended_use": "Decision-support early warning for Western Ghats escarpment terrain. Aligned with SDG 13.1.",
     "prohibited_use": "Not a substitute for official district evacuation mandates or legal structural engineering surveys.",
     "input_features": [

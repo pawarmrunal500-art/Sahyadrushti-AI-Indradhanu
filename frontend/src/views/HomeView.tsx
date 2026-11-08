@@ -390,7 +390,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
                     }}
                   >
-                    Risk: {loc.risk_score}/100{(loc.score_capped || loc.risk_score === 96) ? ' (Capped)' : ''}
+                    Risk: {loc.risk_score}/100{(loc.score_capped || loc.risk_score >= 96) ? ` (Capped at ${loc.current_hazard === 'landslide' ? 98 : 96})` : ''}
                   </span>
                 </div>
 

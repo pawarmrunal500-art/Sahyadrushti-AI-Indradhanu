@@ -87,9 +87,9 @@ export const LocationDetailPanel: React.FC<LocationDetailPanelProps> = ({
             <div className="metric-label">{lang === 'mr' ? 'एआय धोका निर्देशांक' : 'Risk Index (0-100)'}</div>
             <div className="metric-value">
               {location.risk_score} <span style={{ fontSize: '0.85rem', fontWeight: 500, color: '#64748b' }}>/ 100</span>
-              {(location.score_capped || location.risk_score === 96) && (
-                <span title="Score capped at hydrological model ceiling (96) to reflect uncalibrated overflow limits" style={{ marginLeft: '6px', fontSize: '0.65rem', background: '#fef3c7', color: '#b45309', border: '1px solid #fde68a', padding: '1px 5px', borderRadius: '4px', fontWeight: 600 }}>
-                  Capped at 96
+              {(location.score_capped || location.risk_score >= 96) && (
+                <span title={`Score capped at ${location.current_hazard === 'landslide' ? 'geotechnical' : 'hydrological'} model ceiling (${location.current_hazard === 'landslide' ? 98 : 96}) to reflect uncalibrated limits`} style={{ marginLeft: '6px', fontSize: '0.65rem', background: '#fef3c7', color: '#b45309', border: '1px solid #fde68a', padding: '1px 5px', borderRadius: '4px', fontWeight: 600 }}>
+                  Capped at {location.current_hazard === 'landslide' ? 98 : 96}
                 </span>
               )}
             </div>

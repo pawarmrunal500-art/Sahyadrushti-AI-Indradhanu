@@ -16,7 +16,7 @@ router = APIRouter(tags=["AI / ML Inference & Transparency"])
 def predict_hazard_risk(request: Request, payload: PredictionRequest):
     """
     Executes physics-informed model inference on given terrain and rainfall payload.
-    Returns calibrated probability, relative risk score (0-100), trigger index, and SHAP-proxy factors.
+    Returns estimated probability proxy, relative risk score (0-100), trigger index, and SHAP-proxy factors.
     """
     try:
         data = payload.model_dump() if hasattr(payload, "model_dump") else payload.dict()

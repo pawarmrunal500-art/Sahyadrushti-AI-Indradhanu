@@ -38,7 +38,7 @@ class PureNumpyDecisionNode:
 class SahyadriHazardEngine:
     def __init__(self):
         self.sklearn_active = False
-        self.model_version = "Sahyadri-GeoRisk-v2.2"
+        self.model_version = "Sahyadri-GeoRisk-v3.0"
         self.feature_names = [
             "rain_1h_mm",
             "rain_24h_mm",
@@ -241,70 +241,102 @@ class SahyadriHazardEngine:
 
         slope_deg = payload.get("slope_deg", 18.0)
         elevation_m = payload.get("elevation_m", 640.0)
-        drainage_prox = payload.get("drainage_proximity_m", 150.0)
-        disturbed_prox = payload.get("disturbed_slope_prox_m", 80.0)
+        drainage_prox = payload.get("drainage_proximity_m", payload.get("drainage_prox_m", 150.0))
+        disturbed_prox = payload.get("disturbed_slope_prox_m", payload.get("disturbed_prox_m", 80.0))
         veg_cover = payload.get("veg_cover_pct", 50.0)
+        upstream_catchment = float(payload.get("upstream_catchment_km2", payload.get("catchment_area_km2", 3.0)))
 
-        # Baseline linear logistic vector
-        x = np.array([
-            rain_1h, rain_24h, rain_48h, forecast_24h, soil_moisture,
-            slope_deg, elevation_m, drainage_prox, disturbed_prox, veg_cover
-        ])
+        # Caine (1980) Intensity-Duration Trigger: I_crit = 14.82 * D^(-0.39) [mm/h]
+        # For D = 24h, I_crit = 4.29 mm/h (approx 103 mm in 24h).
+        # Explicitly marked as a generic global threshold, NOT calibrated for the Western Ghats.
+        i_obs_24h = rain_24h / 24.0
+        i_crit_24h = 14.82 * (24.0 ** -0.39)  # ~4.29 mm/h
+        caine_ratio = round(float(i_obs_24h / i_crit_24h), 3) if i_crit_24h > 0 else 0.0
 
-        if hazard_type == "landslide":
-            z = np.dot(x, self.weights_ls) + self.bias_ls
+        if caine_ratio < 0.5:
+            trigger_level = "below"
+        elif caine_ratio < 1.0:
+            trigger_level = "approaching"
         else:
-            z = np.dot(x, self.weights_ff) + self.bias_ff
+            trigger_level = "exceeding"
 
-        prob_event = float(1.0 / (1.0 + np.exp(-np.clip(z, -15, 15))))
-        base_score = int(np.clip(prob_event * 100.0, 0, 100))
+        # Static Terrain Susceptibility Classification
+        if slope_deg >= 35.0:
+            susceptibility_class = "high_hazard_escarpment"
+        elif slope_deg >= 25.0:
+            susceptibility_class = "moderate_hazard_slope"
+        elif slope_deg >= 15.0:
+            susceptibility_class = "low_hazard_transition"
+        else:
+            susceptibility_class = "low_relief_plain"
 
-        # Physics-Consistent Continuous Geotechnical & Hydrological Calibration
-        # Prevents flat 99 saturation and prevents premature post-peak collapse
+        # Model Applicability Assessment
+        if hazard_type in ["flash_flood", "waterlogging"]:
+            model_applicability = "catchment_drainage_fluvial"
+        elif disturbed_prox < 40.0 or slope_deg > 42.0:
+            model_applicability = "rock_scarp_or_cut, low confidence for the infinite-slope soil model"
+        else:
+            model_applicability = "soil_slope"
+
+        # Continuous Physics-Consistent Geotechnical & Hydrological Evaluation (v3.0)
+        # Eliminates the hard gate (rain_48h > 40 or soil_moisture > 75) and logistic fallback.
+        # Geotechnical Factor of Safety (FS) is continuously evaluated across all conditions.
         slope_rad = np.radians(slope_deg)
         fs_value = None
 
         if hazard_type in ["flash_flood", "waterlogging"]:
-            # Rational runoff coefficient governed by antecedent saturation
-            c_runoff = 0.25 + 0.65 * ((soil_moisture / 100.0) ** 2)
-            drainage_factor = (100.0 / max(drainage_prox, 15.0)) ** 0.35
-            surge_index = (rain_1h * 2.8 + rain_24h * 0.22 + rain_48h * 0.08) * c_runoff * drainage_factor
+            # Rational runoff coefficient governed continuously by antecedent saturation
+            c_runoff = 0.20 + 0.70 * ((soil_moisture / 100.0) ** 2)
+            # Drainage proximity and upstream catchment controls:
+            # Proximity factor scales channel surge (sites close to streams reach high surge index)
+            drainage_factor = (40.0 / max(drainage_prox, 15.0)) ** 0.45
+            catchment_factor = (max(0.5, upstream_catchment) / 3.5) ** 0.30
+            surge_index = (rain_1h * 2.8 + rain_24h * 0.22 + rain_48h * 0.08) * c_runoff * drainage_factor * catchment_factor
             # Storage persistence from preceding storm
-            w_storage_proxy = w_storage
-            base_surge = min(22.0, (w_storage_proxy / 240.0) * 22.0 * (soil_moisture / 100.0))
-            relief_term = max(0.0, (15.0 - slope_deg) * 0.8)
-            calibrated_score = int(min(96, max(3, round(10.0 + surge_index * 0.85 + base_surge + relief_term))))
-            risk_score = calibrated_score if (rain_48h > 40.0 or soil_moisture > 75.0) else base_score
+            base_surge = min(20.0, (w_storage / 300.0) * 20.0 * (soil_moisture / 100.0))
+            relief_term = max(0.0, (12.0 - slope_deg) * 0.5)
+            risk_score = int(np.clip(round(1.0 + surge_index * 0.85 + base_surge + relief_term), 0, 96))
         else:
             # Geotechnical Infinite Slope Factor of Safety (FS) for Deccan Trap Basalt Overburden
+            # Documented uncalibrated physical assumptions:
+            #   - Z_COLLUVIUM = 2.2m: Weathered colluvium / saprolite mantle thickness above basalt bedrock
+            #   - N_DRAIN = 0.15: Saprolite drainable porosity (specific yield)
+            #   - STORAGE_SCALE_MM = N_DRAIN * Z_COLLUVIUM * 1000 = 330.0mm reference saturated store
+            #   - GAMMA_TOTAL = 19.5 kN/m^3: Bulk unit weight of colluvium mantle
+            #   - GAMMA_W = 9.81 kN/m^3: Pore fluid unit weight
+            #   - TAU_DRAIN_HOURS = 60.0h: Basalt fracture and saprolite drainage recession time constant
+            Z_COLLUVIUM = 2.2
+            N_DRAIN = 0.15
+            STORAGE_SCALE_MM = N_DRAIN * Z_COLLUVIUM * 1000.0  # 330.0 mm
+            GAMMA_TOTAL = 19.5
+            GAMMA_W = 9.81
+
+            # Drive pore pressure column fraction m from both drained store W(t) and profile soil moisture
+            r_w = min(1.0, max(0.0, w_storage / STORAGE_SCALE_MM))
+            s_matrix = min(1.0, max(0.0, sat_matrix / 100.0))
+            m_perched = min(1.0, max(0.0, 0.50 * r_w + 0.50 * max(0.0, (s_matrix - 0.55) / 0.45)))
+            u_pore = m_perched * Z_COLLUVIUM * GAMMA_W * (np.cos(slope_rad) ** 2)
+
             phi_rad = np.radians(30.0 + (veg_cover / 100.0) * 4.0)
-            c_prime = max(2.5, 16.0 - (soil_moisture / 100.0) * 11.0 - (50.0 / max(disturbed_prox, 15.0)) * 2.0)
-            gamma_total = 19.5
-            z_colluvium = 2.2
-            m_perched = min(1.0, max(0.0, (soil_moisture - 65.0) / 33.0))
-            u_pore = m_perched * z_colluvium * 9.81 * (np.cos(slope_rad) ** 2)
-            
-            driving_shear = gamma_total * z_colluvium * np.sin(slope_rad) * np.cos(slope_rad)
-            effective_normal = (gamma_total * z_colluvium * (np.cos(slope_rad) ** 2)) - u_pore
+            c_prime = max(2.5, 16.0 - m_perched * 11.0 - (50.0 / max(disturbed_prox, 15.0)) * 2.0)
+
+            driving_shear = GAMMA_TOTAL * Z_COLLUVIUM * np.sin(slope_rad) * np.cos(slope_rad)
+            effective_normal = (GAMMA_TOTAL * Z_COLLUVIUM * (np.cos(slope_rad) ** 2)) - u_pore
             resisting_shear = c_prime + max(0.0, effective_normal) * np.tan(phi_rad)
             fs = float(resisting_shear / max(0.3, driving_shear))
             fs_value = round(fs, 2)
 
-            if fs >= 1.8:
-                calibrated_score = int(max(2, round(5.0 + max(0.0, (2.2 - fs) * 15.0))))
-            elif fs >= 1.3:
-                calibrated_score = int(round(25.0 + ((1.8 - fs) / 0.5) * 30.0))
-            elif fs >= 1.0:
-                calibrated_score = int(round(55.0 + ((1.3 - fs) / 0.3) * 23.0))
-            else:
-                # Critical failure regime (FS < 1.0):
-                # Continuous differentiation across slopes and cuttings
-                fs_deficit = (1.0 - fs) / 0.50
-                cut_penalty = min(5.0, (50.0 / max(disturbed_prox, 15.0)))
-                rain_pulse = min(6.0, (rain_1h * 0.35 + rain_24h * 0.02))
-                calibrated_score = int(min(98, round(78.0 + min(14.0, fs_deficit * 14.0) + cut_penalty + rain_pulse)))
-            
-            risk_score = calibrated_score if (rain_48h > 40.0 or soil_moisture > 75.0) else base_score
+            # Smooth, continuous, monotonic mapping from FS to 0-98 risk index
+            # Critical equilibrium (FS=1.0) maps to elevated index ~54
+            # Imminent failure (FS < 0.75) smoothly approaches 80-98
+            fs_score = 98.0 / (1.0 + np.exp(4.0 * (fs - 1.05)))
+
+            # Mild dynamic intensity trigger contribution when slope is destabilized (FS < 1.3)
+            # Scaled by fs_score so calm/stable slopes receive zero dynamic amplification
+            rain_pulse = min(6.0, (rain_1h * 0.25 + rain_24h * 0.015)) * min(1.0, fs_score / 40.0)
+            cut_term = min(3.0, (30.0 / max(disturbed_prox, 15.0))) * min(1.0, fs_score / 40.0)
+
+            risk_score = int(np.clip(round(fs_score + rain_pulse + cut_term), 0, 98))
 
         trigger_index = round(float(risk_score / 100.0), 3)
 
@@ -320,53 +352,105 @@ class SahyadriHazardEngine:
         # Local Feature Contribution Analysis
         contributing_factors = []
         
-        if slope_deg > 28.0:
-            weight = round(min(0.35, (slope_deg - 20.0) / 70.0), 2)
+        # 1. Slope / Terrain Factor (always evaluated)
+        if slope_deg >= 35.0:
             contributing_factors.append({
                 "factor": "Steep Escarpment Slope",
-                "weight": weight,
+                "weight": round(min(0.40, (slope_deg - 20.0) / 60.0), 2),
                 "direction": "increase",
-                "description": f"Slope angle of {slope_deg:.1f}° promotes gravitational shear stress along weathered basalt joints."
+                "description": f"Steep slope angle of {slope_deg:.1f}° generates high gravitational shear stress along weathered basalt joints."
             })
-        elif slope_deg < 12.0:
+        elif slope_deg >= 20.0:
             contributing_factors.append({
-                "factor": "Gentle Relief Terrain",
-                "weight": -0.15,
+                "factor": "Moderate Hillside Gradient",
+                "weight": round((slope_deg - 15.0) / 50.0, 2),
+                "direction": "increase",
+                "description": f"Moderate slope ({slope_deg:.1f}°) with weathered overburden susceptible under sustained saturation."
+            })
+        else:
+            contributing_factors.append({
+                "factor": "Gentle Valley / Plain Relief",
+                "weight": -0.20,
                 "direction": "decrease",
-                "description": f"Low slope ({slope_deg:.1f}°) significantly reduces landslide detachment potential."
+                "description": f"Low slope ({slope_deg:.1f}°) significantly diminishes gravitational slide detachment risk."
             })
 
-        if w_storage > 120.0 or soil_moisture > 75.0:
-            weight = round(min(0.42, (w_storage / 300.0) + (soil_moisture / 250.0)), 2)
+        # 2. Moisture / Hydrology Factor (always evaluated)
+        if soil_moisture >= 75.0 or w_storage >= 120.0:
             contributing_factors.append({
                 "factor": "High Antecedent Saturation & Slow Basalt Drainage Lag",
-                "weight": weight,
+                "weight": round(min(0.45, (w_storage / 300.0) + (soil_moisture / 250.0)), 2),
                 "direction": "increase",
                 "description": f"Drained antecedent rainfall store ({w_storage:.1f}mm) with {soil_moisture:.0f}% profile wetness sustains joint pore pressure (drainage tau={tau_drain:.0f}h; uncalibrated physical assumption)."
             })
-
-        if hazard_type == "flash_flood" and (rain_1h > 25.0 or drainage_prox < 80.0):
+        elif soil_moisture >= 45.0:
             contributing_factors.append({
-                "factor": "Intense Rain in Upstream Catchment",
-                "weight": 0.32,
+                "factor": "Moderate Soil Saturation",
+                "weight": 0.15,
                 "direction": "increase",
-                "description": f"Short-duration rain intensity ({rain_1h:.1f} mm/h) near watercourse ({drainage_prox:.0f}m) accelerates sudden stream surge."
+                "description": f"Active profile soil wetness ({soil_moisture:.0f}%) reducing available infiltration buffer capacity."
+            })
+        else:
+            contributing_factors.append({
+                "factor": "Dry Sub-Surface Profile",
+                "weight": -0.15,
+                "direction": "decrease",
+                "description": f"Low soil moisture ({soil_moisture:.0f}%) provides ample infiltration capacity before pore pressure develops."
             })
 
-        if disturbed_prox < 40.0:
-            contributing_factors.append({
-                "factor": "Cut-Slope Anthropogenic Vulnerability",
-                "weight": 0.18,
-                "direction": "increase",
-                "description": f"Within {disturbed_prox:.0f}m of engineered road/rail cutting lacking toe retaining stabilization."
-            })
+        # 3. Dynamic Rain / Catchment / Toe Cutting Factor (always evaluated)
+        if hazard_type in ["flash_flood", "waterlogging"]:
+            if rain_1h >= 15.0 or rain_24h >= 60.0:
+                contributing_factors.append({
+                    "factor": "Intense Rain in Catchment",
+                    "weight": round(min(0.38, rain_1h * 0.02 + rain_24h * 0.003), 2),
+                    "direction": "increase",
+                    "description": f"Short-duration rain intensity ({rain_1h:.1f} mm/h) accelerates rapid runoff in the upstream drainage basin."
+                })
+            else:
+                contributing_factors.append({
+                    "factor": "Catchment Runoff Regulated",
+                    "weight": -0.10,
+                    "direction": "decrease",
+                    "description": f"Moderate rainfall intensity ({rain_1h:.1f} mm/h) currently within local drainage conveying capacity."
+                })
+        else:
+            if disturbed_prox < 40.0:
+                contributing_factors.append({
+                    "factor": "Cut-Slope Anthropogenic Vulnerability",
+                    "weight": 0.22,
+                    "direction": "increase",
+                    "description": f"Within {disturbed_prox:.0f}m of engineered road/rail cutting lacking toe retaining stabilization."
+                })
+            elif rain_24h >= 80.0:
+                contributing_factors.append({
+                    "factor": "Sustained Monsoon Infiltration",
+                    "weight": round(min(0.30, rain_24h / 250.0), 2),
+                    "direction": "increase",
+                    "description": f"Heavy 24-hour rainfall ({rain_24h:.1f} mm) infiltrating weathered colluvial mantle."
+                })
+            else:
+                contributing_factors.append({
+                    "factor": "Intact Natural Slope Geometry",
+                    "weight": -0.10,
+                    "direction": "decrease",
+                    "description": f"Location situated {disturbed_prox:.0f}m away from destabilizing road or rail excavations."
+                })
 
-        if veg_cover > 70.0:
+        # 4. Vegetation Mantle Cover Factor (if relevant)
+        if veg_cover >= 65.0:
             contributing_factors.append({
                 "factor": "Dense Root Cohesion & Forest Cover",
                 "weight": -0.12,
                 "direction": "decrease",
-                "description": f"Dense vegetation canopy ({veg_cover:.0f}%) stabilizes topsoil mantle against surface erosion."
+                "description": f"Dense vegetation canopy ({veg_cover:.0f}%) stabilizes topsoil mantle against surface wash."
+            })
+        elif veg_cover <= 30.0:
+            contributing_factors.append({
+                "factor": "Sparse Vegetative Mantle",
+                "weight": 0.12,
+                "direction": "increase",
+                "description": f"Sparse vegetation cover ({veg_cover:.0f}%) exposes surface colluvium to rill erosion and rapid saturation."
             })
 
         precautions = []
@@ -406,6 +490,12 @@ class SahyadriHazardEngine:
             "trigger_index": trigger_index,
             "calibrated_probability": round(float(risk_score / 100.0), 3),
             "factor_of_safety": fs_value,
+            "susceptibility_class": susceptibility_class,
+            "trigger_level": trigger_level,
+            "model_applicability": model_applicability,
+            "intensity_duration_trigger_ratio": caine_ratio,
+            "drainable_porosity_assumed": 0.15,
+            "soil_depth_assumed_m": 2.2,
             "contributing_factors": contributing_factors,
             "missing_data_flags": missing_flags,
             "uncertainty_level": uncertainty_level,
@@ -415,8 +505,8 @@ class SahyadriHazardEngine:
             "antecedent_store_w_mm": round(float(w_storage), 1),
             "antecedent_saturation_pct": round(float(soil_moisture), 1),
             "inference_time": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            "validation_status": "Calibrated Geotechnical Ensemble (Physically Grounded on Basalt Overburden)",
-            "uncalibrated_assumption": "Basalt joint pore pressure drainage recession tau=60h based on Deccan Trap saprolite hydraulics"
+            "validation_status": "Continuous Infinite-Slope Geotechnical Model (Uncalibrated Assumptions)",
+            "uncalibrated_assumption": "Pore pressure driven by W(t) with tau=60h and n_drain=0.15 over z=2.2m saprolite; Caine (1980) global empirical rainfall trigger"
         }
 
 # Global singleton

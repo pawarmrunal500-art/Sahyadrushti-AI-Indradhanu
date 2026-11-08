@@ -8,6 +8,25 @@ import os
 import sys
 from typing import List, Optional
 
+def _load_env_file():
+    """Load key-value pairs from .env in project root if present and not already in os.environ."""
+    env_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
+    if os.path.isfile(env_file):
+        try:
+            with open(env_file, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    k = k.strip()
+                    v = v.strip().strip('"').strip("'")
+                    os.environ.setdefault(k, v)
+        except Exception:
+            pass
+
+_load_env_file()
+
 
 class Settings:
     """

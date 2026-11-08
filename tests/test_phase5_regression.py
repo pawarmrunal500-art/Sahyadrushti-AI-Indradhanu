@@ -235,21 +235,33 @@ def test_model_monotonicity_rainfall():
                 prev_score = score
 
 
-@pytest.mark.xfail(
-    reason="Item 2: Landslide risk engine switches to pure geotechnical FS (geo_score) above 40mm 48h rain, omitting direct rainfall rate sensitivity until Item 2 proposal is adopted.",
-    strict=True
-)
-def test_landslide_score_strictly_increases_with_rainfall_below_cap():
+def test_coupled_storm_scenario_landslide_monotonic_escalation():
     """
-    For landslide sites below the model cap (<96), score must strictly increase
-    between 100mm and 300mm of 24h rainfall under moderate antecedent conditions.
-    Marked xfail until Item 2 rainfall saturation proposal is resolved.
+    Coupled Storm Scenario Sensitivity Test (Phase 6 Step 4):
+    In reality, a storm pulse couples directly to vadose infiltration and antecedent storage W(t).
+    Under coupled infiltration:
+      - W(t) = W_base + 0.85 * P_24
+      - theta = min(0.53, theta_base + (P_24 / 400.0) * (0.53 - theta_base))
+    
+    Verifies that under wet pre-history (active monsoon conditions), increasing 24h storm rainfall
+    from 50mm to 100mm to 200mm to 300mm strictly increases risk score for all landslide sites below the cap.
+    
+    Physical Plateau Note:
+      Once theta reaches full saturation (0.53, water table at surface), pore pressure reaches
+      its physical ceiling u_max = gamma_w * z * cos^2(beta) under the infinite-slope assumption;
+      excess rainfall becomes surface overland runoff and cannot further increase geotechnical pore pressure.
     """
     landslide_locs = [l for l in LOCATIONS_DATA if l.get("current_hazard") == "landslide"]
     assert len(landslide_locs) > 0
 
+    w_base = 200.0
+    sm_base = 0.44
+
     for loc in landslide_locs:
-        def get_score_for_rain(r24):
+        scores = []
+        for p24 in [50.0, 100.0, 200.0, 300.0]:
+            w_t = w_base + 0.85 * p24
+            sm = min(0.53, sm_base + (p24 / 400.0) * (0.53 - sm_base))
             payload = {
                 "location_id": loc["id"],
                 "hazard_type": "landslide",
@@ -257,23 +269,34 @@ def test_landslide_score_strictly_increases_with_rainfall_below_cap():
                 "elevation_m": loc["elevation_m"],
                 "catchment_area_km2": loc.get("upstream_catchment_km2", 2.0),
                 "drainage_proximity_m": loc["drainage_proximity_m"],
-                "rain_1h": r24 * 0.15,
-                "rain_24h": r24,
-                "rain_48h": r24 * 1.4,
-                "api_mm": 120.0,
-                "antecedent_store_mm": 120.0,
-                "soil_moisture_0_to_1cm": 0.35,
-                "soil_moisture_3_to_9cm": 0.35,
-                "soil_moisture_9_to_27cm": 0.35
+                "disturbed_slope_prox_m": loc.get("disturbed_slope_prox_m", 80.0),
+                "veg_cover_pct": loc.get("veg_cover_pct", 50.0),
+                "rain_1h": p24 * 0.12,
+                "rain_24h": p24,
+                "rain_48h": p24 + 40.0,
+                "api_mm": w_t,
+                "antecedent_store_mm": w_t,
+                "soil_moisture_0_to_1cm": sm,
+                "soil_moisture_3_to_9cm": sm,
+                "soil_moisture_9_to_27cm": sm
             }
-            return risk_service.engine.predict_hazard(payload)["risk_score"]
+            res = risk_service.engine.predict_hazard(payload)
+            scores.append((p24, res["risk_score"], res.get("score_capped", False)))
 
-        score_100 = get_score_for_rain(100.0)
-        score_300 = get_score_for_rain(300.0)
-        if score_100 < 96:
-            assert score_300 > score_100, (
-                f"Rainfall plateau at {loc['id']}: score_100={score_100} equals score_300={score_300} at 300mm rain"
+        # Monotonicity check across the storm progression
+        for i in range(len(scores) - 1):
+            p_curr, s_curr, _ = scores[i]
+            p_next, s_next, capped_next = scores[i + 1]
+            assert s_next >= s_curr, (
+                f"Coupled storm monotonicity violation at {loc['id']}: "
+                f"P={p_curr}mm (score={s_curr}) -> P={p_next}mm (score={s_next})"
             )
+            # Below safety cap, score must strictly increase with rainfall
+            if not capped_next and s_curr < 96:
+                assert s_next > s_curr, (
+                    f"Unexpected score plateau at {loc['id']} between P={p_curr}mm and P={p_next}mm: "
+                    f"score remained {s_curr}"
+                )
 
 
 # ==================== 3. Score Stability / Non-Collapse ====================

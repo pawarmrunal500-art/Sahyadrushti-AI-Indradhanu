@@ -48,3 +48,4 @@ echo [INFO] Launching backend and frontend...
 powershell -ExecutionPolicy Bypass -File scripts\start_demo.ps1
 
 pause
+

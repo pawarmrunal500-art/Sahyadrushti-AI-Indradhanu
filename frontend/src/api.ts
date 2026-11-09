@@ -566,5 +566,17 @@ export const apiClient = {
       console.warn('Alert approve failed via backend:', e);
       return { ok: false, error: e.message };
     }
+  },
+
+  async geocode(query: string): Promise<any[]> {
+    try {
+      const res = await fetch(`/api/geocode?q=${encodeURIComponent(query)}`);
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (e) {
+      console.warn('Geocode API request failed:', e);
+    }
+    return [];
   }
 };

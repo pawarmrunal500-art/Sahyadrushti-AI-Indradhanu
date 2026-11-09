@@ -1,7 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import L from 'leaflet';
-import { LocationItem, IncidentRecord, ShelterItem, CorridorItem, SensorNode, RiskLevel } from '../types';
-import { Layers, RotateCcw, Search, Eye, ShieldAlert, Mountain, Compass } from 'lucide-react';
+import { LocationItem, IncidentRecord, ShelterItem, CorridorItem, SensorNode, RiskLevel, HazardType } from '../types';
+import {
+  Layers, RotateCcw, Search, Eye, ShieldAlert, Mountain, Compass,
+  X, MapPin, CheckCircle2, AlertCircle, Loader2
+} from 'lucide-react';
+import {
+  searchLocalGazetteer, toLocationItem, RegionalPlace, findNearestStation
+} from '../utils/gazetteer';
+import { apiClient } from '../api';
 
 interface InteractiveMapProps {
   locations: LocationItem[];
@@ -37,6 +44,22 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
   const [showSheltersLayer, setShowSheltersLayer] = useState(true);
   const [showSensorsLayer, setShowSensorsLayer] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchFeedback, setSearchFeedback] = useState<{ type: 'success' | 'error' | 'info'; message: string } | null>(null);
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Default Pilot Region Center: Lonavala - Khandala Bhor Ghat (18.755, 73.395)
   const LONAVALA_CENTER: [number, number] = [18.755, 73.395];
@@ -74,7 +97,8 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
         corridors: L.layerGroup().addTo(map),
         incidents: L.layerGroup().addTo(map),
         shelters: L.layerGroup().addTo(map),
-        sensors: L.layerGroup().addTo(map)
+        sensors: L.layerGroup().addTo(map),
+        search: L.layerGroup().addTo(map)
       };
     }
 
@@ -296,20 +320,152 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
     });
   }, [selectedLocation]);
 
-  const handleResetView = () => {
+  // Point and zoom to a searched location
+  const selectAndZoomPlace = useCallback((place: any) => {
     if (!mapInstanceRef.current) return;
-    mapInstanceRef.current.flyTo(LONAVALA_CENTER, DEFAULT_ZOOM, { duration: 1 });
+
+    // 1. Clear previous search pins
+    const searchGroup = layerGroupsRef.current.search;
+    searchGroup?.clearLayers();
+
+    // 2. Build custom animated pin marker
+    const iconHtml = `
+      <div class="custom-search-marker-pin" title="${place.name}">
+        <div class="search-pulse-ring"></div>
+        <div class="search-pin-core">📍</div>
+      </div>
+    `;
+
+    const customIcon = L.divIcon({
+      className: 'custom-search-marker-wrapper',
+      html: iconHtml,
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    const marker = L.marker(place.coordinates, { icon: customIcon });
+
+    const nearestInfo = findNearestStation(place.coordinates, locations);
+    const nearestText = nearestInfo
+      ? `${nearestInfo.station.name} (~${nearestInfo.distanceKm.toFixed(1)} km, Risk: ${nearestInfo.station.risk_score}/100)`
+      : null;
+
+    const placeTitle = lang === 'mr' ? (place.name_mr || place.name) : (lang === 'hi' ? (place.name_hi || place.name) : place.name);
+
+    marker.bindPopup(`
+      <div style="font-family: inherit; font-size: 0.84rem; line-height: 1.45; min-width: 210px; padding: 2px;">
+        <div style="background: #2563eb; color: #ffffff; font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; display: inline-block; margin-bottom: 4px;">
+          📍 ${lang === 'mr' ? 'शोधलेले क्षेत्र' : 'Searched Region'}
+        </div>
+        <div style="font-weight: 800; font-size: 1.05rem; color: #0f172a;">${placeTitle}</div>
+        ${place.name_mr && lang !== 'mr' ? `<div style="font-size: 0.8rem; color: #166534; font-weight: 600;">${place.name_mr}</div>` : ''}
+        <div style="font-size: 0.74rem; color: #64748b; margin-top: 3px;">
+          ${place.region || 'Western Ghats / Maval Corridor'}
+        </div>
+        <div style="margin-top: 6px; padding-top: 6px; border-top: 1px solid #e2e8f0; font-size: 0.72rem; color: #334155;">
+          <div><strong>📍 Coords:</strong> ${place.coordinates[0].toFixed(4)}°N, ${place.coordinates[1].toFixed(4)}°E</div>
+          <div><strong>🏔️ Elev / Slope:</strong> ${place.elevation_m || 625}m MSL • ${place.slope_deg || 6.5}°</div>
+          ${nearestText ? `<div style="margin-top: 3px;"><strong>📡 Nearest Sensor:</strong> ${nearestText}</div>` : ''}
+        </div>
+        <div style="margin-top: 6px; font-size: 0.72rem; color: #047857; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 4px 6px; border-radius: 4px;">
+          ${lang === 'mr' ? (place.guidance_mr || place.guidance) : (lang === 'hi' ? (place.guidance_hi || place.guidance) : place.guidance)}
+        </div>
+      </div>
+    `, { autoClose: false, closeOnClick: false });
+
+    searchGroup?.addLayer(marker);
+    marker.openPopup();
+
+    // 3. Smooth flyTo camera animation and zoom (level 14)
+    mapInstanceRef.current.flyTo(place.coordinates, 14, {
+      duration: 1.4
+    });
+
+    // 4. Update selected location in parent state so details panel updates
+    const fullLocItem = toLocationItem(place, locations);
+    onSelectLocation(fullLocItem);
+
+    // 5. Update UI feedback
+    setSearchQuery(placeTitle);
+    setShowSuggestions(false);
+    setSearchFeedback({
+      type: 'success',
+      message: lang === 'mr' 
+        ? `📍 '${placeTitle}' क्षेत्र दर्शवले व झूम केले!`
+        : `📍 Pointed and zoomed to '${placeTitle}' region!`
+    });
+  }, [locations, lang, onSelectLocation]);
+
+  const handleClearSearch = () => {
+    setSearchQuery('');
+    setSuggestions([]);
+    setShowSuggestions(false);
+    setSearchFeedback(null);
+    layerGroupsRef.current.search?.clearLayers();
+    if (mapInstanceRef.current) {
+      mapInstanceRef.current.flyTo(LONAVALA_CENTER, DEFAULT_ZOOM, { duration: 1 });
+    }
   };
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleResetView = () => {
+    handleClearSearch();
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setSearchQuery(val);
+    if (searchFeedback) setSearchFeedback(null);
+
+    if (val.trim().length >= 1) {
+      const matches = searchLocalGazetteer(val.trim(), locations).slice(0, 6);
+      setSuggestions(matches);
+      setShowSuggestions(matches.length > 0);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!searchQuery.trim()) return;
-    const match = locations.find((l) =>
-      l.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      l.name_mr.includes(searchQuery)
-    );
-    if (match) {
-      onSelectLocation(match);
+    const cleanQuery = searchQuery.trim();
+    if (!cleanQuery) return;
+
+    setShowSuggestions(false);
+
+    // 1. Search in local gazetteer (Kamshet, Karla, Malavli, etc. + pilot locations)
+    const localMatches = searchLocalGazetteer(cleanQuery, locations);
+    if (localMatches.length > 0) {
+      selectAndZoomPlace(localMatches[0]);
+      return;
+    }
+
+    // 2. Fall back to backend / online geocoding
+    setIsSearching(true);
+    setSearchFeedback({
+      type: 'info',
+      message: lang === 'mr' ? 'ठिकाण शोधत आहे...' : 'Searching region...'
+    });
+
+    try {
+      const geoResults = await apiClient.geocode(cleanQuery);
+      if (geoResults && geoResults.length > 0) {
+        selectAndZoomPlace(geoResults[0]);
+      } else {
+        setSearchFeedback({
+          type: 'error',
+          message: lang === 'mr'
+            ? `'${cleanQuery}' सापडले नाही. कामशेत, कार्ला, पवना किंवा लोणावळा शोधा.`
+            : `No region found for '${cleanQuery}'. Try searching Kamshet, Karla, Pawna, or Lonavala.`
+        });
+      }
+    } catch (err) {
+      setSearchFeedback({
+        type: 'error',
+        message: lang === 'mr' ? 'शोध अयशस्वी झाला.' : 'Search failed. Please try again.'
+      });
+    } finally {
+      setIsSearching(false);
     }
   };
 
@@ -319,26 +475,96 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       <div ref={mapContainerRef} className="map-element" />
 
       {/* Floating Controls & Search */}
-      <div className="map-floating-panel">
-        <form onSubmit={handleSearch} style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}>
-          <div style={{ position: 'relative', flex: 1 }}>
-            <input
-              type="text"
-              placeholder={lang === 'mr' ? 'लोणावळा, भुशी, खंडाळा शोधा...' : 'Search Lonavala, Bhushi, Kune...'}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="form-input"
-              style={{ paddingLeft: '28px', fontSize: '0.8rem', padding: '4px 8px 4px 28px' }}
-            />
-            <Search size={14} style={{ position: 'absolute', left: '8px', top: '8px', color: '#64748b' }} />
-          </div>
-          <button type="submit" className="btn-primary" style={{ padding: '4px 10px', fontSize: '0.78rem' }}>
-            Go
-          </button>
-        </form>
+      <div className="map-floating-panel" style={{ width: '310px', maxWidth: 'calc(100% - 24px)' }}>
+        <div className="map-search-container" ref={searchContainerRef}>
+          <form onSubmit={handleSearch} style={{ display: 'flex', gap: '4px', marginBottom: '4px' }}>
+            <div style={{ position: 'relative', flex: 1 }}>
+              <input
+                type="text"
+                placeholder={lang === 'mr' ? 'कामशेत, कार्ला, लोणावळा शोधा...' : 'Search Kamshet, Karla, Lonavala...'}
+                value={searchQuery}
+                onChange={handleInputChange}
+                onFocus={() => {
+                  if (searchQuery.trim().length >= 1 && suggestions.length > 0) {
+                    setShowSuggestions(true);
+                  }
+                }}
+                className="form-input"
+                style={{ paddingLeft: '28px', paddingRight: searchQuery ? '24px' : '8px', fontSize: '0.8rem', padding: '5px 24px 5px 28px', width: '100%' }}
+              />
+              <Search size={14} style={{ position: 'absolute', left: '8px', top: '9px', color: '#64748b' }} />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={handleClearSearch}
+                  style={{
+                    position: 'absolute',
+                    right: '6px',
+                    top: '7px',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    color: '#94a3b8',
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: 0
+                  }}
+                  title="Clear search"
+                >
+                  <X size={14} />
+                </button>
+              )}
+            </div>
+            <button
+              type="submit"
+              className="btn-primary"
+              disabled={isSearching}
+              style={{ padding: '5px 12px', fontSize: '0.78rem', whiteSpace: 'nowrap' }}
+            >
+              {isSearching ? <Loader2 size={13} className="spin" /> : (lang === 'mr' ? 'शोधा' : 'Search')}
+            </button>
+          </form>
+
+          {/* Autocomplete Suggestions Dropdown */}
+          {showSuggestions && suggestions.length > 0 && (
+            <div className="search-suggestions-dropdown">
+              {suggestions.map((item) => {
+                const itemTitle = lang === 'mr' ? (item.name_mr || item.name) : item.name;
+                return (
+                  <div
+                    key={item.id}
+                    className="search-suggestion-item"
+                    onClick={() => selectAndZoomPlace(item)}
+                  >
+                    <MapPin size={13} style={{ color: '#2563eb', flexShrink: 0 }} />
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div style={{ fontWeight: 600, fontSize: '0.8rem', color: '#1e293b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {itemTitle}
+                        {item.name_mr && lang !== 'mr' ? ` (${item.name_mr})` : ''}
+                      </div>
+                      <div style={{ fontSize: '0.68rem', color: '#64748b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {item.region || item.category || 'Region'}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Search Feedback Banner */}
+          {searchFeedback && (
+            <div className={`search-feedback-banner ${searchFeedback.type}`}>
+              {searchFeedback.type === 'success' && <CheckCircle2 size={12} />}
+              {searchFeedback.type === 'error' && <AlertCircle size={12} />}
+              {searchFeedback.type === 'info' && <Loader2 size={12} className="spin" />}
+              <span>{searchFeedback.message}</span>
+            </div>
+          )}
+        </div>
 
         {/* Quick Map Actions */}
-        <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap', marginTop: '6px' }}>
           <button
             onClick={() => setBasemapType(basemapType === 'topo' ? 'osm' : 'topo')}
             className="btn-secondary"
